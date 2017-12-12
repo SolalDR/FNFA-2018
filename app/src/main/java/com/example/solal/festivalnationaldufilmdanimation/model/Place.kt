@@ -11,15 +11,11 @@ class Place constructor(
 ){
     init {
         val id: Int
-        val limit: Int
-        val name: String
-        val date_start: Date
-        val date_end: Date
-        val background: String
-        val type: Int
-        val scene: Scene
         val lat: Float
         val lon: Float
+        val date_start: Date
+        val date_end: Date
+        val scene: Scene
         val address: String
     }
 }

@@ -12,6 +12,8 @@ class Scene constructor(
     init {
         val id: Int
         val name: String
+        val limit: Int
+        val type: Int? = null
         val background: String
         val description: String
         val places: List<Place>
