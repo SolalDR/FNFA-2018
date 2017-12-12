@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Séance spéciale",
+    "cd": "special"
+  },
+  {
+    "id": 2,
+    "name": "Volet Professionel",
+    "cd": "pro"
+  },
+  {
+    "id": 3,
+    "name": "Séance Scolaire",
+    "cd": "school"
+  },
+  {
+    "id": 4,
+    "name": "Compétitions et sélections",
+    "cd": "competition"
+  },
+  {
+    "id": 5,
+    "name": "Long métrage et rencontres",
+    "cd": "film"
+  },
+  {
+    "id": 6,
+    "name": "Ateliers . Secret Fab",
+    "cd": "workshop"
+  },
+  {
+    "id": 7,
+    "name": "Salon des nouvelles écritures",
+    "cd": "saloon"
+  },
+  {
+    "id": 8,
+    "name": "Autres",
+    "cd": "autre"
+  }
+]

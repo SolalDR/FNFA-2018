@@ -18,7 +18,7 @@ class Event constructor(
         val date_end: Date
         val duration: Int //Seconds
         val background: String
-        val type: Int
+        val type: EventType
         val age_min: Int  // Ex: 6 => 6 years old or more
         val author: Author
         val scene: Scene
