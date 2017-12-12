@@ -11,6 +11,7 @@ class Place constructor(
 ){
     init {
         val id: Int
+        val limit: Int
         val name: String
         val date_start: Date
         val date_end: Date

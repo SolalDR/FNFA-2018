@@ -1,0 +1,189 @@
+{
+  "types": [
+    {
+      "id": 1,
+      "name": "Séance spéciale",
+      "cd": "special"
+    },
+    {
+      "id": 2,
+      "name": "Volet Professionel",
+      "cd": "pro"
+    },
+    {
+      "id": 3,
+      "name": "Séance Scolaire",
+      "cd": "school"
+    },
+    {
+      "id": 4,
+      "name": "Compétitions et sélections",
+      "cd": "competition"
+    },
+    {
+      "id": 5,
+      "name": "Long métrage et rencontres",
+      "cd": "film"
+    },
+    {
+      "id": 6,
+      "name": "Ateliers . Secret Fab",
+      "cd": "workshop"
+    },
+    {
+      "id": 7,
+      "name": "Salon des nouvelles écritures",
+      "cd": "saloon"
+    },
+    {
+      "id": 8,
+      "name": "Autres",
+      "cd": "autre"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "name": "Les courts n°5",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 14:30:00",
+      "date_end": "2017-04-04 16:00:00",
+      "type": 4,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 1
+    },
+    {
+      "id": 2,
+      "name": "Croc Blanc",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 16:30:00",
+      "date_end": "2017-04-04 18:00:00",
+      "type": 5,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 1
+    },
+    {
+      "id": 3,
+      "name": "Croc Blanc",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 19:00:00",
+      "date_end": "2017-04-04 20:00:00",
+      "type": 8,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 1
+    },
+    {
+      "id": 4,
+      "name": "Film d'Ouverture",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 21:30:00",
+      "date_end": "2017-04-04 23:00:00",
+      "type": 5,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 1
+    },
+    {
+      "id": 5,
+      "name": "Séance Scolaire Petite enfance 3 ans",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 9:30:00",
+      "date_end": "2017-04-04 10:30:00",
+      "type": 3,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 2
+    },
+    {
+      "id": 6,
+      "name": "Regards croisés sur la fête 2018",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 10:00:00",
+      "date_end": "2017-04-04 13:30:00",
+      "type": 2,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 3
+    },
+    {
+      "id": 7,
+      "name": "Atelier tout public",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 14:30:00",
+      "date_end": "2017-04-04 18:00:00",
+      "type": 6,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 3
+    },
+    {
+      "id": 8,
+      "name": "Coktail",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 20:00:00",
+      "date_end": "2017-04-04 21:30:00",
+      "type": 8,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 4
+    },
+    {
+      "id": 9,
+      "name": "Soirée",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 23:00:00",
+      "date_end": "2017-04-04 00:30:00",
+      "type": 1,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 4
+    },
+    {
+      "id": 10,
+      "name": "Salon des nouvelles écritures",
+      "description": "",
+      "description_short": "",
+      "date_start": "2017-04-04 10:00:00",
+      "date_end": "2017-04-04 20:30:00",
+      "type": 7,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 6
+    },
+    {
+      "id": 11,
+      "name": "Salon des nouvelles écritures + Projection",
+      "description": "Boucle en continu de 20min",
+      "description_short": "",
+      "date_start": "2017-04-04 10:00:00",
+      "date_end": "2017-04-04 20:30:00",
+      "type": 7,
+      "background": null,
+      "age_min": null,
+      "author": null,
+      "scene": 7
+    }
+  ]
+}
