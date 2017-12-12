@@ -1,4 +1,4 @@
-package com.example.solal.festivalnationaldufilmdanimation.model
+package com.example.solal.festivalnationaldufilmdanimation.entity
 
 import org.json.JSONObject
 
