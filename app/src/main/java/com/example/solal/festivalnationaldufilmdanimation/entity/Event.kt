@@ -47,16 +47,16 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
 
     // Debug method to control the value of the attributes
     fun inspect(indent:String? = ""){
-        System.out.println(indent + "-----------EVENT-----------")
-        System.out.println(indent + "Event")
-        System.out.println(indent + "id : "+ id)
-        System.out.println(indent + "name : "+ name)
-        System.out.println(indent + "age_min : "+ age_min)
-        System.out.println(indent + "type : "+ name)
-        System.out.println(indent + "bg : "+ background)
-        System.out.println(indent + "description : "+ description)
-        System.out.println(indent + "Date Départ : "+ date_start)
-        System.out.println(indent + "Date Fin : "+ date_end)
-        System.out.println(indent + "-----------/EVENT-----------")
+        System.out.println(indent + "-----------EVENT-----------"+"\n"
+                + indent + "Event\n"
+                + indent + "id : "+ id+"\n"
+                + indent + "name : "+ name
+                + "\n" + indent + "type : "+ name
+                + "\n" + indent + "description : "+ description
+                + "\n" + indent + "Date Départ : "+ date_start
+                + "\n" + indent + "Date Départ : "+ date_start
+                + "\n" + indent + "Date Fin : "+ date_end
+                + "\n" + indent + "-----------/EVENT-----------"
+        )
     }
 }
