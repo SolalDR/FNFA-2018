@@ -27,12 +27,12 @@ class Scene constructor(
     }
 
     fun inspect(indent:String? = ""){
-        System.out.println(indent + "-----------SCENE-----------")
-        System.out.println(indent + "Scene")
-        System.out.println(indent + "id : "+ id)
-        System.out.println(indent + "limit : "+ limit)
-        System.out.println(indent + "name : "+ name)
-        System.out.println(indent + "places : ")
+        System.out.println("-----------SCENE-----------"
+            + "\nScene"
+            + "\nid : "+ id
+            + "\nlimit : "+ limit
+            + "\nname : "+ name
+            + "\nplaces : ")
         for(place in places){
             System.out.println(place.inspect("  "))
         }
