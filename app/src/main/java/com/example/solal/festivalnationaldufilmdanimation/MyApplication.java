@@ -11,15 +11,17 @@ import com.squareup.moshi.Types;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by sdussoutrevel on 12/12/2017.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends Application  {
 
-    private static DataManager dataManager;
+    private DataManager dataManager;
 
     @Override
     public void onCreate() {
@@ -29,15 +31,28 @@ public class MyApplication extends Application {
 
         String scenesRaw = JsonParser.getStringFromJson(R.raw.scenes, this.getApplicationContext());
 
-        this.dataManager = new DataManager();
-        this.dataManager.setEventTypes(this.loadEventsType(moshi));
-        this.dataManager.setEvents(this.loadEvents(moshi));
-        this.dataManager.setScenes(this.loadScenes(moshi));
+        this.dataManager = new DataManager(this.getApplicationContext());
 
-        for (Scene scene : this.dataManager.getScenes()) {
-            System.out.println(scene.getName());
+
+        //List<Scene> scenes = this.loadScenes(moshi);
+        //if(!scenes.isEmpty()) {
+        //    this.dataManager.setScenes(new ArrayList<Scene>(this.loadScenes(moshi)));
+        //}
+
+        this.dataManager.launchData();
+        ArrayList<Scene> scenes = this.dataManager.findAllScenes();
+        for (int counter = 0; counter < scenes.size(); counter++) {
+            scenes.get(counter).inspect("");
         }
+    }
 
+    public void onActivityResumed(){
+        this.dataManager = new DataManager(this.getApplicationContext());
+        this.dataManager.launchData();
+    }
+
+    private DataManager getDataManager(){
+        return this.dataManager;
     }
 
     private List<EventType> loadEventsType(Moshi moshi) {

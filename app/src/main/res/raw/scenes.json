@@ -50,7 +50,6 @@
   {
     "id": 4,
     "name": "Bar TNB",
-    "limit": null,
     "background": null,
     "type": null,
     "places": [
@@ -66,7 +65,6 @@
   {
     "id": 5,
     "name": "Hall Haut - TNB",
-    "limit": null,
     "background": null,
     "type": null,
     "places": [
@@ -82,7 +80,6 @@
   {
     "id": 6,
     "name": "Hall bas - TNB",
-    "limit": null,
     "background": null,
     "type": null,
     "places": [
@@ -98,7 +95,6 @@
   {
     "id": 7,
     "name": "Le Cube",
-    "limit": null,
     "background": null,
     "type": null,
     "places": [
@@ -130,7 +126,6 @@
   {
     "id": 9,
     "name": "Les Champs Libres",
-    "limit": null,
     "background": null,
     "type": null,
     "places": [

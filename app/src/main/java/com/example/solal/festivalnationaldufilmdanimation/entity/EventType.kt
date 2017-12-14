@@ -9,9 +9,14 @@ import java.util.Date
 class EventType constructor(
         jsonObject: JSONObject
 ){
+    var id: Int? = null
+    lateinit var name: String
+    lateinit var cd:  String
+
     init {
-        val id: Int
-        val name: String
-        val cd:  String
+        id = jsonObject.getString("id").toInt()
+        name = jsonObject.getString("name")
+        cd = jsonObject.getString("cd")
     }
 }
+

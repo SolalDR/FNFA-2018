@@ -3,6 +3,8 @@ package com.example.solal.festivalnationaldufilmdanimation;
 import android.app.Activity;
 import android.content.Context;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +34,7 @@ public class JsonParser extends Activity {
                 e.printStackTrace();
             }
         }
+
         return sb.toString();
     }
 
