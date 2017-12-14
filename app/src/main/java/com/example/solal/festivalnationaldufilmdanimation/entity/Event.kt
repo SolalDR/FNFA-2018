@@ -12,10 +12,7 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
 
 
     var id: Int? = null                             // ID use for Foreign Key
-
     private var type: EventType? = null                     // Event has one EventType
-    var background: String? = null                  // Background (not used yet)
-    var description_short: String? = null           // Excerpt
     var description: String? = null                 // Long description
     var date_start: Date                            // The event debut at ...
     var date_end: Date                              // The event end at
@@ -25,28 +22,26 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
     //late init var author: Author
     //lateinit var scene: Scene
     //age_min: Int? = null                        // Ex: 6 => 6 years old or more
+    //var background: String? = null                  // Background (not used yet)
+    //var description_short: String? = null           // Excerpt
 
     init {
         id = jsonObject.getString("id").toInt()
         name = jsonObject.getString("name")
         scene_id = jsonObject.getInt("scene")
 
-        if(jsonObject.has("age_min")){
-            age_min = jsonObject.getString("age_min").toIntOrNull()
-        }
-        if(jsonObject.has("description_short")){
-            description_short = jsonObject.getString("description_short")
-        }
         if(jsonObject.has("description")){
             description = jsonObject.getString("description")
         }
-        if(jsonObject.has("background")){
-            background = jsonObject.getString("background")
-        }
+
         val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm:SS", Locale.getDefault())
         date_start = sdfmt1.parse(jsonObject.getString("date_start"))
         date_end = sdfmt1.parse(jsonObject.getString("date_end"))
         type = eventType
+
+        //if(jsonObject.has("age_min")){ age_min = jsonObject.getString("age_min").toIntOrNull() }
+        //if(jsonObject.has("description_short")){ description_short = jsonObject.getString("description_short") }
+        //if(jsonObject.has("background")){ background = jsonObject.getString("background") }
     }
 
 
