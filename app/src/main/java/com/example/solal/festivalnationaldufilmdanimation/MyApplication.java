@@ -24,11 +24,6 @@ public class MyApplication extends Application  {
         super.onCreate();
         this.manager = new DataManager(this.getApplicationContext());
         this.manager.launchData();
-
-        ArrayList<Event> events = EventHelper.orderEvents(this.manager.findAllEvents(), "ASC");
-        for(int i=0; i<events.size(); i++){
-            events.get(i).inspect("");
-        }
     }
 
     private DataManager getManager(){
