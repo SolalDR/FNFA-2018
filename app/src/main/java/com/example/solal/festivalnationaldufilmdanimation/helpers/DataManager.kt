@@ -8,6 +8,7 @@ import com.example.solal.festivalnationaldufilmdanimation.entity.Place
 import com.example.solal.festivalnationaldufilmdanimation.entity.Scene
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -72,6 +73,25 @@ class DataManager constructor( contextArg: Context ){
             }
         }
         return result
+    }
+
+    fun findEventsByDay(date: Date) {
+        val eventsList = ArrayList<Event>()
+        for(event in events){
+            if( event.date_start.compareTo(date) * date.compareTo(event.date_end) > 0 ){
+                eventsList.add(event)
+            }
+        }
+    }
+
+    fun findEventsAtTime(date: Date) : ArrayList<Event> {
+        val atTimesList = ArrayList<Event>()
+        for(event in events){
+            if( event.date_start.compareTo(date) * date.compareTo(event.date_end) > 0 ) {
+                atTimesList.add(event)
+            }
+        }
+        return atTimesList
     }
 
 
