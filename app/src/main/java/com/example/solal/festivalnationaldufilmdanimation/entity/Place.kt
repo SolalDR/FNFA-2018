@@ -29,13 +29,14 @@ class Place constructor(
     }
 
     fun inspect(indent:String = ""){
-        System.out.println(indent + "-----------PLACE-----------")
-        System.out.println(indent + "Place")
-        System.out.println(indent + "lat : "+ lat)
-        System.out.println(indent + "lon : "+ lon)
-        System.out.println(indent + "address : "+ address)
-        System.out.println(indent + "date start : "+ date_start)
-        System.out.println(indent + "date end : "+ date_end)
-        System.out.println(indent + "-----------/PLACE-----------")
+        System.out.println(indent + "-----------PLACE-----------"
+            + "\n" + indent + "Place"
+            + "\n" + indent + "lat : "+ lat
+            + "\n" + indent + "lon : "+ lon
+            + "\n" + indent + "address : "+ address
+            + "\n" + indent + "date start : "+ date_start
+            + "\n" + indent + "date end : "+ date_end
+            + "\n" + indent + "-----------/PLACE-----------"
+        )
     }
 }
