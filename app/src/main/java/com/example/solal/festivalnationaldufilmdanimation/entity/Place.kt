@@ -5,6 +5,7 @@ import java.util.*
 
 /**
  * Created by sdussoutrevel on 11/12/2017.
+ * Entity Place
  */
 class Place constructor(
         jsonObject: JSONObject
@@ -15,6 +16,7 @@ class Place constructor(
     var address: String? = null
     //var date_start: Date
     //var date_end: Date
+
     init {
         jsonObject.getString("lat")?.apply { lat = this.toFloat() }
         jsonObject.getString("lon")?.apply { lon = this.toFloat() }

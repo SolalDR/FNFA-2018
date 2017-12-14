@@ -6,32 +6,31 @@ import java.util.*
 
 /**
  * Created by sdussoutrevel on 11/12/2017.
+ * Entity Event
  */
-class Event constructor(
-        jsonObject: JSONObject,
-        eventType: EventType?
-){
+class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
 
-    var id: Int? = null
-    var age_min: Int? = null  // Ex: 6 => 6 years old or more
-    var type: EventType? = null
-    var background: String? = null
-    var description_short: String? = null
-    var description: String? = null
-    var date_end: Date
-    var date_start: Date
-    var scene_id: Int? = null
-    lateinit var name: String
 
+    var id: Int? = null                             // ID use for Foreign Key
+    var age_min: Int? = null                        // Ex: 6 => 6 years old or more
+    var type: EventType? = null                     // Event has one EventType
+    var background: String? = null                  // Background (not used yet)
+    var description_short: String? = null           // Excerpt
+    var description: String? = null                 // Long description
+    var date_start: Date                            // The event debut at ...
+    var date_end: Date                              // The event end at
+    var scene_id: Int? = null                       // Foreign Key for (Scene has_many Event) relation
+    var name: String
     //var duration: Int? = null //Seconds
-    //lateinit var author: Author
+    //late init var author: Author
     //lateinit var scene: Scene
 
-    init {
 
+    init {
         id = jsonObject.getString("id").toInt()
         name = jsonObject.getString("name")
         scene_id = jsonObject.getInt("scene")
+
         if(jsonObject.has("age_min")){
             age_min = jsonObject.getString("age_min").toIntOrNull()
         }
@@ -44,15 +43,14 @@ class Event constructor(
         if(jsonObject.has("background")){
             background = jsonObject.getString("background")
         }
-
         val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm:SS", Locale.getDefault())
         date_start = sdfmt1.parse(jsonObject.getString("date_start"))
         date_end = sdfmt1.parse(jsonObject.getString("date_end"))
-
         type = eventType
-
     }
 
+
+    // Debug method to control the value of the attributes
     fun inspect(indent:String? = ""){
         System.out.println(indent + "-----------EVENT-----------");
         System.out.println(indent + "Event");
