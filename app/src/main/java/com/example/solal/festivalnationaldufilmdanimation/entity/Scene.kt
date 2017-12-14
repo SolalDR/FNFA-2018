@@ -4,6 +4,7 @@ import org.json.JSONObject
 
 /**
  * Created by sdussoutrevel on 11/12/2017.
+ * Entity Scene
  */
 class Scene constructor(
         jsonObject: JSONObject
