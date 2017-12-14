@@ -3,7 +3,6 @@ package com.example.solal.festivalnationaldufilmdanimation;
 import android.app.Application;
 import com.example.solal.festivalnationaldufilmdanimation.entity.Scene;
 import com.example.solal.festivalnationaldufilmdanimation.helpers.DataManager;
-
 import java.util.ArrayList;
 
 /**

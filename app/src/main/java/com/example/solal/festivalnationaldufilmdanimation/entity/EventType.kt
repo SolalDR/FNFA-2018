@@ -1,10 +1,10 @@
 package com.example.solal.festivalnationaldufilmdanimation.entity
 
 import org.json.JSONObject
-import java.util.Date
 
 /**
  * Created by sdussoutrevel on 11/12/2017.
+ * EvenType Entity, define the type of an event
  */
 class EventType constructor(
         jsonObject: JSONObject
