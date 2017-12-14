@@ -25,7 +25,6 @@ class Place constructor(
         val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm:SS", Locale.getDefault())
         date_start = sdfmt1.parse(jsonObject.getString("date_start"))
         date_end = sdfmt1.parse(jsonObject.getString("date_end"))
-
     }
 
     fun inspect(indent:String = ""){

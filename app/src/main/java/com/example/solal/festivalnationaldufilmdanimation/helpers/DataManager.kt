@@ -8,6 +8,7 @@ import com.example.solal.festivalnationaldufilmdanimation.entity.Place
 import com.example.solal.festivalnationaldufilmdanimation.entity.Scene
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -75,15 +76,28 @@ class DataManager constructor( contextArg: Context ){
         return result
     }
 
-    fun findEventsByDay(date: Date) {
-        val eventsList = ArrayList<Event>()
-        for(event in events){
-            if( event.date_start.compareTo(date) * date.compareTo(event.date_end) > 0 ){
+    /*
+     * Get the list of all the events of a day
+     * Ex : this.findEventsByDay( "2018-04-04" )
+     */
+    fun findEventsByDay(dateStr: String): ArrayList<Event> {
+
+        var eventsList = ArrayList<Event>()
+        val formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val date = formater.parse(dateStr);
+        for(event in events) {
+            var dateEvent: Date = formater.parse(formater.format(event.date_start))
+            System.out.println(dateEvent)
+            if( dateEvent.time == date.time ){
                 eventsList.add(event)
             }
         }
+        return eventsList
     }
 
+    /*
+     * Get all the events activate for a specific date
+     */
     fun findEventsAtTime(date: Date) : ArrayList<Event> {
         val atTimesList = ArrayList<Event>()
         for(event in events){
@@ -93,7 +107,6 @@ class DataManager constructor( contextArg: Context ){
         }
         return atTimesList
     }
-
 
     /*
      * Loader methods
