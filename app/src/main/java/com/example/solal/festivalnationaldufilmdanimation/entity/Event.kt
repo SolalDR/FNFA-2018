@@ -12,7 +12,7 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
 
 
     var id: Int? = null                             // ID use for Foreign Key
-    var age_min: Int? = null                        // Ex: 6 => 6 years old or more
+
     private var type: EventType? = null                     // Event has one EventType
     var background: String? = null                  // Background (not used yet)
     var description_short: String? = null           // Excerpt
@@ -24,7 +24,7 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
     //var duration: Int? = null //Seconds
     //late init var author: Author
     //lateinit var scene: Scene
-
+    //age_min: Int? = null                        // Ex: 6 => 6 years old or more
 
     init {
         id = jsonObject.getString("id").toInt()
