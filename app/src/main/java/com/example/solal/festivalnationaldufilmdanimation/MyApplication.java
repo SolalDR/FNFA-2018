@@ -1,9 +1,13 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.app.Application;
-import com.example.solal.festivalnationaldufilmdanimation.entity.Scene;
+import com.example.solal.festivalnationaldufilmdanimation.entity.Event;
 import com.example.solal.festivalnationaldufilmdanimation.helpers.DataManager;
+import com.example.solal.festivalnationaldufilmdanimation.helpers.EventHelper;
+
 import java.util.ArrayList;
+
+
 
 /**
  * Created by sdussoutrevel on 12/12/2017.
@@ -20,9 +24,10 @@ public class MyApplication extends Application  {
         super.onCreate();
         this.manager = new DataManager(this.getApplicationContext());
         this.manager.launchData();
-        ArrayList<Scene> scenes = this.manager.findAllScenes();
-        for (int counter = 0; counter < scenes.size(); counter++) {
-            scenes.get(counter).inspect("");
+
+        ArrayList<Event> events = EventHelper.orderEvents(this.manager.findAllEvents(), "ASC");
+        for(int i=0; i<events.size(); i++){
+            events.get(i).inspect("");
         }
     }
 

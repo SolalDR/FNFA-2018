@@ -3,12 +3,13 @@ package com.example.solal.festivalnationaldufilmdanimation.entity
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by sdussoutrevel on 11/12/2017.
  * Entity Event
  */
-class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
+class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comparable<Event> {
 
 
     var id: Int? = null                             // ID use for Foreign Key
@@ -59,4 +60,11 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ){
                 + "\n" + indent + "-----------/EVENT-----------"
         )
     }
+
+    override fun compareTo( event: Event ): Int {
+        return date_start.compareTo(event.date_start);
+        return event.date_start.compareTo(date_start);
+    }
+
+
 }

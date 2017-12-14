@@ -42,17 +42,9 @@ class DataManager constructor( contextArg: Context ){
      * Find all
      */
 
-    fun findAllScenes(): ArrayList<Scene>{
-        return this.scenes
-    }
-
-    fun findAllEvents(): ArrayList<Event>{
-        return this.events
-    }
-
-    fun findAllPlaces(): ArrayList<Place>{
-        return this.places
-    }
+    fun findAllScenes(): ArrayList<Scene>{ return this.scenes }
+    fun findAllEvents(): ArrayList<Event> { return this.events }
+    fun findAllPlaces(): ArrayList<Place>{ return this.places }
 
     /*
      * Find single
