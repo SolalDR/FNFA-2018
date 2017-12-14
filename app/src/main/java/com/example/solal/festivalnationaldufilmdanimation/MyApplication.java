@@ -1,19 +1,10 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.app.Application;
-
-import com.example.solal.festivalnationaldufilmdanimation.entity.Event;
-import com.example.solal.festivalnationaldufilmdanimation.entity.EventType;
 import com.example.solal.festivalnationaldufilmdanimation.entity.Scene;
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.Types;
+import com.example.solal.festivalnationaldufilmdanimation.helpers.DataManager;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by sdussoutrevel on 12/12/2017.
@@ -23,21 +14,20 @@ import java.util.List;
 
 public class MyApplication extends Application  {
 
-    private DataManager dataManager;
+    private DataManager manager;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        this.dataManager = new DataManager(this.getApplicationContext());
-        this.dataManager.launchData();
-        ArrayList<Scene> scenes = this.dataManager.findAllScenes();
+        this.manager = new DataManager(this.getApplicationContext());
+        this.manager.launchData();
+        ArrayList<Scene> scenes = this.manager.findAllScenes();
         for (int counter = 0; counter < scenes.size(); counter++) {
             scenes.get(counter).inspect("");
         }
     }
 
-    private DataManager getDataManager(){
-        return this.dataManager;
+    private DataManager getManager(){
+        return this.manager;
     }
 }

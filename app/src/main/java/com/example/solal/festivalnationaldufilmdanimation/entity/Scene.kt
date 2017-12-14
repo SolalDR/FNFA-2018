@@ -19,26 +19,26 @@ class Scene constructor(
     //var description: String? = null
 
     init {
-        jsonObject.getInt("id")?.apply { id = this }
-        jsonObject.getString("name")?.apply { name = this }
+        jsonObject.getInt("id").apply { id = this }
+        jsonObject.getString("name").apply { name = this }
         if(jsonObject.has("limit") == true) {
             limit = jsonObject.getInt("limit")
         }
     }
 
     fun inspect(indent:String? = ""){
-        System.out.println(indent + "-----------SCENE-----------");
-        System.out.println(indent + "Scene");
-        System.out.println(indent + "id : "+ id);
-        System.out.println(indent + "limit : "+ limit);
-        System.out.println(indent + "name : "+ name);
-        System.out.println(indent + "places : ");
+        System.out.println(indent + "-----------SCENE-----------")
+        System.out.println(indent + "Scene")
+        System.out.println(indent + "id : "+ id)
+        System.out.println(indent + "limit : "+ limit)
+        System.out.println(indent + "name : "+ name)
+        System.out.println(indent + "places : ")
         for(place in places){
-            System.out.println(place.inspect("  "));
+            System.out.println(place.inspect("  "))
         }
         for(event in events){
-            System.out.println(event.inspect("  "));
+            System.out.println(event.inspect("  "))
         }
-        System.out.println("-----------/SCENE-----------");
+        System.out.println("-----------/SCENE-----------")
     }
 }

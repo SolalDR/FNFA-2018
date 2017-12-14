@@ -6,14 +6,16 @@ import org.json.JSONObject
  * Created by sdussoutrevel on 11/12/2017.
  * Not used yet
  */
-class Author constructor(
-        jsonObject: JSONObject
-){
+
+class Author constructor( jsonObject: JSONObject){
+
+    var id: Int? = null
+    var name: String? = null
+    var background: String? = null
+    //var description: String? = null
+    //var events: String? = null
+
     init {
-        val id: Int
-        val name: String
-        val background: String
-        val description: String
-        val events: List<Event>
+
     }
 }
