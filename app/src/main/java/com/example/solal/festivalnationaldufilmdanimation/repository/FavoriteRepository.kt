@@ -19,6 +19,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
     init {
         manager = manager_ref
+        System.out.println("-----------------"+ manager.findEventsByDay("2018-04-04"))
     }
 
 
@@ -29,17 +30,41 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
     fun findAllEventTypes(): ArrayList<EventType> { return eventsType }
 
 
+    fun mapEventsId(): ArrayList<Int> {
+        var list = ArrayList<Int>()
+        for(event in events){
+            event.id?.apply {
+                list.add(this)
+            }
+        }
+        System.out.println("Hello : " + events)
+        return list
+    }
+
+    fun mapEventTypesId(): ArrayList<Int> {
+        var list = ArrayList<Int>()
+        for(event in eventsType){
+            event.id?.apply {
+                list.add(this)
+            }
+        }
+        return list
+    }
+
     /*
      * Open file and update its content from stringify favorites
      */
     fun setStoredFavorites(){
         val FILENAME = "fnfa_favorite"
-        val string = "hello world!"
 
+        var favoritesJSON: JSONObject = JSONObject()
+        var eventsId: ArrayList<Int> = this.mapEventsId()
+        var eventTypesId: ArrayList<Int> = this.mapEventTypesId()
 
-        val fos = manager.context.openFileOutput(FILENAME, Context.MODE_PRIVATE)
-        fos.write(string.toByteArray())
-        fos.close()
+        System.out.println("--------------------"+eventsId.toString())
+        var string: String = "{ \"events\": [], \"eventTypes\": []}"
+
+        FileHelper.writeFile(FILENAME, string, this.manager.context)
     }
 
     /*
