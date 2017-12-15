@@ -1,12 +1,9 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.app.Application;
-import com.example.solal.festivalnationaldufilmdanimation.entity.Event;
-import com.example.solal.festivalnationaldufilmdanimation.helpers.DataManager;
-import com.example.solal.festivalnationaldufilmdanimation.helpers.EventHelper;
 
-import java.util.ArrayList;
-
+import com.example.solal.festivalnationaldufilmdanimation.repository.DataRepository;
+import com.example.solal.festivalnationaldufilmdanimation.repository.FavoriteRepository;
 
 
 /**
@@ -17,16 +14,21 @@ import java.util.ArrayList;
 
 public class MyApplication extends Application  {
 
-    private DataManager manager;
+    private DataRepository manager;
+    private FavoriteRepository favoriteRepo;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        this.manager = new DataManager(this.getApplicationContext());
+        this.manager = new DataRepository(this.getApplicationContext());
+        this.favoriteRepo = new FavoriteRepository(this.manager);
         this.manager.launchData();
+
+        this.favoriteRepo.setStoredFavorites();
+        this.favoriteRepo.getStoredFavorite();
     }
 
-    private DataManager getManager(){
+    private DataRepository getManager(){
         return this.manager;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.solal.festivalnationaldufilmdanimation.helpers
+package com.example.solal.festivalnationaldufilmdanimation.repository
 
 import android.content.Context
 import com.example.solal.festivalnationaldufilmdanimation.R
@@ -6,6 +6,7 @@ import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.entity.EventType
 import com.example.solal.festivalnationaldufilmdanimation.entity.Place
 import com.example.solal.festivalnationaldufilmdanimation.entity.Scene
+import com.example.solal.festivalnationaldufilmdanimation.helpers.JsonParser
 import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -18,9 +19,9 @@ import kotlin.collections.ArrayList
  * It allow to access Events, Scenes and Place and provide methods.
  */
 
-class DataManager constructor( contextArg: Context ){
+class DataRepository constructor(contextArg: Context ){
 
-    private var context: Context
+    var context: Context
     private var eventTypes: ArrayList<EventType> = ArrayList()
     private var events: ArrayList<Event> = ArrayList()
     private var scenes: ArrayList<Scene> = ArrayList()
@@ -131,7 +132,7 @@ class DataManager constructor( contextArg: Context ){
                typeRank = this.toInt()
             }
             typeRank?.apply {
-                val eventType = this@DataManager.findEventTypeById(this)
+                val eventType = this@DataRepository.findEventTypeById(this)
                 events.add(Event(obj, eventType))
             }
         }
