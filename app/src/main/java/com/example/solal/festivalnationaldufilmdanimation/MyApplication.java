@@ -24,7 +24,7 @@ public class MyApplication extends Application  {
         this.manager.launchData();
 
         this.favoriteRepo = new FavoriteRepository(this.manager);
-        this.favoriteRepo.setStoredFavorites();
+        this.favoriteRepo.getStoredFavorite();
     }
 
     private DataRepository getManager(){

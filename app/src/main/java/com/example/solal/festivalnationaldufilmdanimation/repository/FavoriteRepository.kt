@@ -15,11 +15,13 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
     var manager: DataRepository
     var events = ArrayList<Event>()
-    var eventsType = ArrayList<EventType>()
+    var eventTypes = ArrayList<EventType>()
 
     init {
         manager = manager_ref
-        System.out.println("-----------------"+ manager.findEventsByDay("2018-04-04"))
+
+        //test
+        events = manager.findEventsByDay("2018-04-04");
     }
 
 
@@ -27,7 +29,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
      * find methods
      */
     fun findAllEvents(): ArrayList<Event> { return events }
-    fun findAllEventTypes(): ArrayList<EventType> { return eventsType }
+    fun findAllEventTypes(): ArrayList<EventType> { return eventTypes }
 
 
     fun mapEventsId(): ArrayList<Int> {
@@ -37,13 +39,12 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
                 list.add(this)
             }
         }
-        System.out.println("Hello : " + events)
         return list
     }
 
     fun mapEventTypesId(): ArrayList<Int> {
         var list = ArrayList<Int>()
-        for(event in eventsType){
+        for(event in eventTypes){
             event.id?.apply {
                 list.add(this)
             }
@@ -60,10 +61,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         var favoritesJSON: JSONObject = JSONObject()
         var eventsId: ArrayList<Int> = this.mapEventsId()
         var eventTypesId: ArrayList<Int> = this.mapEventTypesId()
-
-        System.out.println("--------------------"+eventsId.toString())
-        var string: String = "{ \"events\": [], \"eventTypes\": []}"
-
+        var string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
         FileHelper.writeFile(FILENAME, string, this.manager.context)
     }
 
@@ -73,7 +71,30 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
     fun getStoredFavorite() {
         val FILENAME = "fnfa_favorite"
         val content = FileHelper.readFile(FILENAME, this.manager.context)
-        System.out.println("File content ------------------------ \n"+content)
+
+        val json = JSONObject(content)
+        val eventsId = json.getJSONArray("events");
+        val eventTypesId = json.getJSONArray("eventTypes");
+
+        val eventsList = ArrayList<Event>()
+        for (i in 0 until eventsId.length()) {
+            val event: Event? = this.manager.findEventById( eventsId.get(i).toString().toInt() )
+            event?.let {
+                eventsList.add(event)
+            }
+        }
+
+        val eventTypesList = ArrayList<EventType>()
+        for (i in 0 until eventTypesId.length()) {
+            val eventType: EventType? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
+            eventType?.let {
+                eventTypes.add(eventType)
+            }
+        }
+
+        System.out.println("-----------------------");
+        System.out.println(this.events);
+        System.out.println(this.eventTypes);
     }
 
     /*
