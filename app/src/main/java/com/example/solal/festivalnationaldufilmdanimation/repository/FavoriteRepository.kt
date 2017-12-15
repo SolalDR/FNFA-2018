@@ -1,15 +1,19 @@
-package com.example.solal.festivalnationaldufilmdanimation.helpers
+package com.example.solal.festivalnationaldufilmdanimation.repository
 
+import android.content.Context
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.entity.EventType
 import org.json.JSONObject
+import android.content.Context.MODE_PRIVATE
+import com.example.solal.festivalnationaldufilmdanimation.helpers.FileHelper
+
 
 /**
  * Created by sdussoutrevel on 15/12/2017.
  */
-class FavoriteManager constructor(manager_ref: DataManager) {
+class FavoriteRepository constructor(manager_ref: DataRepository) {
 
-    var manager: DataManager
+    var manager: DataRepository
     var events = ArrayList<Event>()
     var eventsType = ArrayList<EventType>()
 
@@ -29,14 +33,22 @@ class FavoriteManager constructor(manager_ref: DataManager) {
      * Open file and update its content from stringify favorites
      */
     fun setStoredFavorites(){
+        val FILENAME = "fnfa_favorite"
+        val string = "hello world!"
 
+
+        val fos = manager.context.openFileOutput(FILENAME, Context.MODE_PRIVATE)
+        fos.write(string.toByteArray())
+        fos.close()
     }
 
     /*
      * Open fil and get the content
      */
     fun getStoredFavorite() {
-
+        val FILENAME = "fnfa_favorite"
+        val content = FileHelper.readFile(FILENAME, this.manager.context)
+        System.out.println("File content ------------------------ \n"+content)
     }
 
     /*
