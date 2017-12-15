@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Festival National du Film d\'Animation</string>
+    <string name="title_activity_program">ProgramActivity</string>
+    <string name="title_activity_info">InfoActivity</string>
+    <string name="title_activity_stars">StarsActivity</string>
 </resources>

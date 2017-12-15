@@ -63,8 +63,5 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comp
 
     override fun compareTo( event: Event ): Int {
         return date_start.compareTo(event.date_start);
-        return event.date_start.compareTo(date_start);
     }
-
-
 }
