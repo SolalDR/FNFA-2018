@@ -108,6 +108,7 @@ class DataRepository constructor(contextArg: Context ){
         return atTimesList
     }
 
+
     /*
      * Loader methods
      */
@@ -129,7 +130,7 @@ class DataRepository constructor(contextArg: Context ){
             val type = obj.getString("type")
             var typeRank: Int? = null
             type?.apply {
-               typeRank = this.toInt()
+                typeRank = this.toInt()
             }
             typeRank?.apply {
                 val eventType = this@DataRepository.findEventTypeById(this)

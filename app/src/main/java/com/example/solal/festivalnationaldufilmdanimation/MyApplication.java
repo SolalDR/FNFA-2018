@@ -21,11 +21,10 @@ public class MyApplication extends Application  {
     public void onCreate() {
         super.onCreate();
         this.manager = new DataRepository(this.getApplicationContext());
-        this.favoriteRepo = new FavoriteRepository(this.manager);
         this.manager.launchData();
 
+        this.favoriteRepo = new FavoriteRepository(this.manager);
         this.favoriteRepo.setStoredFavorites();
-        this.favoriteRepo.getStoredFavorite();
     }
 
     private DataRepository getManager(){
