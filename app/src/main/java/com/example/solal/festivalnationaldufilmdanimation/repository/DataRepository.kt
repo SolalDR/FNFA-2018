@@ -62,6 +62,15 @@ class DataRepository constructor(contextArg: Context ){
         return null
     }
 
+    fun findEventById(id: Int): Event? {
+        for(event in events){
+            if( event.id == id ){
+                return event;
+            }
+        }
+        return null;
+    }
+
     /*
      * Find parts
      */
