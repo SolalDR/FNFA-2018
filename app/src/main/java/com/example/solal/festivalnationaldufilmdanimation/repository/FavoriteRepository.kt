@@ -72,29 +72,27 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         val FILENAME = "fnfa_favorite"
         val content = FileHelper.readFile(FILENAME, this.manager.context)
 
-        val json = JSONObject(content)
-        val eventsId = json.getJSONArray("events");
-        val eventTypesId = json.getJSONArray("eventTypes");
+        if( content != "" ){
+            val json = JSONObject(content)
+            val eventsId = json.getJSONArray("events");
+            val eventTypesId = json.getJSONArray("eventTypes");
 
-        val eventsList = ArrayList<Event>()
-        for (i in 0 until eventsId.length()) {
-            val event: Event? = this.manager.findEventById( eventsId.get(i).toString().toInt() )
-            event?.let {
-                eventsList.add(event)
+            val eventsList = ArrayList<Event>()
+            for (i in 0 until eventsId.length()) {
+                val event: Event? = this.manager.findEventById( eventsId.get(i).toString().toInt() )
+                event?.let {
+                    eventsList.add(event)
+                }
+            }
+
+            val eventTypesList = ArrayList<EventType>()
+            for (i in 0 until eventTypesId.length()) {
+                val eventType: EventType? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
+                eventType?.let {
+                    eventTypes.add(eventType)
+                }
             }
         }
-
-        val eventTypesList = ArrayList<EventType>()
-        for (i in 0 until eventTypesId.length()) {
-            val eventType: EventType? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
-            eventType?.let {
-                eventTypes.add(eventType)
-            }
-        }
-
-        System.out.println("-----------------------");
-        System.out.println(this.events);
-        System.out.println(this.eventTypes);
     }
 
     /*
