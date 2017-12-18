@@ -34,5 +34,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.squareup.moshi:moshi:1.5.0'
     compile 'com.squareup.moshi:moshi-kotlin:1.5.0'
-    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
 }
