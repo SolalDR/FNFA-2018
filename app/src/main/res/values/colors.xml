@@ -5,9 +5,10 @@
     <color name="green">#46D4AF</color>
     <color name="orange">#FCB72E</color>
     <color name="yellow">#DBE252</color>
-
+    <color name="white">#FFFFFF</color>
+    <color name="dark">#333333</color>
     <color name="colorPrimary">@color/blue</color>
-    <color name="colorPrimaryDark">@color/green</color>
+    <color name="colorPrimaryDark">@color/dark</color>
     <color name="colorAccent">@color/orange</color>
 
 </resources>
