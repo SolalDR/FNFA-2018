@@ -1,5 +1,6 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.app.ActionBar
 import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -24,11 +25,12 @@ class StartActivity : AppCompatActivity() {
         support?.apply {
             this.setDisplayShowTitleEnabled(false);
             this.setDisplayHomeAsUpEnabled(false);
+            //this.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         }
 
-
-
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
