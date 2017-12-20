@@ -2,8 +2,11 @@ package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.app.Application;
 
+import com.example.solal.festivalnationaldufilmdanimation.entity.Event;
 import com.example.solal.festivalnationaldufilmdanimation.repository.DataRepository;
 import com.example.solal.festivalnationaldufilmdanimation.repository.FavoriteRepository;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,17 +20,28 @@ public class MyApplication extends Application  {
     private DataRepository manager;
     private FavoriteRepository favoriteRepo;
 
+    private static MyApplication application;
+
+    public MyApplication getInstance() {
+        return application;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        application = this;
         this.manager = new DataRepository(this.getApplicationContext());
         this.manager.launchData();
 
         this.favoriteRepo = new FavoriteRepository(this.manager);
         this.favoriteRepo.getStoredFavorite();
+
+        ArrayList<Event> events = this.manager.findEventsByDay("2018-04-04");
+        System.out.println("----------"+events.size());
     }
 
-    private DataRepository getManager(){
+
+    public DataRepository getManager(){
         return this.manager;
     }
 }

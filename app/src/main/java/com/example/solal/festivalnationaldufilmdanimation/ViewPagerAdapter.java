@@ -40,10 +40,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 InfoFragment tab3 = new InfoFragment();
                 return tab3;
             default:
-                InfoFragment tab4 = new InfoFragment();
+                StarsFragment tab4 = new StarsFragment();
                 return tab4;
         }
-
     }
 
     // This method return the titles for the Tabs in the Tab Strip

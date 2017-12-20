@@ -93,10 +93,9 @@ class DataRepository constructor(contextArg: Context ){
 
         var eventsList = ArrayList<Event>()
         val formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val date = formater.parse(dateStr);
+        val date = formater.parse(dateStr)
         for(event in events) {
             var dateEvent: Date = formater.parse(formater.format(event.date_start))
-            System.out.println(dateEvent)
             if( dateEvent.time == date.time ){
                 eventsList.add(event)
             }
