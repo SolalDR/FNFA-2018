@@ -215,10 +215,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
             //  TAB TEXT
             //
             //////////////////////////////
-
+            int dps = 90;
+            final float scale = getContext().getResources().getDisplayMetrics().density;
+            int pixels = (int) (dps * scale + 0.5f);
+            tabTitleView.setHeight(pixels);
             tabTitleView.setTextColor(getResources().getColorStateList(R.color.dark));
             tabTitleView.setTextSize(14);
-            tabTitleView.setPadding(0, 40, 0, 40);
+            tabTitleView.setPadding(0, 30, 0, 40);
         }
     }
 
