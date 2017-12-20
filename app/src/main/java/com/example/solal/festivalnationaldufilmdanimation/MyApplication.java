@@ -35,9 +35,6 @@ public class MyApplication extends Application  {
 
         this.favoriteRepo = new FavoriteRepository(this.manager);
         this.favoriteRepo.getStoredFavorite();
-
-        ArrayList<Event> events = this.manager.findEventsByDay("2018-04-04");
-        System.out.println("----------"+events.size());
     }
 
 
