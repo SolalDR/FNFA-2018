@@ -31,16 +31,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         switch (position) {
 
             case 0:
-                Tab1Fragment tab1 = new Tab1Fragment();
+                HomeFragment tab1 = new HomeFragment();
                 return tab1;
             case 1:
-                Tab2Fragment tab2 = new Tab2Fragment();
+                EventsFragment tab2 = new EventsFragment();
                 return tab2;
             case 2:
-                Tab3Fragment tab3 = new Tab3Fragment();
+                InfoFragment tab3 = new InfoFragment();
                 return tab3;
             default:
-                Tab3Fragment tab4 = new Tab3Fragment();
+                InfoFragment tab4 = new InfoFragment();
                 return tab4;
         }
 
