@@ -29,7 +29,10 @@
         android:background="@color/white"
         android:padding="8dp">
 
-        <!-- La liste d'event -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerV"
+            android:layout_width="match_parent"
+            android:layout_height="569dp" />
 
     </RelativeLayout>
 

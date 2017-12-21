@@ -1,8 +1,8 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,27 +12,35 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 
-import kotlinx.android.synthetic.main.activity_program.*
+class EventsFragment : Fragment() {
 
-class ProgramActivity : AppCompatActivity() {
 
     lateinit var recyclerV: RecyclerView
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_program)
 
 
-        this.recyclerV = findViewById(R.id.recyclerV)
-        this.recyclerV.layoutManager = LinearLayoutManager(this)
-        displayEvents()
+
+        return inflater!!.inflate(R.layout.tab_event, container, false)
+    }
+
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view?.findViewById<RecyclerView>(R.id.recyclerV)?.apply {
+            recyclerV = this
+            recyclerV.layoutManager = LinearLayoutManager(this.context)
+            displayEvents()
+        }
     }
 
     private fun displayEvents(){
-        val myApp = this.application as MyApplication
+        val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay("2018-04-04")
+        System.out.println("---------------"+eventArrayByDay.size)
         recyclerV.adapter = EventAdapter(eventArrayByDay,{ param ->
-            Toast.makeText(this, param, Toast.LENGTH_SHORT)
-                    .show()
+            Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }
 
