@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
+import android.support.v7.widget.GridLayoutManager
+import android.widget.EditText
+
 
 class EventsFragment : Fragment() {
 
@@ -55,16 +58,21 @@ class EventsFragment : Fragment() {
             val layoutInflater = LayoutInflater.from(context)
             val view: View = layoutInflater.inflate(R.layout.item_program, parent, false)
             return EventViewHolder(view)
+
         }
 
         override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
 
             val eventName = events[position].name
+            val eventTime = events[position].date_start
+
 
             //To change body of created functions use File | Settings | File Templates.
-            val nameView = holder.itemView.findViewById<TextView>(R.id.programTextView)
+            val nameView = holder.itemView.findViewById<TextView>(R.id.programTitle)
+            val timeView = holder.itemView.findViewById<TextView>(R.id.programTime)
 
             nameView.text = eventName
+            timeView.text = eventTime.toString()
 
             //holder.itemView.setOnClickListener {}
         }
