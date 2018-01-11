@@ -1,10 +1,12 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import android.view.View;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
                 this.getResources().getDrawable(R.mipmap.ic_launcher),
                 this.getResources().getDrawable(R.mipmap.ic_launcher)
         };
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs, titles);
+
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs, titles);
 
         // Assigning ViewPager View and setting the adapter
         view_pager = findViewById(R.id.view_pager);
@@ -49,9 +52,5 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(view_pager);
-
     }
-
-
-
 }
