@@ -14,25 +14,82 @@ import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import android.support.v7.widget.GridLayoutManager
 import android.widget.EditText
 
+import kotlinx.android.synthetic.main.tab_event.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+
+
 
 class EventsFragment : Fragment() {
 
-
     lateinit var recyclerV: RecyclerView
+    lateinit var currentDate: Date
+    lateinit var selectedDate: Date
+    lateinit var formater: SimpleDateFormat
+    lateinit var app: MyApplication;
+
+    // The date TextView
+    var currentDateText: TextView? = null
+    var lastDateText: TextView? = null
+    var nextDateText: TextView? = null
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
 
+        formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        app = this.activity.application as MyApplication
 
+        setDefaultDate()
 
         return inflater!!.inflate(R.layout.tab_event, container, false)
     }
 
+    fun initClick(){
+
+    }
+
+    fun setDefaultDate(){
+        currentDate = Calendar.getInstance().time
+        selectedDate = app.manager.dates[0]
+        for(dateItem in app.manager.dates){
+            if( dateItem == currentDate){
+                selectedDate = currentDate;
+            }
+        }
+    }
+
+    fun updateDate(){
+        Collections.sort(app.manager.dates);
+
+        var selectedDateContent = formater.format(selectedDate);
+        var rank: Int? = null
+
+        for(i in 0..app.manager.dates.size-1){
+            if( app.manager.dates[i] == selectedDate){
+                rank = i
+            }
+        }
+
+        when(rank){
+            0 -> lastDateText?.alpha = (0).toFloat()
+            app.manager.dates.size -1 -> nextDateText?.alpha = (0).toFloat()
+        }
+
+        currentDateText?.text = selectedDateContent
+    }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        currentDateText = view?.findViewById<TextView>(R.id.textCurrentDate)
+        lastDateText = view?.findViewById<TextView>(R.id.textLastDate)
+        nextDateText = view?.findViewById<TextView>(R.id.textNextDate)
+
+        updateDate()
+
         view?.findViewById<RecyclerView>(R.id.recyclerV)?.apply {
-            recyclerV = this
+            this@EventsFragment.recyclerV = this
             recyclerV.layoutManager = LinearLayoutManager(this.context)
             displayEvents()
         }
@@ -58,7 +115,6 @@ class EventsFragment : Fragment() {
             val layoutInflater = LayoutInflater.from(context)
             val view: View = layoutInflater.inflate(R.layout.item_program, parent, false)
             return EventViewHolder(view)
-
         }
 
         override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
