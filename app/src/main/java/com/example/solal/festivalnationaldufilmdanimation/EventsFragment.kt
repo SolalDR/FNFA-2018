@@ -11,13 +11,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
-import android.support.v7.widget.GridLayoutManager
-import android.widget.EditText
-
 import kotlinx.android.synthetic.main.tab_event.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 
 class EventsFragment : Fragment() {
