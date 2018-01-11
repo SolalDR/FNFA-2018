@@ -26,6 +26,8 @@ class DataRepository constructor(contextArg: Context ){
     private var events: ArrayList<Event> = ArrayList()
     private var scenes: ArrayList<Scene> = ArrayList()
     private var places: ArrayList<Place> = ArrayList()
+    var dates: ArrayList<Date> = ArrayList()
+    lateinit var formater: SimpleDateFormat;
 
     /*
      * Initialisation
@@ -33,11 +35,13 @@ class DataRepository constructor(contextArg: Context ){
 
     init {
         context = contextArg
+        formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     }
 
     fun launchData(){
         loadEventsType()
         loadEvents()
+        System.out.println("------NB dates---------"+dates.size)
         loadScenes()
     }
 
@@ -92,7 +96,7 @@ class DataRepository constructor(contextArg: Context ){
     fun findEventsByDay(dateStr: String): ArrayList<Event> {
 
         var eventsList = ArrayList<Event>()
-        val formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date = formater.parse(dateStr)
         for(event in events) {
             var dateEvent: Date = formater.parse(formater.format(event.date_start))
@@ -116,6 +120,22 @@ class DataRepository constructor(contextArg: Context ){
         return atTimesList
     }
 
+    /*
+     *
+     */
+    private fun addDateIfExist(date: Date){
+        var found = false;
+        val dateFormat = formater.parse(formater.format(date));
+
+        for(dateItem in dates){
+            if( dateFormat == dateItem){
+                found = true;
+            }
+        }
+        if( found == false ){
+            dates.add(dateFormat)
+        }
+    }
 
     /*
      * Loader methods
@@ -142,7 +162,9 @@ class DataRepository constructor(contextArg: Context ){
             }
             typeRank?.apply {
                 val eventType = this@DataRepository.findEventTypeById(this)
-                events.add(Event(obj, eventType))
+                val event = Event(obj, eventType);
+                events.add(event)
+                this@DataRepository.addDateIfExist(event.date_start)
             }
         }
     }
