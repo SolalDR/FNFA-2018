@@ -19,8 +19,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="209dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/line">
 
 
         <!-- Les CardView agissent comme des FrameLayout,
@@ -30,32 +32,48 @@
         <TextView
 
             android:id="@+id/programTime"
-            android:layout_width="131dp"
+            android:layout_width="91dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
             android:background="?android:selectableItemBackground"
             android:fontFamily="sans-serif"
-            android:padding="20dp"
+            android:padding="2dp"
             android:textColor="#333"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/programTitle"
-            android:layout_width="225dp"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/programTime"
-            android:layout_toRightOf="@+id/programTime"
+            android:layout_alignLeft="@+id/programTime"
+            android:layout_alignStart="@+id/programTime"
+            android:layout_below="@+id/programTime"
             android:background="?android:selectableItemBackground"
             android:fontFamily="sans-serif"
-            android:padding="20dp"
+            android:padding="2dp"
             android:textColor="#333"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/programPlace"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/programTime"
+            android:layout_alignStart="@+id/programTime"
+            android:layout_below="@+id/programTitle"
+            android:background="?android:selectableItemBackground"
+            android:fontFamily="sans-serif"
+            android:padding="2dp"
+            android:textColor="#333"
+            android:textSize="20sp" />
 
 
     </RelativeLayout>
 
 
- </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>
