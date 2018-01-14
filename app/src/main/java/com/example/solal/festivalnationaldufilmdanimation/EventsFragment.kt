@@ -123,6 +123,14 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         })
     }
 
+    private fun displayEventsPlace(){
+        val myApp = this.activity.application as MyApplication
+        val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
+        recyclerV.adapter = EventAdapter(eventArrayByDay,{ param ->
+            Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
+        })
+    }
+
     class EventAdapter(private val events: List<Event>, val eventCallback: (String) -> Unit) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
         override fun getItemCount(): Int = events.size //size similar to count, size specific from list
@@ -139,15 +147,23 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
 
             val eventName = events[position].name
-            val eventTime = events[position].date_start
+            val eventId = events[position].id
 
+            val eventTime = events[position].date_start
+            val hourFormat = SimpleDateFormat("HH", Locale.FRENCH).format(eventTime)
+            val minuteFormat = SimpleDateFormat("mm", Locale.FRENCH).format(eventTime)
 
             //To change body of created functions use File | Settings | File Templates.
             val nameView = holder.itemView.findViewById<TextView>(R.id.programTitle)
             val timeView = holder.itemView.findViewById<TextView>(R.id.programTime)
+            val placeView = holder.itemView.findViewById<TextView>(R.id.programPlace)
+
+            val hour = hourFormat.toString() + "h" + minuteFormat.toString();
 
             nameView.text = eventName
-            timeView.text = eventTime.toString()
+            timeView.text = hour
+            placeView.text = "no idea"
+
         }
 
         class EventViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
