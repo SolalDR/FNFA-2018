@@ -1,6 +1,7 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         Drawable titles[] = {
-                this.getResources().getDrawable(R.mipmap.ic_launcher),
-                this.getResources().getDrawable(R.mipmap.ic_launcher),
-                this.getResources().getDrawable(R.mipmap.ic_launcher),
-                this.getResources().getDrawable(R.mipmap.ic_launcher)
+                this.getResources().getDrawable(R.drawable.ico_home),
+                this.getResources().getDrawable(R.drawable.ico_date),
+                this.getResources().getDrawable(R.drawable.ico_info),
+                this.getResources().getDrawable(R.drawable.ico_star)
         };
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs, titles);
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Assiging the Sliding Tab Layout View
         tabs = findViewById(R.id.tabs);
+
 
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
@@ -52,5 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(view_pager);
+
     }
 }
