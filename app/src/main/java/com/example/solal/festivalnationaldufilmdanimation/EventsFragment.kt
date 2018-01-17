@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
@@ -157,6 +158,29 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
             val nameView = holder.itemView.findViewById<TextView>(R.id.programTitle)
             val timeView = holder.itemView.findViewById<TextView>(R.id.programTime)
             val placeView = holder.itemView.findViewById<TextView>(R.id.programPlace)
+
+            val button = holder.itemView.findViewById<ImageButton>(R.id.imageButton)
+            val fav = R.drawable.fav
+            val notFav = R.drawable.nofav
+
+            var currentColor = notFav
+
+            // set default color favoris
+
+            button.setImageResource(currentColor)
+
+            button.setOnClickListener(View.OnClickListener {
+                if(currentColor == notFav){
+                    currentColor = fav
+                    button.setImageResource(currentColor)
+                }else{
+                    currentColor = notFav
+                    button.setImageResource(currentColor)
+                }
+
+                // Code here executes on main thread after user presses button
+
+            })
 
             val hour = hourFormat.toString() + "h" + minuteFormat.toString();
 
