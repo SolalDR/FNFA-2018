@@ -20,9 +20,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/line"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@drawable/line">
+        android:padding="10dp">
 
 
         <!-- Les CardView agissent comme des FrameLayout,
@@ -76,10 +76,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:contentDescription="@string/title_activity_stars"
             android:background="@drawable/roundedbutton"
+            android:contentDescription="@string/title_activity_stars"
+            android:onClick="changeText"
             app:srcCompat="@drawable/nofav" />
 
 
