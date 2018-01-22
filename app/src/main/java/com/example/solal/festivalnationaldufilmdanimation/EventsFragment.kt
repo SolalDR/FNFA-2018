@@ -1,6 +1,7 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -48,8 +49,8 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         lastDateText = fragmentView!!.findViewById<TextView>(R.id.textLastDate)
         nextDateText = fragmentView!!.findViewById<TextView>(R.id.textNextDate)
 
-        lastDateText.setOnClickListener(View.OnClickListener { previous()
-        })
+        currentDateText.setOnClickListener(View.OnClickListener { })
+        lastDateText.setOnClickListener(View.OnClickListener { previous() })
         nextDateText.setOnClickListener(View.OnClickListener { next() })
 
         updateDate()
@@ -119,7 +120,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
-        recyclerV.adapter = EventAdapter(eventArrayByDay,{ param ->
+        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { param ->
             Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }
@@ -127,12 +128,16 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     private fun displayEventsPlace(){
         val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
-        recyclerV.adapter = EventAdapter(eventArrayByDay,{ param ->
+        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { param ->
             Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }
 
-    class EventAdapter(private val events: List<Event>, val eventCallback: (String) -> Unit) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+    class EventAdapter(
+            private val events: List<Event>,
+            private val app: MyApplication,
+            val eventCallback: (String) -> Unit
+    ) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
         override fun getItemCount(): Int = events.size //size similar to count, size specific from list
         //To change body of created functions use File | Settings | File Templates.
@@ -147,8 +152,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
 
         override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
 
-            val eventName = events[position].name
-            val eventId = events[position].id
+            val event = events[position]
 
             val eventTime = events[position].date_start
             val hourFormat = SimpleDateFormat("HH", Locale.FRENCH).format(eventTime)
@@ -164,6 +168,10 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
             val notFav = R.drawable.nofav
 
             var currentColor = notFav
+            if( app.favoriteManager.exist(event) ){
+                currentColor = fav
+            }
+
 
             // set default color favoris
 
@@ -173,18 +181,17 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
                 if(currentColor == notFav){
                     currentColor = fav
                     button.setImageResource(currentColor)
+                    app.favoriteManager.addEvent(event)
                 }else{
                     currentColor = notFav
                     button.setImageResource(currentColor)
+                    app.favoriteManager.removeEvent(event)
                 }
-
-                // Code here executes on main thread after user presses button
-
             })
 
             val hour = hourFormat.toString() + "h" + minuteFormat.toString();
 
-            nameView.text = eventName
+            nameView.text = event.name
             timeView.text = hour
             placeView.text = "no idea"
 
