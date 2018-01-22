@@ -1,12 +1,9 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.graphics.drawable.Drawable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {

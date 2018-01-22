@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class MyApplication extends Application  {
 
     private DataRepository manager;
-    private FavoriteRepository favoriteRepo;
+    private FavoriteRepository favoriteManager;
 
     private static MyApplication application;
 
@@ -30,11 +30,12 @@ public class MyApplication extends Application  {
     public void onCreate() {
         super.onCreate();
         application = this;
+
         this.manager = new DataRepository(this.getApplicationContext());
         this.manager.launchData();
 
-        this.favoriteRepo = new FavoriteRepository(this.manager);
-        this.favoriteRepo.getStoredFavorite();
+
+        this.favoriteManager = new FavoriteRepository(this.manager);
     }
 
 
@@ -42,6 +43,6 @@ public class MyApplication extends Application  {
         return this.manager;
     }
     public FavoriteRepository getFavoriteManager(){
-        return this.favoriteRepo;
+        return this.favoriteManager;
     }
 }
