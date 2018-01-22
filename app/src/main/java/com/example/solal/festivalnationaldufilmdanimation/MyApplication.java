@@ -41,4 +41,7 @@ public class MyApplication extends Application  {
     public DataRepository getManager(){
         return this.manager;
     }
+    public FavoriteRepository getFavoriteManager(){
+        return this.favoriteRepo;
+    }
 }

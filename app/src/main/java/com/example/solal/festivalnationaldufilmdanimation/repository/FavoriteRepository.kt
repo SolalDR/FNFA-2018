@@ -19,9 +19,33 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
     init {
         manager = manager_ref
+        //events = manager.findEventsByDay("2018-04-04")
 
-        //test
-        events = manager.findEventsByDay("2018-04-04");
+        getStoredFavorite()
+
+    }
+
+
+    fun exist(event: Event): Boolean {
+        var int = 0;
+        for( test in events) {
+            if( test.id == event.id ){
+                return true
+            }
+        }
+        return false
+    }
+
+    fun addEvent(event: Event){
+        if( !exist(event) ){
+            this.events.add(event);
+        }
+        setStoredFavorites()
+    }
+
+    fun removeEvent(event: Event){
+        this.events.remove(event)
+        setStoredFavorites()
     }
 
 
@@ -32,8 +56,11 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
     fun findAllEventTypes(): ArrayList<EventType> { return eventTypes }
 
 
-    fun mapEventsId(): ArrayList<Int> {
-        var list = ArrayList<Int>()
+    /*
+     * Get the ID of each Events for storage
+     */
+    private fun getEventsId(): ArrayList<Int> {
+        val list = ArrayList<Int>()
         for(event in events){
             event.id?.apply {
                 list.add(this)
@@ -42,7 +69,10 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         return list
     }
 
-    fun mapEventTypesId(): ArrayList<Int> {
+    /*
+     * Get the ID of each EventsType for storage
+     */
+    private fun getEventTypesId(): ArrayList<Int> {
         var list = ArrayList<Int>()
         for(event in eventTypes){
             event.id?.apply {
@@ -59,8 +89,8 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         val FILENAME = "fnfa_favorite"
 
         var favoritesJSON: JSONObject = JSONObject()
-        var eventsId: ArrayList<Int> = this.mapEventsId()
-        var eventTypesId: ArrayList<Int> = this.mapEventTypesId()
+        var eventsId: ArrayList<Int> = this.getEventsId()
+        var eventTypesId: ArrayList<Int> = this.getEventTypesId()
         var string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
         FileHelper.writeFile(FILENAME, string, this.manager.context)
     }
