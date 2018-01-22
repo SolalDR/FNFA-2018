@@ -1,7 +1,6 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
 
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,12 +9,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import com.example.solal.festivalnationaldufilmdanimation.entity.Event
-import kotlinx.android.synthetic.main.tab_event.view.*
 import java.text.SimpleDateFormat
+
 import java.util.*
 
 
@@ -131,72 +128,5 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { param ->
             Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
-    }
-
-    class EventAdapter(
-            private val events: List<Event>,
-            private val app: MyApplication,
-            val eventCallback: (String) -> Unit
-    ) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
-
-        override fun getItemCount(): Int = events.size //size similar to count, size specific from list
-        //To change body of created functions use File | Settings | File Templates.
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-            //To change body of created functions use File | Settings | File Templates.
-            val context = parent.context
-            val layoutInflater = LayoutInflater.from(context)
-            val view: View = layoutInflater.inflate(R.layout.item_program, parent, false)
-            return EventViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-
-            val event = events[position]
-
-            val eventTime = events[position].date_start
-            val hourFormat = SimpleDateFormat("HH", Locale.FRENCH).format(eventTime)
-            val minuteFormat = SimpleDateFormat("mm", Locale.FRENCH).format(eventTime)
-
-            //To change body of created functions use File | Settings | File Templates.
-            val nameView = holder.itemView.findViewById<TextView>(R.id.programTitle)
-            val timeView = holder.itemView.findViewById<TextView>(R.id.programTime)
-            val placeView = holder.itemView.findViewById<TextView>(R.id.programPlace)
-
-            val button = holder.itemView.findViewById<ImageButton>(R.id.imageButton)
-            val fav = R.drawable.fav
-            val notFav = R.drawable.nofav
-
-            var currentColor = notFav
-            if( app.favoriteManager.exist(event) ){
-                currentColor = fav
-            }
-
-
-            // set default color favoris
-
-            button.setImageResource(currentColor)
-
-            button.setOnClickListener(View.OnClickListener {
-                if(currentColor == notFav){
-                    currentColor = fav
-                    button.setImageResource(currentColor)
-                    app.favoriteManager.addEvent(event)
-                }else{
-                    currentColor = notFav
-                    button.setImageResource(currentColor)
-                    app.favoriteManager.removeEvent(event)
-                }
-            })
-
-            val hour = hourFormat.toString() + "h" + minuteFormat.toString();
-
-            nameView.text = event.name
-            timeView.text = hour
-            placeView.text = "no idea"
-
-        }
-
-        class EventViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
     }
 }
