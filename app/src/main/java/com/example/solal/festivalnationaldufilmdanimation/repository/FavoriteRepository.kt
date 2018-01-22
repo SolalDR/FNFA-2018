@@ -4,12 +4,12 @@ import android.content.Context
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.entity.EventType
 import org.json.JSONObject
-import android.content.Context.MODE_PRIVATE
 import com.example.solal.festivalnationaldufilmdanimation.helpers.FileHelper
 
 
 /**
  * Created by sdussoutrevel on 15/12/2017.
+ * Allow to access to favorite which are stored in local file
  */
 class FavoriteRepository constructor(manager_ref: DataRepository) {
 
@@ -19,10 +19,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
     init {
         manager = manager_ref
-        //events = manager.findEventsByDay("2018-04-04")
-
         getStoredFavorite()
-
     }
 
 
@@ -85,37 +82,38 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
     /*
      * Open file and update its content from stringify favorites
      */
-    fun setStoredFavorites(){
+    private fun setStoredFavorites(){
         val FILENAME = "fnfa_favorite"
 
-        var favoritesJSON: JSONObject = JSONObject()
-        var eventsId: ArrayList<Int> = this.getEventsId()
-        var eventTypesId: ArrayList<Int> = this.getEventTypesId()
-        var string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
+        val eventsId: ArrayList<Int> = this.getEventsId()
+        val eventTypesId: ArrayList<Int> = this.getEventTypesId()
+        val string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
         FileHelper.writeFile(FILENAME, string, this.manager.context)
+
     }
 
     /*
      * Open fil and get the content
      */
-    fun getStoredFavorite() {
+    private fun getStoredFavorite() {
         val FILENAME = "fnfa_favorite"
         val content = FileHelper.readFile(FILENAME, this.manager.context)
 
+
         if( content != "" ){
+
             val json = JSONObject(content)
             val eventsId = json.getJSONArray("events");
             val eventTypesId = json.getJSONArray("eventTypes");
 
-            val eventsList = ArrayList<Event>()
             for (i in 0 until eventsId.length()) {
                 val event: Event? = this.manager.findEventById( eventsId.get(i).toString().toInt() )
                 event?.let {
-                    eventsList.add(event)
+                    System.out.println("----------------------Loop IN"+event.id)
+                    this.addEvent(event)
                 }
             }
 
-            val eventTypesList = ArrayList<EventType>()
             for (i in 0 until eventTypesId.length()) {
                 val eventType: EventType? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
                 eventType?.let {
@@ -123,19 +121,5 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
                 }
             }
         }
-    }
-
-    /*
-     * Transform events & eventsType in json string
-     */
-    fun stringifyFavorite(): String {
-        return ""
-    }
-
-    /*
-     * Transform a JSON string in a JSON Object
-     */
-    fun parseFavorite(): JSONObject {
-        return JSONObject()
     }
 }
