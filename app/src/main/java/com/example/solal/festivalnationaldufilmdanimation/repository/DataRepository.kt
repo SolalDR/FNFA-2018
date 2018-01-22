@@ -120,6 +120,16 @@ class DataRepository constructor(contextArg: Context ){
         return atTimesList
     }
 
+
+    fun findSceneById(id: Int): Scene? {
+        for(scene in scenes){
+            if( scene.id == id ){
+                return scene
+            }
+        }
+        return null
+    }
+
     /*
      *
      */
