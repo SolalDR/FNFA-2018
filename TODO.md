@@ -1,28 +1,28 @@
 # Todo
 
 - InfoFragment
-  - Intégration
-  - GoogleMapAPI
+  - []Intégration
+  - []GoogleMapAPI
   
 - PréférenceActivity
-  - Pro
-  - GPS
+  - []Pro
+  - []GPS
 
 - EventsFragment
- - Intégration
- - Filtre de couleur selon les catégories
- - Catégorie dans events
+ - []Intégration
+ - []Filtre de couleur selon les catégories
+ - []Catégorie dans events
  
 - Général 
-  - Background
-  - Leaf
+  - []Background
+  - vLeaf
 
 - StarFragment
- - Tout
+ - []Tout
  
 - HomeFragment
- - Next events
- - Actu Twittter
+ - []Next events
+ - []Actu Twittter
  
   
 
