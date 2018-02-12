@@ -35,7 +35,7 @@ class EventAdapter(
         //To change body of created functions use File | Settings | File Templates.
         val context = parent.context
         val layoutInflater = LayoutInflater.from(context)
-        val view: View = layoutInflater.inflate(R.layout.item_program, parent, false)
+        val view: View = layoutInflater.inflate(R.layout.item_event, parent, false)
         return EventViewHolder(view)
     }
 
