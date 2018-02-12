@@ -1,6 +1,6 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
-
+import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import java.text.SimpleDateFormat
 
+
 import java.util.*
 
 
@@ -24,7 +25,8 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     lateinit var lastDateText: TextView
     lateinit var nextDateText: TextView
 
-    var formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    var formater = SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE)
+    var displayFormater = SimpleDateFormat("E", Locale.FRANCE)
     var app: MyApplication? = null
     var fragmentView: View? = null
     var selectedDate: Int = 0
@@ -84,17 +86,17 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     fun updateDate(){
         Collections.sort(app!!.manager.dates);
 
-        var selectedDateContent = formater.format(app!!.manager.dates[selectedDate])
+        var selectedDateContent = StringHelper.ucfirst(displayFormater.format(app!!.manager.dates[selectedDate]))
 
         currentDateText.text = selectedDateContent
         if( selectedDate != 0 ){
-            lastDateText.text = formater.format(app!!.manager.dates[selectedDate - 1])
+            lastDateText.text = StringHelper.ucfirst(displayFormater.format(app!!.manager.dates[selectedDate - 1]))
             lastDateText.alpha = 1.toFloat()
         } else {
             lastDateText.alpha = 0.toFloat()
         }
         if( selectedDate != app!!.manager.dates.size - 1 ){
-            nextDateText.text = formater.format(app!!.manager.dates[selectedDate + 1])
+            nextDateText.text = StringHelper.ucfirst(displayFormater.format(app!!.manager.dates[selectedDate + 1]))
             nextDateText.alpha = 1.toFloat()
         } else {
             nextDateText.alpha = 0.toFloat()

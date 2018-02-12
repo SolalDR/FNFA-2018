@@ -8,6 +8,7 @@
     <color name="yellow">#DBE252</color>
     <color name="white">#FFFFFF</color>
     <color name="dark">#333333</color>
+    <color name="grey">#f7f7f7</color>
     <color name="colorPrimary">@color/blue</color>
     <color name="colorPrimaryDark">@color/dark</color>
     <color name="colorAccent">@color/orange</color>
