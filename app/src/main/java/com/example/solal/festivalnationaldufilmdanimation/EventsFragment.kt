@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+
 import java.text.SimpleDateFormat
 
 
@@ -118,7 +118,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
 
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
-        val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
+        val eventArrayByDay = myApp.manager.findEventsByDay(getSelectedDateFormat())
         recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, isFav, event ->
             //Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })

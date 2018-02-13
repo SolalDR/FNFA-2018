@@ -8,8 +8,9 @@
     tools:context=".MainActivity">
 
 
+
     <!-- This is the toolbar -->
-    <com.example.solal.festivalnationaldufilmdanimation.SlidingTabLayout
+    <com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

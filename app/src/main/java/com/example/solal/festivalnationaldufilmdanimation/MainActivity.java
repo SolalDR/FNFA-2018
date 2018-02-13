@@ -1,16 +1,12 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabLayout;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends AppCompatActivity {
