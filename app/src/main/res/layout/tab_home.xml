@@ -6,7 +6,7 @@
 
     <RelativeLayout style="@style/FragmentBody">
 
-        <TextView
+        <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
             android:id="@+id/tv_Home"
             style="@style/Title"
             android:text="@string/title_activity_home" />

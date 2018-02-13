@@ -10,7 +10,7 @@
     <RelativeLayout
         style="@style/FragmentBody">
 
-        <TextView
+        <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
             android:id="@+id/tv_Infos"
             android:text="@string/title_activity_info"
             style="@style/Title" />
