@@ -9,29 +9,43 @@
 
         <TextView
             android:id="@+id/tv_Stars"
-            android:text="@string/title_activity_stars"
             style="@style/Title"
-            />
+            android:text="@string/title_activity_stars" />
+
 
         <RelativeLayout
+            android:id="@+id/start_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/tv_Stars"
-            android:layout_marginTop="10dp"
             android:background="@color/white"
-            android:padding="8dp"></RelativeLayout>
+            android:padding="8dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerStars"
-            android:layout_width="match_parent"
-            android:layout_margin="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_below="@+id/header_event"
-            android:layout_height="569dp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:text="@string/start_empty"
+                android:id="@+id/message_empty"
+                android:textColor="@color/black" />
 
-            />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerStars"
+                android:layout_width="match_parent"
+                android:layout_height="569dp"
+
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+        </RelativeLayout>
+
         <!-- android:animateLayoutChanges="true" -->
     </RelativeLayout>
 
