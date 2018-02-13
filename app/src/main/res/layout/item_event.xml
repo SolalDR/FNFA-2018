@@ -29,7 +29,7 @@
          pour avoir une organisation verticale nous devons
          donc rajouter un LinearLayout -->
 
-        <TextView
+        <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
 
             android:id="@+id/programTime"
             android:layout_width="91dp"
@@ -43,7 +43,7 @@
             android:textColor="#010a3b"
             android:textSize="18sp" />
 
-        <TextView
+        <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
             android:id="@+id/programTitle"
             android:layout_width="275dp"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
+        <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
             android:id="@+id/programPlace"
             android:layout_width="275dp"
             android:layout_height="wrap_content"

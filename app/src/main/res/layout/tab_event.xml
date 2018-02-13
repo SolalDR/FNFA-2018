@@ -45,7 +45,7 @@
                     android:layout_centerHorizontal="true"/>
 
                 <!-- Date before (left) -->
-                <TextView
+                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                     android:id="@+id/textLastDate"
                     style="@style/EventDateSelector"
                     android:layout_alignParentLeft="true"
@@ -54,7 +54,7 @@
                     android:text="Test" />
 
                 <!-- Next date (right) -->
-                <TextView
+                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                     android:id="@+id/textNextDate"
                     style="@style/EventDateSelector"
                     android:layout_alignParentEnd="true"
