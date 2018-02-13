@@ -19,7 +19,7 @@ class EventAdapter(
 
         private val events: List<Event>,
         private val app: MyApplication,
-        val eventCallback: (String) -> Unit
+        val favEventCallback: (EventViewHolder, Int, Boolean) -> Unit
 
 ) : RecyclerView.Adapter<EventAdapter.EventViewHolder>()
 
@@ -61,14 +61,14 @@ class EventAdapter(
         placeView.text = scene.name
 
 
-        manageFav(holder, event)
+        manageFav(holder, event, position)
     }
 
 
     /*
      * Init the event for update favorites
      */
-    fun manageFav(cell: EventViewHolder, event: Event){
+    fun manageFav(cell: EventViewHolder, event: Event, position: Int){
         val button = cell.itemView.findViewById<ImageButton>(R.id.imageButton)
 
         var currentColor = R.drawable.nofav
@@ -80,17 +80,22 @@ class EventAdapter(
         button.setImageResource(currentColor)
 
         button.setOnClickListener(View.OnClickListener {
+
             if(currentColor == R.drawable.nofav){
                 currentColor = R.drawable.fav
                 button.setImageResource(currentColor)
                 app.favoriteManager.addEvent(event)
+                this.favEventCallback(cell, position, true)
             }else{
                 currentColor = R.drawable.nofav
                 button.setImageResource(currentColor)
                 app.favoriteManager.removeEvent(event)
+                this.favEventCallback(cell, position, false)
             }
         })
+
+
     }
 
-    class EventViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
+    class EventViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 }
