@@ -119,16 +119,16 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
-        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { param ->
-            Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
+        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, position, isFav ->
+            //Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }
 
     private fun displayEventsPlace(){
         val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
-        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { param ->
-            Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
+        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, position, isFav ->
+            //Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }
 }
