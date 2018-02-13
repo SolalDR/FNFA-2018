@@ -16,8 +16,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.ui.IconGenerator;
 
 
 
@@ -54,9 +58,43 @@ public class InfoFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng sydney = new LatLng(-34.0, 151.0);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in ...."));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        IconGenerator iconFactory = new IconGenerator(this.getContext());
+
+        LatLng cinemaTNB = new LatLng(48.107967, -1.672562);
+        Marker markerTNB = mMap.addMarker(
+                new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon("Cinéma TNB")))
+                        .position(cinemaTNB)
+//                        .anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV())
+        );
+
+        LatLng cinemaArvor = new LatLng(48.115995, -1.679114);
+        Marker markerArvor = mMap.addMarker(
+                new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon("Cinéma Arvor")))
+                        .position(cinemaArvor)
+
+        );
+
+        float middleLat = (float) (cinemaTNB.latitude+cinemaArvor.latitude)/2;
+        float middleLong = (float) (cinemaTNB.longitude+cinemaArvor.longitude)/2;
+
+        LatLng defaultCamPosition = new LatLng(middleLat, middleLong);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(defaultCamPosition));
+        mMap.setMaxZoomPreference(30.0f);
+        mMap.setMinZoomPreference(14.5f);
+
+        MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this.getContext(), R.raw.map_style);
+                googleMap.setMapStyle(style);
+        onMarkerClick(markerArvor);
+        onMarkerClick(markerTNB);
+    }
+
+
+    public void onMarkerClick(Marker theMarker)
+    {
+        theMarker.hideInfoWindow();
     }
 
 }
