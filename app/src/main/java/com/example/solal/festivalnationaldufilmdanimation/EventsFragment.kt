@@ -119,7 +119,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
-        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, position, isFav ->
+        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, isFav, event ->
             //Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }
@@ -127,7 +127,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     private fun displayEventsPlace(){
         val myApp = this.activity.application as MyApplication
         val eventArrayByDay = myApp.getManager().findEventsByDay(getSelectedDateFormat())
-        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, position, isFav ->
+        recyclerV.adapter = EventAdapter(eventArrayByDay, app!!, { cell, isFav, event ->
             //Toast.makeText(this.context, param, Toast.LENGTH_SHORT).show()
         })
     }

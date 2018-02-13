@@ -30,9 +30,9 @@
             android:layout_marginTop="12dp"
             android:layout_below="@+id/header_event"
             android:layout_height="569dp"
-            android:animateLayoutChanges="true"
-            />
 
+            />
+        <!-- android:animateLayoutChanges="true" -->
     </RelativeLayout>
 
 </RelativeLayout>

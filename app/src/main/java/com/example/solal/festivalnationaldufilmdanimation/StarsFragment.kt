@@ -43,21 +43,20 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         recycler.layoutManager = LinearLayoutManager(this.context)
         displayEvents()
     }
 
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
-        val eventArrayByDay = myApp.favoriteManager.findAllEvents()
+        val favoriteEvents = myApp.favoriteManager.findAllEvents()
 
-        recycler.adapter = EventAdapter(eventArrayByDay, app!!, { cell, position, isFav ->
+        recycler.adapter = EventAdapter(favoriteEvents, app!!, { cell, isFav, event ->
             if(!isFav){
-                this.recyclerStars.removeView(cell.view)
+                val adapter = recycler.adapter as EventAdapter
+                //adapter.events.remove(event)
+                adapter.notifyItemRemoved(cell.adapterPosition)
             }
         })
-
-
     }
 }
