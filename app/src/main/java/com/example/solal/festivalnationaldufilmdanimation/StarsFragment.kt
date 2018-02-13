@@ -8,10 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
-import kotlinx.android.synthetic.main.tab_stars.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,23 +19,19 @@ import java.util.*
 class StarsFragment : Fragment() , DialogInterface.OnClickListener {
 
     lateinit var recycler: RecyclerView
-    lateinit var currentDate: Date
-
-    var formater = SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE)
     var app: MyApplication? = null
     var fragmentView: View? = null
-    var selectedDate: Int = 0
+    var emptyMessage: View? = null
 
     override fun onClick(p0: DialogInterface?, p1: Int) {}
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
-
         app = this.activity.application as MyApplication
         fragmentView = inflater!!.inflate(R.layout.tab_stars, container, false)
-
         recycler = fragmentView!!.findViewById(R.id.recyclerStars)
 
+        emptyMessage = fragmentView!!.findViewById(R.id.message_empty)
         return fragmentView
     }
 
@@ -47,16 +41,41 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         displayEvents()
     }
 
+    private fun displayEmpty(){
+        emptyMessage?.apply {
+            this.alpha = 0.toFloat()
+            val anim = AnimationUtils.loadAnimation(this.context, R.anim.abc_grow_fade_in_from_bottom)
+            anim.duration = 500
+            this.startAnimation(anim)
+            this.alpha = 1.toFloat()
+        }
+    }
+
+    private fun hideEmpty(){
+        emptyMessage?.apply {
+            this.alpha = 0.toFloat()
+        }
+    }
+
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
         val favoriteEvents = myApp.favoriteManager.findAllEvents()
 
+        // Setup EventAdapter and on click listener
         recycler.adapter = EventAdapter(favoriteEvents, app!!, { cell, isFav, event ->
             if(!isFav){
                 val adapter = recycler.adapter as EventAdapter
-                //adapter.events.remove(event)
                 adapter.notifyItemRemoved(cell.adapterPosition)
+                if(adapter.events.size == 0){
+                    this.displayEmpty()
+                }
             }
         })
+
+        // Manage empty message
+        val adapter = recycler.adapter as EventAdapter
+        if(adapter.events.size > 0) {
+            this.hideEmpty()
+        }
     }
 }
