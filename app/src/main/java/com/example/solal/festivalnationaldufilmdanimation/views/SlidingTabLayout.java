@@ -1,4 +1,4 @@
-package com.example.solal.festivalnationaldufilmdanimation;
+package com.example.solal.festivalnationaldufilmdanimation.views;
 
 
 
@@ -16,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.solal.festivalnationaldufilmdanimation.R;
+import com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabStrip;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to

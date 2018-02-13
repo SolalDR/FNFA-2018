@@ -1,4 +1,4 @@
-package com.example.solal.festivalnationaldufilmdanimation;
+package com.example.solal.festivalnationaldufilmdanimation.views;
 
 
 import android.content.Context;
@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabLayout;
 
 class SlidingTabStrip extends LinearLayout {
 

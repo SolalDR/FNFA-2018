@@ -34,7 +34,6 @@ public class MyApplication extends Application  {
         this.manager = new DataRepository(this.getApplicationContext());
         this.manager.launchData();
 
-
         this.favoriteManager = new FavoriteRepository(this.manager);
     }
 
