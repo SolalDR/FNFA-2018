@@ -1,9 +1,16 @@
 package com.example.solal.festivalnationaldufilmdanimation;
 
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Accueil", "Program", "Infos", "Favoris"};
     int Numboftabs = 4;
-
+    private GoogleMap mMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         Drawable titles[] = {
@@ -28,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 this.getResources().getDrawable(R.drawable.ico_info),
                 this.getResources().getDrawable(R.drawable.ico_star)
         };
+
+        MyApplication app = (MyApplication) this.getApplication();
+        app.getManager();
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), Titles, Numboftabs, titles);
 
