@@ -2,7 +2,7 @@
     <string name="app_name">Festival National du Film d\'Animation</string>
     <string name="title_activity_event">Programme</string>
     <string name="title_activity_info">Info Pratiques</string>
-    <string name="title_activity_home">Accueil</string>
+    <string name="title_activity_home">Prochaines Séances</string>
     <string name="title_activity_stars">Favoris</string>
     <string name="title_activity_program">StarsActivity</string>
     <string name="start_empty">Il n\'y a pas encore de favoris</string>
