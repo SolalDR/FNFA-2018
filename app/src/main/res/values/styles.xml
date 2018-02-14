@@ -19,7 +19,7 @@
     <style name="FragmentContainer">
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">0dp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
