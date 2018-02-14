@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager
 import com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabLayout
 
 
+
+
 class MainActivity : AppCompatActivity() {
 
     // Declaring Your View and Variables
@@ -22,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+/*        val root = findViewById<LinearLayout>(R.id.main)
+        val svg = SVGParser.getSVGFromResource(resources, R.drawable.background)
+        val pictureDrawable = svg.createPictureDrawable()
+        root.setBackgroundDrawable(pictureDrawable)*/
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         val titles = arrayOf(this.resources.getDrawable(R.drawable.ico_home), this.resources.getDrawable(R.drawable.ico_date), this.resources.getDrawable(R.drawable.ico_info), this.resources.getDrawable(R.drawable.ico_star))
