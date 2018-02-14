@@ -56,7 +56,6 @@ class EventAdapter(
         val timeView = holder.itemView.findViewById<TextView>(R.id.programTime)
         val placeView = holder.itemView.findViewById<TextView>(R.id.programPlace)
 
-
         nameView.text = event.name
         timeView.text = timeFormat.toString()
         placeView.text = scene.name

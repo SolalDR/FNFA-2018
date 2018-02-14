@@ -4,23 +4,60 @@
     android:layout_height="match_parent"
     style="@style/FragmentContainer">
 
-    <RelativeLayout style="@style/FragmentBody">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
-            android:id="@+id/tv_Home"
-            style="@style/Title"
-            android:text="@string/title_activity_home" />
+        <LinearLayout
+            android:orientation="vertical"
+            style="@style/FragmentBody">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_Home"
-            android:layout_marginTop="27dp"
-            android:background="@color/white"
-            android:padding="8dp"></RelativeLayout>
 
-    </RelativeLayout>
+            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                android:id="@+id/tv_Home"
+                style="@style/Title"
+                android:text="@string/title_activity_home" />
+
+            <RelativeLayout
+                android:id="@+id/home_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_Home"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:padding="8dp">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@id/home_layout">
+
+                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                    android:id="@+id/tv_home_actu"
+                    style="@style/Title"
+                    android:text="Actualité" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </RelativeLayout>

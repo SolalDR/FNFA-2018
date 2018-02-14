@@ -104,6 +104,7 @@ class DataRepository constructor(contextArg: Context ){
                 eventsList.add(event)
             }
         }
+        eventsList.sort()
         return eventsList
     }
 
@@ -111,13 +112,36 @@ class DataRepository constructor(contextArg: Context ){
      * Get all the events activate for a specific date
      */
     fun findEventsAtTime(date: Date) : ArrayList<Event> {
-        val atTimesList = ArrayList<Event>()
-        for(event in events){
-            if( event.date_start.compareTo(date) * date.compareTo(event.date_end) > 0 ) {
-                atTimesList.add(event)
+        var eventsList = ArrayList<Event>()
+        formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        for(event in events) {
+            var dateEvent: Date = formater.parse(formater.format(event.date_start))
+            if( dateEvent.time == date.time ){
+                eventsList.add(event)
             }
         }
-        return atTimesList
+        eventsList.sort()
+        return eventsList
+    }
+
+
+    /*
+     * Get all the events activate or being activate with limit
+     */
+    fun findNextEvents(limit: Int): ArrayList<Event> {
+        var eventsList = ArrayList<Event>()
+        var limit = limit;
+        var currentDate = Calendar.getInstance().time
+        for(event in events) {
+            var dateEvent: Date = formater.parse(formater.format(event.date_start))
+            if( dateEvent.time >= currentDate.time ){
+                eventsList.add(event)
+            }
+        }
+        eventsList.sort()
+        if( eventsList.size < limit ) limit = eventsList.size
+
+        return ArrayList(eventsList.subList(0, limit))
     }
 
 
