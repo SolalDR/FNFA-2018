@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     var Titles = arrayOf<CharSequence>("Accueil", "Program", "Infos", "Favoris")
     var Numboftabs = 4
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

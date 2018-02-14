@@ -49,18 +49,11 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         String title = "";
-        Drawable myDrawable = this.Resources[position];
-        title = this.Titles[position].toString();
-        SpannableStringBuilder sb = new SpannableStringBuilder("   \n" + Titles[position]); // space added before text for convenience
-        try {
-            myDrawable.setBounds(0, 0, 100, 100);
-            ImageSpan span = new ImageSpan(myDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-            sb.setSpan(span, 0, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            return sb;
-        } catch (Exception e) {
-            //
-        }
         return Titles[position];
+    }
+
+    public Drawable getBackground(Integer position) {
+        return this.Resources[position];
     }
 
     // This method return the Number of tabs for the tabs Strip

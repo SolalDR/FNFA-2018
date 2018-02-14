@@ -3,22 +3,27 @@ package com.example.solal.festivalnationaldufilmdanimation.views;
 
 
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.Typeface;
-import android.support.v4.view.PagerAdapter;
+import android.media.Image;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.solal.festivalnationaldufilmdanimation.R;
-import com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabStrip;
+import com.example.solal.festivalnationaldufilmdanimation.ViewPagerAdapter;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -50,7 +55,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     }
 
-    private static final int TITLE_OFFSET_DIPS = 12;
+    private static final int TITLE_OFFSET_DIPS = 50;
     private static final int TAB_VIEW_PADDING_DIPS = 16;
     private static final int TAB_VIEW_TEXT_SIZE_SP = 10;
 
@@ -147,82 +152,35 @@ public class SlidingTabLayout extends HorizontalScrollView {
         }
     }
 
-    /**
-     * Create a default view to be used for tabs. This is called if a custom tab view is not set via
-     * {@link #setCustomTabView(int, int)}.
-     */
-    protected TextView createDefaultTabView(Context context) {
-        TextView textView = new TextView(context);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTypeface(Typeface.DEFAULT_BOLD);
-        textView.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        TypedValue outValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
-                outValue, true);
-        textView.setBackgroundResource(outValue.resourceId);
-        textView.setAllCaps(true);
-
-        int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        textView.setPadding(padding, padding, padding, padding);
-
-        return textView;
-    }
 
     private void populateTabStrip() {
-        final PagerAdapter adapter = mViewPager.getAdapter();
+        ViewPagerAdapter adapter = (ViewPagerAdapter) mViewPager.getAdapter();
+
         final View.OnClickListener tabClickListener = new TabClickListener();
 
         for (int i = 0; i < adapter.getCount(); i++) {
-            View tabView = null;
-            TextView tabTitleView = null;
 
-            if (mTabViewLayoutId != 0) {
-                // If there is a custom tab view layout id set, try and inflate it
-                tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
-                        false);
-                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
-            }
+            float scale = getContext().getResources().getDisplayMetrics().density;
+            int height = (int) (60 * scale + 0.5f);
+            int width = (int) (100 * scale + 0.5f);
 
-            if (tabView == null) {
-                tabView = createDefaultTabView(getContext());
-            }
+            // Get width size
+            WindowManager wm = (WindowManager) this.getContext().getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int screenWidth = size.x;
 
-            if (tabTitleView == null && TextView.class.isInstance(tabView)) {
-                tabTitleView = (TextView) tabView;
-            }
+            ImageButton btn = new ImageButton(this.getContext());
+            btn.setImageDrawable(adapter.getBackground(i));
+            btn.setBackground(null);
 
-            if (mDistributeEvenly) {
-                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
-                lp.width = 0;
-                lp.weight = 1;
-            }
+            btn.setMinimumHeight(height);
+            btn.setMinimumWidth(screenWidth / 4 - 1);
+            btn.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            btn.setOnClickListener(tabClickListener);
 
-            tabTitleView.setText(adapter.getPageTitle(i));
-            tabView.setOnClickListener(tabClickListener);
-            String desc = mContentDescriptions.get(i, null);
-            if (desc != null) {
-                tabView.setContentDescription(desc);
-            }
-
-            mTabStrip.addView(tabView);
-            if (i == mViewPager.getCurrentItem()) {
-                tabView.setSelected(true);
-            }
-
-            //////////////////////////////
-            //
-            //  TAB TEXT
-            //
-            //////////////////////////////
-            int dps = 90;
-            final float scale = getContext().getResources().getDisplayMetrics().density;
-            int pixels = (int) (dps * scale + 0.5f);
-            tabTitleView.setHeight(pixels);
-            tabTitleView.setTextColor(getResources().getColorStateList(R.color.white));
-            tabTitleView.setTextSize(14);
-            tabTitleView.setPadding(0, 30, 0, 40);
+            mTabStrip.addView(btn);
         }
     }
 
