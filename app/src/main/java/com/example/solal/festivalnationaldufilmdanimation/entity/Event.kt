@@ -31,7 +31,7 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comp
         name = jsonObject.getString("name")
         scene_id = jsonObject.getInt("scene")
 
-        if(jsonObject.has("description")){
+        if (jsonObject.has("description")) {
             description = jsonObject.getString("description")
         }
 
@@ -47,21 +47,21 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comp
 
 
     // Debug method to control the value of the attributes
-    fun inspect(indent:String? = ""){
-        System.out.println(indent + "-----------EVENT-----------"+"\n"
+    fun inspect(indent: String? = "") {
+        System.out.println(indent + "-----------EVENT-----------" + "\n"
                 + indent + "Event\n"
-                + indent + "id : "+ id+"\n"
-                + indent + "name : "+ name
-                + "\n" + indent + "type : "+ name
-                + "\n" + indent + "description : "+ description
-                + "\n" + indent + "Date Départ : "+ date_start
-                + "\n" + indent + "Date Départ : "+ date_start
-                + "\n" + indent + "Date Fin : "+ date_end
+                + indent + "id : " + id + "\n"
+                + indent + "name : " + name
+                + "\n" + indent + "type : " + name
+                + "\n" + indent + "description : " + description
+                + "\n" + indent + "Date Départ : " + date_start
+                + "\n" + indent + "Date Départ : " + date_start
+                + "\n" + indent + "Date Fin : " + date_end
                 + "\n" + indent + "-----------/EVENT-----------"
         )
     }
 
-    override fun compareTo( event: Event ): Int {
+    override fun compareTo(event: Event): Int {
         return date_start.compareTo(event.date_start);
     }
 }
