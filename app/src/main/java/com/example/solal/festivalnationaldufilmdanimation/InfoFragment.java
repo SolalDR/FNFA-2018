@@ -19,6 +19,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -122,6 +123,8 @@ public class InfoFragment extends Fragment implements OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(defaultCamPosition));
         mMap.setMaxZoomPreference(30.0f);
         mMap.setMinZoomPreference(14.5f);
+        UiSettings mUiSettings = mMap.getUiSettings();
+        mUiSettings.isScrollGesturesEnabled();
 
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this.getContext(), R.raw.map_style);
                 googleMap.setMapStyle(style);

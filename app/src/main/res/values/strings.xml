@@ -11,5 +11,7 @@
     <string name="second_cinema_name">Cinéma Arvor</string>
     <string name="first_cinema_address">1 Rue Saint-Hélier, 35040 Rennes</string>
     <string name="second_cinema_address">29 Rue d\'Antrain, 35700 Rennes</string>
+    <string name="twitter_consumer_key">--</string>
+    <string name="twitter_consumer_secret">-</string>
 
 </resources>
