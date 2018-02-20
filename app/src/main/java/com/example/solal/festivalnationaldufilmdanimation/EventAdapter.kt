@@ -18,6 +18,9 @@ import java.util.*
 /**
  * Created by Solal on 22/01/2018.
  * An Adapter for events list in recycler view
+ * @param events: The events's list
+ * @param activity: Current activity for intent popup
+ * @param favEventCallback: Listener for "favoris" button
  */
 
 class EventAdapter(

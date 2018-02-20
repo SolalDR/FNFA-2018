@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.TextView
 
 /**
  * Created by sdussoutrevel on 13/02/2018.
+ * Fav list
  */
 
 
