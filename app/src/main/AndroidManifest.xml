@@ -30,6 +30,7 @@
             android:name=".PopEvent"
             android:theme="@style/AppTheme.PopEvent">
         </activity>
+
     </application>
 
 </manifest>

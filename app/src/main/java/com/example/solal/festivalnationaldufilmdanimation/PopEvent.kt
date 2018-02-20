@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -75,29 +76,6 @@ class PopEvent : Activity() {
         event.type?.apply {  subtitleView.setText(this.name) }
         manager.findSceneById(event.scene_id!!)?.apply { placeView.setText(this.name) }
 
-
-        DownloadImageTask(imageView).execute("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg");
-
-    }
-
-    private inner class DownloadImageTask(internal var bmImage: ImageView) : AsyncTask<String, Void, Bitmap>() {
-
-        override fun doInBackground(vararg urls: String): Bitmap? {
-            val urldisplay = urls[0]
-            var mIcon11: Bitmap? = null
-            try {
-                val `in` = java.net.URL(urldisplay).openStream()
-                mIcon11 = BitmapFactory.decodeStream(`in`)
-            } catch (e: Exception) {
-                Log.e("Error", e.message)
-                e.printStackTrace()
-            }
-
-            return mIcon11
-        }
-
-        override fun onPostExecute(result: Bitmap) {
-            bmImage.setImageBitmap(result)
-        }
+        Picasso.with(this.applicationContext).load("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg").into(imageView);
     }
 }
