@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Used for Fragment body style -->
+
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <!-- solid background -->
             <solid android:color="@color/white"/>
-            <!-- draw a border around rectangle shape -->
             <stroke
                 android:color="@color/white"
                 android:width="1dp"
                 />
-            <!-- draw 35 dp radius for each corner -->
             <corners android:topLeftRadius="5dp" android:topRightRadius="5dp"/>
         </shape>
     </item>

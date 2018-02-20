@@ -1,5 +1,9 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Intent
+import android.support.v7.widget.AlertDialogLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -19,12 +23,13 @@ import java.util.*
 class EventAdapter(
 
         var events: MutableList<Event>,
-        val app: MyApplication,
+        var activity: Activity,
         val favEventCallback: (EventViewHolder, Boolean, Event) -> Unit
 
 ) : RecyclerView.Adapter<EventAdapter.EventViewHolder>()
-
 {
+
+    val app: MyApplication = activity.application as MyApplication
 
     override fun getItemCount(): Int = events.size //size similar to count, size specific from list
 
@@ -37,6 +42,7 @@ class EventAdapter(
         val context = parent.context
         val layoutInflater = LayoutInflater.from(context)
         val view: View = layoutInflater.inflate(R.layout.item_event, parent, false)
+
         return EventViewHolder(view)
     }
 
@@ -60,6 +66,12 @@ class EventAdapter(
         timeView.text = timeFormat.toString()
         placeView.text = scene.name
 
+        holder.view.setOnClickListener({
+            var intent = Intent(activity, PopEvent::class.java)
+            intent.putExtra("event_id", event.id)
+            activity.startActivity(intent)
+
+        })
 
         manageFav(holder, event)
     }
@@ -98,5 +110,7 @@ class EventAdapter(
     }
 
 
-    class EventViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class EventViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+    }
 }

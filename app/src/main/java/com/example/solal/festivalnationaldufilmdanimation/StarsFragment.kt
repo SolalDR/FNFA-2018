@@ -62,7 +62,7 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         val favoriteEvents = myApp.favoriteManager.findAllEvents()
 
         // Setup EventAdapter and on click listener
-        recycler.adapter = EventAdapter(favoriteEvents, app!!, { cell, isFav, event ->
+        recycler.adapter = EventAdapter(favoriteEvents, activity, { cell, isFav, event ->
             if(!isFav){
                 val adapter = recycler.adapter as EventAdapter
                 adapter.notifyItemRemoved(cell.adapterPosition)

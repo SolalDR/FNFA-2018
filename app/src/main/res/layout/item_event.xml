@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:clickable="true"
 
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="2dp"
@@ -89,7 +90,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/roundedbutton"
+            android:background="@color/white"
             android:contentDescription="@string/title_activity_stars"
             android:onClick="changeText"
             app:srcCompat="@drawable/nofav" />

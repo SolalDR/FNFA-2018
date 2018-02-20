@@ -13,11 +13,11 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comp
 
 
     var id: Int? = null                             // ID use for Foreign Key
-    private var type: EventType? = null                     // Event has one EventType
+    var type: EventType? = null                     // Event has one EventType
     var description: String? = null                 // Long description
     var date_start: Date                            // The event debut at ...
     var date_end: Date                              // The event end at
-    var scene_id: Int? = null                       // Foreign Key for (Scene has_many Event) relation
+    var scene_id: Int                               // Foreign Key for (Scene has_many Event) relation
     var name: String
     //var duration: Int? = null //Seconds
     //late init var author: Author

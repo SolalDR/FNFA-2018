@@ -120,7 +120,7 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
         val favoriteEvents = myApp.manager.findNextEvents(3)
 
         // Setup EventAdapter and on click listener
-        recycler.adapter = EventAdapter(favoriteEvents, app!!, { cell, isFav, event -> })
+        recycler.adapter = EventAdapter(favoriteEvents, activity, { cell, isFav, event -> })
 
         // Manage empty message
         val adapter = recycler.adapter as EventAdapter
