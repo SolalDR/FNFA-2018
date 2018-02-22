@@ -3,21 +3,20 @@ package com.example.solal.festivalnationaldufilmdanimation.entity
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Created by sdussoutrevel on 11/12/2017.
  * Entity Event
  */
-class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comparable<Event> {
+class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Comparable<Event> {
 
 
     var id: Int? = null                             // ID use for Foreign Key
-    var type: EventType? = null                     // Event has one EventType
+    var category: Category? = null                     // Event has one EventType
     var description: String? = null                 // Long description
     var date_start: Date                            // The event debut at ...
     var date_end: Date                              // The event end at
-    var scene_id: Int                               // Foreign Key for (Scene has_many Event) relation
+    var place_id: Int                               // Foreign Key for (Scene has_many Event) relation
     var name: String
     //var duration: Int? = null //Seconds
     //late init var author: Author
@@ -28,23 +27,31 @@ class Event constructor( jsonObject: JSONObject,  eventType: EventType? ) : Comp
 
     init {
         id = jsonObject.getString("id").toInt()
-        name = jsonObject.getString("name")
-        scene_id = jsonObject.getInt("scene")
+        name = jsonObject.getString("nom")
+        place_id = jsonObject.getInt("lieu")
 
         if (jsonObject.has("description")) {
             description = jsonObject.getString("description")
         }
 
-        val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm:SS", Locale.getDefault())
-        date_start = sdfmt1.parse(jsonObject.getString("date_start"))
-        date_end = sdfmt1.parse(jsonObject.getString("date_end"))
-        type = eventType
+        val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+
+
+        date_start = sdfmt1.parse(stringifyDate(jsonObject, "debut"))
+        date_end = sdfmt1.parse(stringifyDate(jsonObject, "fin"))
+        category = eventType
 
         //if(jsonObject.has("age_min")){ age_min = jsonObject.getString("age_min").toIntOrNull() }
-        //if(jsonObject.has("description_short")){ description_short = jsonObject.getString("description_short") }
         //if(jsonObject.has("background")){ background = jsonObject.getString("background") }
     }
 
+    fun stringifyDate(obj: JSONObject, suffixe: String): String {
+        return obj.getString("annee_"+ suffixe) + "-" +
+                String.format("%02d", obj.getInt("mois_" + suffixe) )+ "-" +
+                String.format("%02d", obj.getInt("jour_" + suffixe) ) + " " +
+                String.format("%02d", obj.getInt("heure_" + suffixe) ) + ":" +
+                String.format("%02d", obj.getInt("minute_" + suffixe) )
+    }
 
     // Debug method to control the value of the attributes
     fun inspect(indent: String? = "") {

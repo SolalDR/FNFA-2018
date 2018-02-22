@@ -3,12 +3,10 @@ package com.example.solal.festivalnationaldufilmdanimation.repository
 import android.content.Context
 import com.example.solal.festivalnationaldufilmdanimation.R
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
-import com.example.solal.festivalnationaldufilmdanimation.entity.EventType
+import com.example.solal.festivalnationaldufilmdanimation.entity.Category
 import com.example.solal.festivalnationaldufilmdanimation.entity.Place
-import com.example.solal.festivalnationaldufilmdanimation.entity.Scene
 import com.example.solal.festivalnationaldufilmdanimation.helpers.JsonParser
 import org.json.JSONArray
-import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -16,15 +14,14 @@ import kotlin.collections.ArrayList
 /**
  * Created by sdussoutrevel on 12/12/2017.
  * This class is used to manage entity
- * It allow to access Events, Scenes and Place and provide methods.
+ * It allow to access Events, Places and provide methods.
  */
 
 class DataRepository constructor(contextArg: Context ){
 
     var context: Context
-    private var eventTypes: ArrayList<EventType> = ArrayList()
+    private var eventTypes: ArrayList<Category> = ArrayList()
     private var events: ArrayList<Event> = ArrayList()
-    private var scenes: ArrayList<Scene> = ArrayList()
     private var places: ArrayList<Place> = ArrayList()
     var dates: ArrayList<Date> = ArrayList()
     lateinit var formater: SimpleDateFormat;
@@ -42,22 +39,21 @@ class DataRepository constructor(contextArg: Context ){
         loadEventsType()
         loadEvents()
         System.out.println("------NB dates---------"+dates.size)
-        loadScenes()
+        loadPlaces()
     }
 
     /*
      * Find all
      */
 
-    fun findAllScenes(): ArrayList<Scene>{ return this.scenes }
-    fun findAllEvents(): ArrayList<Event> { return this.events }
     fun findAllPlaces(): ArrayList<Place>{ return this.places }
+    fun findAllEvents(): ArrayList<Event> { return this.events }
 
     /*
      * Find single
      */
 
-    fun findEventTypeById(id: Int): EventType? {
+    fun findEventTypeById(id: Int): Category? {
         for (eventType in this.eventTypes) {
             if(eventType.id == id){
                 return eventType
@@ -79,10 +75,10 @@ class DataRepository constructor(contextArg: Context ){
      * Find parts
      */
 
-    fun findEventsByScene(id:Int): ArrayList<Event>{
+    fun findEventsByPlace(id:Int): ArrayList<Event>{
         val result = ArrayList<Event>()
         for(event in events){
-            if(event.scene_id == id){
+            if(event.place_id == id){
                 result.add(event)
             }
         }
@@ -145,10 +141,10 @@ class DataRepository constructor(contextArg: Context ){
     }
 
 
-    fun findSceneById(id: Int): Scene? {
-        for(scene in scenes){
-            if( scene.id == id ){
-                return scene
+    fun findPlaceById(id: Int): Place? {
+        for(place in places){
+            if( place.id == id ){
+                return place
             }
         }
         return null
@@ -180,7 +176,7 @@ class DataRepository constructor(contextArg: Context ){
         val c = JSONArray(eventsTypeRaw)
         for (i in 0 until c.length()) {
             val obj = c.getJSONObject(i)
-            eventTypes.add(EventType(obj))
+            eventTypes.add(Category(obj))
         }
     }
 
@@ -189,7 +185,7 @@ class DataRepository constructor(contextArg: Context ){
         val c = JSONArray(eventsRaw)
         for (i in 0 until c.length()) {
             val obj = c.getJSONObject(i)
-            val type = obj.getString("type")
+            val type = obj.getString("categorie_id")
             var typeRank: Int? = null
             type?.apply {
                 typeRank = this.toInt()
@@ -203,32 +199,14 @@ class DataRepository constructor(contextArg: Context ){
         }
     }
 
-    private fun loadScenes() {
-        val scenesRaw = JsonParser.getStringFromJson(R.raw.scenes, context)
-        val c = JSONArray(scenesRaw)
+    private fun loadPlaces() {
+        val placesRaw = JsonParser.getStringFromJson(R.raw.places, context)
+        val c = JSONArray(placesRaw)
         for (i in 0 until c.length()) {
             val obj = c.getJSONObject(i)
-            val places = this.loadPlaces(obj.getJSONArray("places"))
-            val scene = Scene(obj)
-            scene.id?.apply {
-                scene.events = findEventsByScene(this)
-            }
-            for(place in places){
-                scene.places.add(place)
-            }
-
-            scenes.add(scene)
-        }
-    }
-
-    private fun loadPlaces(json: JSONArray):ArrayList<Place> {
-        val localPlaces = ArrayList<Place>()
-        for(i in 0 until json.length()){
-            val obj:JSONObject = json.getJSONObject(i)
             val place = Place(obj)
-            localPlaces.add(place)
+
             places.add(place)
         }
-        return localPlaces
     }
 }

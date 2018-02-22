@@ -1,42 +1,34 @@
 [
   {
     "id": 1,
-    "name": "Séance spéciale",
-    "cd": "special"
+    "name": "Compétition et panorama"
   },
   {
     "id": 2,
-    "name": "Volet Professionel",
-    "cd": "pro"
+    "name": "Séance spéciale"
   },
   {
     "id": 3,
-    "name": "Séance Scolaire",
-    "cd": "school"
+    "name": "Long métrage"
   },
   {
     "id": 4,
-    "name": "Compétitions et sélections",
-    "cd": "competition"
+    "name": "Volet professionnel"
   },
   {
     "id": 5,
-    "name": "Long métrage et rencontres",
-    "cd": "film"
+    "name": "Autour des films"
   },
   {
     "id": 6,
-    "name": "Ateliers . Secret Fab",
-    "cd": "workshop"
+    "name": "Salon des nouvelles écritures"
   },
   {
     "id": 7,
-    "name": "Salon des nouvelles écritures",
-    "cd": "saloon"
+    "name": "Cube animé"
   },
   {
     "id": 8,
-    "name": "Autres",
-    "cd": "autre"
+    "name": "Focus"
   }
 ]

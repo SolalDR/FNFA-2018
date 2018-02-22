@@ -80,8 +80,8 @@ class PopEvent : Activity() {
         durationView.setText(durationStr)
 
         titleView.setText(event.name)
-        event.type?.apply {  subtitleView.setText(this.name) }
-        manager.findSceneById(event.scene_id)?.apply { placeView.setText(this.name) }
+        event.category?.apply {  subtitleView.setText(this.name) }
+        manager.findPlaceById(event.place_id)?.apply { placeView.setText(this.name) }
 
         Picasso.with(this.applicationContext).load("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg").into(imageView);
 

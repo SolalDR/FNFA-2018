@@ -54,7 +54,7 @@ class EventAdapter(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
 
         val event = events[position] // Get events
-        val scene = app.manager.findSceneById(event.scene_id!!)!!
+        val scene = app.manager.findPlaceById(event.place_id!!)!!
 
         val eventTime = events[position].date_start
         val timeFormat = SimpleDateFormat("HH'h'mm", Locale.FRENCH).format(eventTime)

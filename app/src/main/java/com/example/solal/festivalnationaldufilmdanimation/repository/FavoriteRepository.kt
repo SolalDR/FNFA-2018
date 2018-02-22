@@ -1,8 +1,7 @@
 package com.example.solal.festivalnationaldufilmdanimation.repository
 
-import android.content.Context
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
-import com.example.solal.festivalnationaldufilmdanimation.entity.EventType
+import com.example.solal.festivalnationaldufilmdanimation.entity.Category
 import org.json.JSONObject
 import com.example.solal.festivalnationaldufilmdanimation.helpers.FileHelper
 
@@ -15,7 +14,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
     var manager: DataRepository
     var events = ArrayList<Event>()
-    var eventTypes = ArrayList<EventType>()
+    var eventTypes = ArrayList<Category>()
 
     init {
         manager = manager_ref
@@ -50,7 +49,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
      * find methods
      */
     fun findAllEvents(): ArrayList<Event> { return events }
-    fun findAllEventTypes(): ArrayList<EventType> { return eventTypes }
+    fun findAllEventTypes(): ArrayList<Category> { return eventTypes }
 
 
     /*
@@ -115,7 +114,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
             }
 
             for (i in 0 until eventTypesId.length()) {
-                val eventType: EventType? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
+                val eventType: Category? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
                 eventType?.let {
                     eventTypes.add(eventType)
                 }
