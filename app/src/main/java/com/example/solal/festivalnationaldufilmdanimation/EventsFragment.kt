@@ -1,5 +1,7 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
 import android.content.DialogInterface
 import android.os.Bundle
@@ -9,9 +11,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewPropertyAnimator
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
+import android.view.animation.Animation.AnimationListener
+import kotlinx.android.synthetic.main.tab_event.*
 
 
 class EventsFragment : Fragment (), DialogInterface.OnClickListener {
@@ -27,6 +34,8 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
     var app: MyApplication? = null
     var fragmentView: View? = null
     var selectedDate: Int = 0
+
+    val headerAnimationDuration = 200.toLong()
 
     override fun onClick(p0: DialogInterface?, p1: Int) {}
 
@@ -54,17 +63,61 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         return fragmentView
     }
 
+    inline fun ViewPropertyAnimator.onAnimationEnd(crossinline continuation: (Animator) -> Unit) {
+        setListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                continuation(animation)
+            }
+        })
+    }
+
+    fun displayAll(){
+        textCurrentDate.animate().alpha(1f).setDuration(headerAnimationDuration)
+        nextDateText.animate().alpha(1f).setDuration(headerAnimationDuration)
+        lastDateText.animate().alpha(1f).setDuration(headerAnimationDuration)
+    }
+
+
     fun previous(){
         if( selectedDate > 0 ) {
-            selectedDate--
-            updateDate()
+
+
+            /*selectedDate--
+            updateDate()*/
+
+
+            var updated = false
+            lastDateText.animate().alpha(0f).setDuration(headerAnimationDuration)
+            nextDateText.animate().alpha(0f).setDuration(headerAnimationDuration)
+            textCurrentDate.animate().alpha(0f).setDuration(headerAnimationDuration).onAnimationEnd {
+                if( !updated ){
+                    selectedDate--
+                    updateDate()
+                    displayAll()
+                    updated = true;
+                }
+            }
         }
     }
 
+
     fun next(){
         if( selectedDate < app!!.manager.dates.size-1 ){
-            selectedDate++
-            updateDate()
+
+            /*selectedDate++
+            updateDate()*/
+
+            var updated = false
+            lastDateText.animate().alpha(0f)
+            nextDateText.animate().alpha(0f)
+            textCurrentDate.animate().alpha(0f).onAnimationEnd {
+                if( !updated ){
+                    selectedDate++
+                    updateDate()
+                    displayAll()
+                    updated = true;
+                }
+            }
         }
     }
 
@@ -88,15 +141,15 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         currentDateText.text = selectedDateContent
         if( selectedDate != 0 ){
             lastDateText.text = StringHelper.ucfirst(displayFormater.format(app!!.manager.dates[selectedDate - 1]))
-            lastDateText.alpha = 1.toFloat()
+            lastDateText.visibility = View.VISIBLE
         } else {
-            lastDateText.alpha = 0.toFloat()
+            lastDateText.visibility = View.INVISIBLE
         }
         if( selectedDate != app!!.manager.dates.size - 1 ){
             nextDateText.text = StringHelper.ucfirst(displayFormater.format(app!!.manager.dates[selectedDate + 1]))
-            nextDateText.alpha = 1.toFloat()
+            nextDateText.visibility = View.VISIBLE
         } else {
-            nextDateText.alpha = 0.toFloat()
+            nextDateText.visibility = View.INVISIBLE
         }
 
         displayEvents()

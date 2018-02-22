@@ -39,6 +39,8 @@ class PopEvent : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left);
+
         setContentView(R.layout.pop_event)
 
 
@@ -121,7 +123,6 @@ class PopEvent : Activity() {
             }
         }
         parent.setOnTouchListener(otl)
-
 
 
 

@@ -1,14 +1,12 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
-import android.support.v7.widget.AlertDialogLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.TextView
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
@@ -33,7 +31,7 @@ class EventAdapter(
 {
 
     val app: MyApplication = activity.application as MyApplication
-
+    var lastShowPosition: Int = 0;
     override fun getItemCount(): Int = events.size //size similar to count, size specific from list
 
 
@@ -69,10 +67,24 @@ class EventAdapter(
         timeView.text = timeFormat.toString()
         placeView.text = scene.name
 
+
+
+
+      /*  if( position >= this.lastShowPosition ){
+            this.lastShowPosition = position;
+            holder.view.animation = AnimationUtils.loadAnimation(this.activity, R.anim.abc_fade_in)
+            holder.view.animation.duration = 1000
+            holder.itemView.animation.start();
+        }*/
+
+
+        System.out.println("--------------"+holder.view)
+
         holder.view.setOnClickListener({
             var intent = Intent(activity, PopEvent::class.java)
             intent.putExtra("event_id", event.id)
             activity.startActivity(intent)
+            activity.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left);
 
         })
 
