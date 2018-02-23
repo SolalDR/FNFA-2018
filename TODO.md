@@ -2,27 +2,38 @@
 
 - InfoFragment
   - Intégration
-  - GoogleMapAPI
+  - Tarif
   
 - PréférenceActivity
   - Pro
   - GPS
 
 - EventsFragment
- - Intégration
- - Filtre de couleur selon les catégories
+ - Catégorie (Professionnel au minimum)
+
+- PopupActivity
  - Catégorie dans events
+ - Age minimum
+ - ShareButton ? 
+ - WebsiteButton ?
+ - MapButton ? 
  
 - Général 
   - Background
   - Leaf
 
 - StarFragment
- - Tout
+ - Trasnformer étoile en croix
  
 - HomeFragment
- - Next events
  - Actu Twittter
+ - Mention "en cours" sur les évenement qui sont en train d'avoir lieu
+ 
+- StartActivity
+ - Maquette 
+ - Intégration
+ 
+- Optimisation
  
   
 
