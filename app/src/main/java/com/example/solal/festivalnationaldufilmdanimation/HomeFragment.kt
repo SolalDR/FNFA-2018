@@ -15,6 +15,8 @@ import com.twitter.sdk.android.tweetui.TwitterListTimeline
 import org.json.JSONArray
 import org.json.JSONObject
 import android.content.ClipData.newIntent
+import android.util.Log
+import android.widget.ListView
 import com.twitter.sdk.android.core.TwitterAuthException
 import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.models.Tweet
@@ -31,7 +33,7 @@ import com.twitter.sdk.android.tweetui.SearchTimeline
 
 class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
     lateinit var recycler: RecyclerView
-    lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView: ListView
     var app: MyApplication? = null
     var fragmentView: View? = null
     var emptyMessage: View? = null
@@ -45,7 +47,11 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
         recycler = fragmentView!!.findViewById(R.id.recyclerHome)
         recyclerView = fragmentView!!.findViewById(R.id.recyclerHomeActu)
 
-        val authConfig = TwitterAuthConfig("twitter_consumer_key", "twitter_consumer_secret");
+        val key = this.activity.resources.getString(R.string.twitter_consumer_key)
+        val secret = this.activity.resources.getString(R.string.twitter_consumer_secret)
+        val authConfig = TwitterAuthConfig(key, secret);
+
+
 
         val config = TwitterConfig.Builder(this.context)
                 .logger(DefaultLogger(Log.DEBUG))
@@ -54,32 +60,19 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
                 .build()
         Twitter.initialize(config)
 
-        val userTimeline = UserTimeline.Builder().screenName("twitterdev").build()
 
-//        val searchTimeline = SearchTimeline.Builder()
-//                .query("#twitterflock")
-//                .build()
-
-//        val recyclerView = findViewById(R.id.recycler_view) as RecyclerView
-
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
-
-        val searchTimeline = SearchTimeline.Builder()
-                .query("#hiking")
+        val userTimeline = UserTimeline.Builder().screenName("fnfa_afca")
                 .maxItemsPerRequest(5)
+                .includeRetweets(false)
                 .build()
-        System.out.print("---------searchTimeline----------")
-        System.out.print(searchTimeline)
 
-        val adapterActu = TweetTimelineRecyclerViewAdapter.Builder(this.context)
-                .setTimeline(searchTimeline)
-                .setViewStyle(R.style.tw__TweetLightWithActionsStyle)
+        val adapterActu = TweetTimelineListAdapter.Builder(this.context)
+                .setTimeline(userTimeline)
                 .build()
+
 
         recyclerView.adapter = adapterActu
 
-        System.out.print("---------adapterActu----------")
-        System.out.print(adapterActu)
 
         return fragmentView
     }
@@ -88,7 +81,7 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
         super.onViewCreated(view, savedInstanceState)
         recycler.layoutManager = LinearLayoutManager(this.context)
         displayEvents()
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
+//        recyclerView.layoutManager = LinearLayoutManager(this.context)
 
     }
 
