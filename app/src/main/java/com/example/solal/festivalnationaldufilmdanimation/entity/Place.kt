@@ -11,8 +11,8 @@ class Place constructor(
 ){
 
     var id: Int = 0
-    var lat: Long = 0
-    var lon: Long = 0
+    var lat: Double = 0.toDouble()
+    var lon: Double = 0.toDouble()
 
     lateinit var name: String
     lateinit var address: String
@@ -21,8 +21,8 @@ class Place constructor(
         jsonObject.getInt("id").apply { id = this }
         jsonObject.getString("name").apply { name = this }
         jsonObject.getString("address").apply { address = this }
-        jsonObject.getLong("lat").apply { lat = this }
-        jsonObject.getLong("lon").apply { lon = this }
+        jsonObject.getDouble("lat").apply { lat = this }
+        jsonObject.getDouble("lon").apply { lon = this }
     }
 
     fun inspect(indent:String? = ""){
