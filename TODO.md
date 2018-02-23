@@ -9,29 +9,29 @@
   - GPS
 
 - EventsFragment
- - Catégorie (Professionnel au minimum)
+  - Catégorie (Professionnel au minimum)
 
 - PopupActivity
- - Catégorie dans events
- - Age minimum
- - ShareButton ? 
- - WebsiteButton ?
- - MapButton ? 
+  - Catégorie dans events
+  - Age minimum
+  - ShareButton ? 
+  - WebsiteButton ?
+  - MapButton ? 
  
 - Général 
   - Background
   - Leaf
 
 - StarFragment
- - Trasnformer étoile en croix
+  - Trasnformer étoile en croix
  
 - HomeFragment
- - Actu Twittter
- - Mention "en cours" sur les évenement qui sont en train d'avoir lieu
+  - Actu Twittter
+  - Mention "en cours" sur les évenement qui sont en train d'avoir lieu
  
 - StartActivity
- - Maquette 
- - Intégration
+  - Maquette 
+  - Intégration
  
 - Optimisation
  
