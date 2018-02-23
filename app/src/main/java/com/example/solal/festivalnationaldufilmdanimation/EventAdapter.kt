@@ -1,10 +1,12 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
+import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.TextView
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
@@ -14,18 +16,22 @@ import java.util.*
 /**
  * Created by Solal on 22/01/2018.
  * An Adapter for events list in recycler view
+ * @param events: The events's list
+ * @param activity: Current activity for intent popup
+ * @param favEventCallback: Listener for "favoris" button
  */
 
 class EventAdapter(
 
         var events: MutableList<Event>,
-        val app: MyApplication,
+        var activity: Activity,
         val favEventCallback: (EventViewHolder, Boolean, Event) -> Unit
 
 ) : RecyclerView.Adapter<EventAdapter.EventViewHolder>()
-
 {
 
+    val app: MyApplication = activity.application as MyApplication
+    var lastShowPosition: Int = 0;
     override fun getItemCount(): Int = events.size //size similar to count, size specific from list
 
 
@@ -37,6 +43,7 @@ class EventAdapter(
         val context = parent.context
         val layoutInflater = LayoutInflater.from(context)
         val view: View = layoutInflater.inflate(R.layout.item_event, parent, false)
+
         return EventViewHolder(view)
     }
 
@@ -47,7 +54,7 @@ class EventAdapter(
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
 
         val event = events[position] // Get events
-        val scene = app.manager.findSceneById(event.scene_id!!)!!
+        val scene = app.manager.findPlaceById(event.place_id!!)!!
 
         val eventTime = events[position].date_start
         val timeFormat = SimpleDateFormat("HH'h'mm", Locale.FRENCH).format(eventTime)
@@ -60,6 +67,26 @@ class EventAdapter(
         timeView.text = timeFormat.toString()
         placeView.text = scene.name
 
+
+
+
+      /*  if( position >= this.lastShowPosition ){
+            this.lastShowPosition = position;
+            holder.view.animation = AnimationUtils.loadAnimation(this.activity, R.anim.abc_fade_in)
+            holder.view.animation.duration = 1000
+            holder.itemView.animation.start();
+        }*/
+
+
+        System.out.println("--------------"+holder.view)
+
+        holder.view.setOnClickListener({
+            var intent = Intent(activity, PopEvent::class.java)
+            intent.putExtra("event_id", event.id)
+            activity.startActivity(intent)
+            activity.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left);
+
+        })
 
         manageFav(holder, event)
     }
@@ -98,5 +125,7 @@ class EventAdapter(
     }
 
 
-    class EventViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+    class EventViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+    }
 }

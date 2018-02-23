@@ -5,11 +5,9 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import com.twitter.sdk.android.core.Twitter
 import com.twitter.sdk.android.core.TwitterConfig
 import com.twitter.sdk.android.core.TwitterAuthConfig
@@ -99,7 +97,7 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
         val favoriteEvents = myApp.manager.findNextEvents(3)
 
         // Setup EventAdapter and on click listener
-        recycler.adapter = EventAdapter(favoriteEvents, app!!, { cell, isFav, event -> })
+        recycler.adapter = EventAdapter(favoriteEvents, activity, { cell, isFav, event -> })
 
         // Manage empty message
         val adapter = recycler.adapter as EventAdapter

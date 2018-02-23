@@ -16,6 +16,17 @@
     </style>
 
 
+    <style name="AppTheme.PopEvent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@drawable/rounded</item>
+        <!-- enable window content transitions -->
+
+
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    </style>
+
     <style name="FragmentContainer">
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
@@ -51,7 +62,7 @@
     <style name="EventDateSelector">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">?android:selectableItemBackground</item>
+        <item name="android:background">@color/grey</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:padding">2dp</item>
         <item name="android:textColor">#010a3b</item>
@@ -59,6 +70,13 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:onClick">onClick</item>
         <item name="android:clickable">true</item>
+    </style>
+
+
+    <style name="ActionPop">
+        <item name="android:background">@drawable/rounded</item>
+        <item name="android:textColor">@color/black</item>
+
     </style>
 
 </resources>

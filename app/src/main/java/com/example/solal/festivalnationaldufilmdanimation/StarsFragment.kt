@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.TextView
 
 /**
  * Created by sdussoutrevel on 13/02/2018.
+ * Fav list
  */
 
 
@@ -62,7 +62,7 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         val favoriteEvents = myApp.favoriteManager.findAllEvents()
 
         // Setup EventAdapter and on click listener
-        recycler.adapter = EventAdapter(favoriteEvents, app!!, { cell, isFav, event ->
+        recycler.adapter = EventAdapter(favoriteEvents, activity, { cell, isFav, event ->
             if(!isFav){
                 val adapter = recycler.adapter as EventAdapter
                 adapter.notifyItemRemoved(cell.adapterPosition)

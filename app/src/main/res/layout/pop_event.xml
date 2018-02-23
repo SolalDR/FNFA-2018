@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/pop_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/pop_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/pop_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:elevation="5dp"
+            android:padding="10dp">
+
+            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                android:id="@+id/pop_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Some event title"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                android:id="@+id/pop_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Some categorie"
+                android:textColor="@color/black"
+                android:layout_below="@id/pop_title"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/pop_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <RelativeLayout
+            android:id="@+id/pop_info"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                android:id="@+id/pop_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Samedi 4 avril - 9h30" />
+
+            <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                android:id="@+id/pop_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pop_date"
+                android:text="au cinéma TNB" />
+
+
+            <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                android:id="@+id/pop_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="70min" />
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/pop_actions"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent">
+
+
+        <Button
+            android:id="@+id/pop_action_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="Share" />
+
+
+        <Button
+            android:id="@+id/pop_action_web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="Voir plus" />
+
+    </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

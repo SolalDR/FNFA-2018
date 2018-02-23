@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "TNB",
+    "address": " 1 Rue Saint-Hélier, 35040 Rennes",
+    "lat": 48.107960,
+    "lon": -1.672563
+  },
+  {
+    "id": 2,
+    "name": "Arvor",
+    "address": "29 Rue d'Antrain, 35700 Rennes",
+    "lat": 48.116137,
+    "lon": -1.679034
+  },
+  {
+    "id": 3,
+    "name": "ESRA",
+    "address": "1 Rue Xavier Grall, 35700 Rennes",
+    "lat": 48.129036,
+    "lon": -1.642040
+  },
+  {
+    "id": 4,
+    "name": "Grand Logis",
+    "address": "Le Grand Logis 35250 Chevaigné",
+    "lat": 48.235920,
+    "lon": -1.622803
+  },
+
+  {
+    "id": 5,
+    "name": "Esplanade Charles de Gaulle",
+    "address": "Espl. Charles de Gaulle 35000 Rennes",
+    "lat": 48.106697,
+    "lon": -1.676723
+  }
+]
