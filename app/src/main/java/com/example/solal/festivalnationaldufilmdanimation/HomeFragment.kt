@@ -16,7 +16,6 @@ import org.json.JSONArray
 import org.json.JSONObject
 import android.content.ClipData.newIntent
 import android.util.Log
-import android.widget.ListView
 import com.twitter.sdk.android.core.TwitterAuthException
 import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.models.Tweet
@@ -70,7 +69,6 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
                 .setTimeline(userTimeline)
                 .build()
 
-
         recyclerView.adapter = adapterActu
 
 
@@ -81,7 +79,6 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
         super.onViewCreated(view, savedInstanceState)
         recycler.layoutManager = LinearLayoutManager(this.context)
         displayEvents()
-//        recyclerView.layoutManager = LinearLayoutManager(this.context)
 
     }
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.solal.festivalnationaldufilmdanimation.entity.Place;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,18 +28,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
 
-
+import java.util.ArrayList;
 
 
 public class InfoFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private MapView mapView;
-    private float middleLat;
-    private float middleLong;
-    private LatLng cinemaArvor;
-    private LatLng cinemaTNB;
-    private Marker markerTNB;
-    private Marker markerArvor;
+    private TextView placeNameView;
+    private TextView addressView;
+
+
 
 //    private GoogleMap googleMap;
     @Override
@@ -46,7 +45,15 @@ public class InfoFragment extends Fragment implements OnMapReadyCallback {
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
+
+
+
         View v =inflater.inflate(R.layout.tab_info,container,false);
+
+
+        placeNameView = v.findViewById(R.id.name_place);
+        addressView = v.findViewById(R.id.address_place);
+
         mapView = v.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
@@ -55,31 +62,6 @@ public class InfoFragment extends Fragment implements OnMapReadyCallback {
         int widthMap = mapView.getWidth();
         mapView.setMinimumHeight(widthMap);
 
-        System.out.println("-----------width map-------"+widthMap);
-
-        View.OnClickListener listenerTNB = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CameraUpdate location1 = CameraUpdateFactory.newLatLngZoom(
-                        cinemaTNB, 15);
-                mMap.animateCamera(location1);
-            }
-        };
-
-        View.OnClickListener listenerArvor = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CameraUpdate location2 = CameraUpdateFactory.newLatLngZoom(
-                        cinemaArvor, 15);
-                mMap.animateCamera(location2);
-            }
-        };
-
-        RelativeLayout layout1cinema = v.findViewById(R.id.layoutCine1);
-        layout1cinema.setOnClickListener(listenerTNB);
-
-        RelativeLayout layout2cinema = v.findViewById(R.id.layoutCine2);
-        layout2cinema.setOnClickListener(listenerArvor);
 
         return v;
     }
@@ -97,40 +79,53 @@ public class InfoFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        MyApplication app = (MyApplication )this.getActivity().getApplication();
+        final ArrayList<Place> places = app.getManager().findAllPlaces();
+        final ArrayList<Marker> markers = new ArrayList<Marker>();
+
 
         IconGenerator iconFactory = new IconGenerator(this.getContext());
 
-        cinemaTNB = new LatLng(48.107967, -1.672562);
-        markerTNB = mMap.addMarker(
-                new MarkerOptions()
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon("Cinéma TNB")))
-                        .position(cinemaTNB)
-//                        .anchor(iconFactory.getAnchorU(), iconFactory.getAnchorV())
-        );
+        Marker marker = null;
+        for(int i = 0; i<places.size(); i++){
+            marker = mMap.addMarker(
+                    new MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(places.get(i).getName())))
+                            .position(new LatLng(places.get(i).getLat(), places.get(i).getLon()))
+            );
 
-        cinemaArvor = new LatLng(48.115995, -1.679114);
-        markerArvor = mMap.addMarker(
-                new MarkerOptions()
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon("Cinéma Arvor")))
-                        .position(cinemaArvor)
+            markers.add(marker);
+        }
 
-        );
+        displayPlace(places.get(0));
 
-        middleLat = (float) (cinemaTNB.latitude+cinemaArvor.latitude)/2;
-        middleLong = (float) (cinemaTNB.longitude+cinemaArvor.longitude)/2;
-
-        LatLng defaultCamPosition = new LatLng(middleLat, middleLong);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(defaultCamPosition));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(places.get(0).getLat(), places.get(0).getLon())));
         mMap.setMaxZoomPreference(30.0f);
-        mMap.setMinZoomPreference(14.5f);
+        mMap.setMinZoomPreference(8.5f);
         UiSettings mUiSettings = mMap.getUiSettings();
         mUiSettings.isScrollGesturesEnabled();
 
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                for(int i=0; i<markers.size(); i++){
+                    if( markers.get(i).getId().equals(marker.getId())){
+                        displayPlace(places.get(i));
+                        break;
+                    }
+                }
+                return false;
+            }
+        });
+
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this.getContext(), R.raw.map_style);
-                googleMap.setMapStyle(style);
-        onMarkerClick(markerArvor);
-        onMarkerClick(markerTNB);
+        googleMap.setMapStyle(style);
+
+    }
+
+    public void displayPlace(Place place){
+        placeNameView.setText(place.getName());
+        addressView.setText(place.getAddress());
     }
 
 
