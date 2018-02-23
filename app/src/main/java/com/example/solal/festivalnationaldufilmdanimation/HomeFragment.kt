@@ -1,29 +1,27 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+
+import android.util.Log
+
 import android.support.v4.app.Fragment
-import android.content.DialogInterface
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+
+import android.content.DialogInterface
+import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
+
 import com.twitter.sdk.android.core.Twitter
 import com.twitter.sdk.android.core.TwitterConfig
 import com.twitter.sdk.android.core.TwitterAuthConfig
-import com.twitter.sdk.android.tweetui.TwitterListTimeline
-import org.json.JSONArray
-import org.json.JSONObject
-import android.content.ClipData.newIntent
-import android.util.Log
-import com.twitter.sdk.android.core.TwitterAuthException
-import com.twitter.sdk.android.core.TwitterException
-import com.twitter.sdk.android.core.models.Tweet
 import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter
-import com.twitter.sdk.android.tweetui.TweetTimelineRecyclerViewAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline
 import com.twitter.sdk.android.core.DefaultLogger
-import com.twitter.sdk.android.tweetui.SearchTimeline
+
 
 
 /**
