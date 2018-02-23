@@ -3,6 +3,7 @@
     <string name="title_activity_event">Programme</string>
     <string name="title_activity_info">Info Pratiques</string>
     <string name="title_activity_home">Prochaines Séances</string>
+    <string name="title_activity_home_actuality">Actualité</string>
     <string name="title_activity_stars">Favoris</string>
     <string name="title_activity_program">StarsActivity</string>
     <string name="start_empty">Il n\'y a pas encore de favoris</string>
@@ -11,7 +12,7 @@
     <string name="second_cinema_name">Cinéma Arvor</string>
     <string name="first_cinema_address">1 Rue Saint-Hélier, 35040 Rennes</string>
     <string name="second_cinema_address">29 Rue d\'Antrain, 35700 Rennes</string>
-    <string name="twitter_consumer_key">--</string>
-    <string name="twitter_consumer_secret">-</string>
+    <string name="twitter_consumer_key"></string>
+    <string name="twitter_consumer_secret"></string>
 
 </resources>

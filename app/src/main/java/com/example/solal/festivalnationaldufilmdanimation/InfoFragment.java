@@ -29,6 +29,7 @@ import com.google.maps.android.ui.IconGenerator;
 
 
 
+
 public class InfoFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private MapView mapView;
