@@ -10,7 +10,6 @@
 
 - EventsFragment
   - Catégorie (Professionnel au minimum)
-  - Bug ombré ou padding en dessous des jours
 
 - PopupActivity
   - Catégorie dans events
