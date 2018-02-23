@@ -9,6 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import com.example.solal.festivalnationaldufilmdanimation.entity.Event
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by sdussoutrevel on 13/02/2018.
@@ -57,11 +61,45 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         }
     }
 
-    private fun displayEvents(){
+
+    fun getEventsByDays(): ArrayList<DayEvents> {
         val myApp = this.activity.application as MyApplication
         val favoriteEvents = myApp.favoriteManager.findAllEvents()
 
+        var days = ArrayList<DayEvents>()
+
+        var fmt = SimpleDateFormat("yyyyMMdd")
+
+        var found: Boolean;
+        for(event in favoriteEvents){
+            found = false;
+            for(day in days){
+                if( fmt.format(event.date_start) == day.date ){
+                    day.list.add(event)
+                    found = true
+                }
+            }
+            if( !found ){
+                val day = DayEvents(fmt.format(event.date_start));
+                day.list.add(event)
+                days.add(day)
+            }
+        }
+
+        return days
+    }
+
+    private fun displayEvents(){
+
+        var list = getEventsByDays();
+
+        for(day in list){
+
+        }
         // Setup EventAdapter and on click listener
+
+        val myApp = this.activity.application as MyApplication
+        val favoriteEvents = myApp.favoriteManager.findAllEvents()
         recycler.adapter = EventAdapter(favoriteEvents, activity, { cell, isFav, event ->
             if(!isFav){
                 val adapter = recycler.adapter as EventAdapter
@@ -76,6 +114,20 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         val adapter = recycler.adapter as EventAdapter
         if(adapter.events.size > 0) {
             this.hideEmpty()
+        }
+    }
+
+    class DaysAdapter() {
+
+    }
+
+    class DayEvents(date : String) {
+
+        val date: String = date
+        val list: ArrayList<Event> = ArrayList<Event>()
+
+        init {
+
         }
     }
 }

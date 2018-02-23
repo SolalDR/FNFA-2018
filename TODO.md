@@ -18,15 +18,13 @@
   - WebsiteButton ?
   - MapButton ? 
  
-- Général 
-  - Background
+- Général
   - Leaf
 
 - StarFragment
   - Trasnformer étoile en croix
  
 - HomeFragment
-  - Actu Twittter
   - Mention "en cours" sur les évenement qui sont en train d'avoir lieu
  
 - StartActivity
