@@ -18,6 +18,7 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
     var date_end: Date                              // The event end at
     var place_id: Int                               // Foreign Key for (Scene has_many Event) relation
     var name: String
+
     //var duration: Int? = null //Seconds
     //late init var author: Author
     //lateinit var scene: Scene
@@ -36,9 +37,9 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
 
         val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
 
-
         date_start = sdfmt1.parse(stringifyDate(jsonObject, "debut"))
         date_end = sdfmt1.parse(stringifyDate(jsonObject, "fin"))
+
         category = eventType
 
         //if(jsonObject.has("age_min")){ age_min = jsonObject.getString("age_min").toIntOrNull() }

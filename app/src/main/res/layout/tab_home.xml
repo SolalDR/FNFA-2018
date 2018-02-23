@@ -6,7 +6,10 @@
 
     <ScrollView
         android:id="@+id/next_events"
+
         android:layout_width="match_parent"
+        android:background="@drawable/rounded_top_white"
+        android:paddingTop="5dp"
         android:layout_height="match_parent">
 
         <LinearLayout
