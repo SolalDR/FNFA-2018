@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.solal.festivalnationaldufilmdanimation.ProgramActivity">
+
+    <!-- BODY -->
+    <RelativeLayout style="@style/FragmentBody">
+
+
+        <!-- HEADER -->
+        <RelativeLayout
+            android:id="@+id/header_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/rounded_top_grey"
+            android:elevation="6dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="18dp">
+
+            <!-- HEADER__CONTENT -->
+            <RelativeLayout
+                android:id="@+id/header_event_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp">
+
+                <!-- Current date -->
+                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                    android:id="@+id/textCurrentDate"
+                    style="@style/EventDateSelector"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/title_activity_event" />
+
+                <!-- Date before (left) -->
+                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                    android:id="@+id/textLastDate"
+                    style="@style/EventDateSelector"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Test" />
+
+                <!-- Next date (right) -->
+                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                    android:id="@+id/textNextDate"
+                    style="@style/EventDateSelector"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Test2" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerV"
+
+            android:layout_width="match_parent"
+            android:layout_height="569dp"
+            tools:layout_editor_absoluteY="-16dp" />
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <!--<include layout="@layout/content_program" />-->
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

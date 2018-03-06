@@ -55,8 +55,8 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         nextDateText = fragmentView!!.findViewById<TextView>(R.id.textNextDate)
 
         currentDateText.setOnClickListener(View.OnClickListener { })
-        lastDateText.setOnClickListener(View.OnClickListener { previous() })
-        nextDateText.setOnClickListener(View.OnClickListener { next() })
+//        lastDateText.setOnClickListener(View.OnClickListener { previous() })
+//        nextDateText.setOnClickListener(View.OnClickListener { next() })
 
         updateDate()
 
@@ -71,55 +71,55 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         })
     }
 
-    fun displayAll(){
-        textCurrentDate.animate().alpha(1f).setDuration(headerAnimationDuration)
-        nextDateText.animate().alpha(1f).setDuration(headerAnimationDuration)
-        lastDateText.animate().alpha(1f).setDuration(headerAnimationDuration)
-    }
+//    fun displayAll(){
+//        textCurrentDate.animate().alpha(1f).setDuration(headerAnimationDuration)
+//        nextDateText.animate().alpha(1f).setDuration(headerAnimationDuration)
+//        lastDateText.animate().alpha(1f).setDuration(headerAnimationDuration)
+//    }
 
+//
+//    fun previous(){
+//        if( selectedDate > 0 ) {
+//
+//
+//            /*selectedDate--
+//            updateDate()*/
+//
+//
+//            var updated = false
+//            lastDateText.animate().alpha(0f).setDuration(headerAnimationDuration)
+//            nextDateText.animate().alpha(0f).setDuration(headerAnimationDuration)
+//            textCurrentDate.animate().alpha(0f).setDuration(headerAnimationDuration).onAnimationEnd {
+//                if( !updated ){
+//                    selectedDate--
+//                    updateDate()
+//                    displayAll()
+//                    updated = true;
+//                }
+//            }
+//        }
+//    }
+//
 
-    fun previous(){
-        if( selectedDate > 0 ) {
-
-
-            /*selectedDate--
-            updateDate()*/
-
-
-            var updated = false
-            lastDateText.animate().alpha(0f).setDuration(headerAnimationDuration)
-            nextDateText.animate().alpha(0f).setDuration(headerAnimationDuration)
-            textCurrentDate.animate().alpha(0f).setDuration(headerAnimationDuration).onAnimationEnd {
-                if( !updated ){
-                    selectedDate--
-                    updateDate()
-                    displayAll()
-                    updated = true;
-                }
-            }
-        }
-    }
-
-
-    fun next(){
-        if( selectedDate < app!!.manager.dates.size-1 ){
-
-            /*selectedDate++
-            updateDate()*/
-
-            var updated = false
-            lastDateText.animate().alpha(0f)
-            nextDateText.animate().alpha(0f)
-            textCurrentDate.animate().alpha(0f).onAnimationEnd {
-                if( !updated ){
-                    selectedDate++
-                    updateDate()
-                    displayAll()
-                    updated = true;
-                }
-            }
-        }
-    }
+//    fun next(){
+//        if( selectedDate < app!!.manager.dates.size-1 ){
+//
+//            /*selectedDate++
+//            updateDate()*/
+//
+//            var updated = false
+//            lastDateText.animate().alpha(0f)
+//            nextDateText.animate().alpha(0f)
+//            textCurrentDate.animate().alpha(0f).onAnimationEnd {
+//                if( !updated ){
+//                    selectedDate++
+//                    updateDate()
+//                    displayAll()
+//                    updated = true;
+//                }
+//            }
+//        }
+//    }
 
     fun setDefaultDate(){
         currentDate = Calendar.getInstance().time
