@@ -31,7 +31,10 @@ class EventAdapter(
 {
 
     val app: MyApplication = activity.application as MyApplication
-    var lastShowPosition: Int = 0;
+
+    private var lastPosition = -1
+    var animation = R.anim.abc_grow_fade_in_from_bottom
+
     override fun getItemCount(): Int = events.size //size similar to count, size specific from list
 
 
@@ -88,7 +91,27 @@ class EventAdapter(
 
         })
 
+        //this.setAnimation(holder.itemView, position)
+
         manageFav(holder, event)
+    }
+
+
+
+    /**
+     * Here is the key method to apply the animation
+     */
+    private fun setAnimation(viewToAnimate: View, position: Int)
+    {
+
+        if (position > lastPosition)
+        {
+            // If the bound view wasn't previously displayed on screen, it's animated
+            var animation = AnimationUtils.loadAnimation(this.activity, animation);
+            animation.duration = 600
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
 

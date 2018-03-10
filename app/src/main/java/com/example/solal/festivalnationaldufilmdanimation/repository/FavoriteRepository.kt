@@ -44,7 +44,6 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         setStoredFavorites()
     }
 
-
     /*
      * find methods
      */

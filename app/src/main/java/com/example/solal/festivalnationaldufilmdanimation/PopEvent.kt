@@ -1,54 +1,45 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
-import android.app.ActionBar
+import com.example.solal.festivalnationaldufilmdanimation.entity.Event
+import com.example.solal.festivalnationaldufilmdanimation.repository.DataRepository
+import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
+import com.squareup.picasso.Picasso
+
 import android.app.Activity
 import android.os.Bundle
 import android.util.DisplayMetrics
-import com.example.solal.festivalnationaldufilmdanimation.entity.Event
-import com.example.solal.festivalnationaldufilmdanimation.repository.DataRepository
-import com.example.solal.festivalnationaldufilmdanimation.repository.FavoriteRepository
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.AsyncTask
-import android.util.Log
-import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
-import com.squareup.picasso.Picasso
-import java.text.SimpleDateFormat
-import java.util.*
-import android.view.Gravity
-import android.provider.SyncStateContract.Helpers.update
-import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.*
+
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
  * Created by sdussoutrevel on 20/02/2018.
+ * A simple popin appearing on event's click
  */
+
 class PopEvent : Activity() {
 
-
-    lateinit var favoriteManager: FavoriteRepository
     lateinit var manager: DataRepository
     lateinit var event: Event
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left);
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left)
 
         setContentView(R.layout.pop_event)
 
 
         // Compute metrics
-        var dm = DisplayMetrics()
+        val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
-        var width = dm.widthPixels
-        var height = dm.heightPixels
+        val width = dm.widthPixels
+        val height = dm.heightPixels
 
         // Set popup size
         window.setLayout((width * 0.85).toInt(), (height*0.7).toInt())
@@ -66,27 +57,24 @@ class PopEvent : Activity() {
         val dateView = findViewById<TextView>(R.id.pop_date)
         val placeView = findViewById<TextView>(R.id.pop_place)
         val durationView = findViewById<TextView>(R.id.pop_duration)
-        var shareBtn = findViewById<Button>(R.id.pop_action_share)
-        var webBtn = findViewById<Button>(R.id.pop_action_web)
-
 
         // Set event values on views
 
         val timeFormat = StringHelper.ucfirst(SimpleDateFormat("EEEE dd/MM - HH'h'mm", Locale.FRENCH).format(event.date_start))
-        dateView.setText(timeFormat)
+        dateView.text = timeFormat
 
-        var diff = event.date_end.time - event.date_start.time
+        val diff = event.date_end.time - event.date_start.time
         val durationStr = (diff/60000).toInt().toString() + "min"
-        durationView.setText(durationStr)
+        durationView.text = durationStr
 
-        titleView.setText(event.name)
-        event.category?.apply {  subtitleView.setText(this.name) }
-        manager.findPlaceById(event.place_id)?.apply { placeView.setText(this.name) }
+        titleView.text = event.name
+        event.category?.apply {  subtitleView.text = this.name }
+        manager.findPlaceById(event.place_id)?.apply { placeView.text = this.name  }
 
-        Picasso.with(this.applicationContext).load("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg").into(imageView);
+        Picasso.with(this.applicationContext).load("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg").into(imageView)
 
 
-        var parent = findViewById<RelativeLayout>(R.id.pop_parent)
+        val parent = findViewById<RelativeLayout>(R.id.pop_parent)
 
         var mCurrentX = 0
         var mCurrentY = 0
@@ -94,6 +82,7 @@ class PopEvent : Activity() {
         val otl = object : OnTouchListener {
             private var mDx: Float = 0.toFloat()
             private var mDy: Float = 0.toFloat()
+
 
             override fun onTouch(v: View, event: MotionEvent): Boolean {
                 val action = event.action
@@ -123,10 +112,5 @@ class PopEvent : Activity() {
             }
         }
         parent.setOnTouchListener(otl)
-
-
-
-
-
     }
 }

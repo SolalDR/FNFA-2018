@@ -34,7 +34,6 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
         if (jsonObject.has("description")) {
             description = jsonObject.getString("description")
         }
-
         val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
 
         date_start = sdfmt1.parse(stringifyDate(jsonObject, "debut"))
@@ -42,9 +41,11 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
 
         category = eventType
 
+
         //if(jsonObject.has("age_min")){ age_min = jsonObject.getString("age_min").toIntOrNull() }
         //if(jsonObject.has("background")){ background = jsonObject.getString("background") }
     }
+
 
     fun stringifyDate(obj: JSONObject, suffixe: String): String {
         return obj.getString("annee_"+ suffixe) + "-" +
@@ -53,6 +54,14 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
                 String.format("%02d", obj.getInt("heure_" + suffixe) ) + ":" +
                 String.format("%02d", obj.getInt("minute_" + suffixe) )
     }
+
+    fun getDateFormat() : Date {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+        return dateFormat.parse(dateFormat.format(this.date_start))
+    }
+
+
 
     // Debug method to control the value of the attributes
     fun inspect(indent: String? = "") {

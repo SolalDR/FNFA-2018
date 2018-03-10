@@ -48,6 +48,7 @@ class DataRepository constructor(contextArg: Context ){
 
     fun findAllPlaces(): ArrayList<Place>{ return this.places }
     fun findAllEvents(): ArrayList<Event> { return this.events }
+    fun findAllDates(): ArrayList<Date>{ return this.dates }
 
     /*
      * Find single
