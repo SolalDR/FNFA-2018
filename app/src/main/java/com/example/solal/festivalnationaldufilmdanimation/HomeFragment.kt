@@ -23,7 +23,6 @@ import com.twitter.sdk.android.tweetui.UserTimeline
 import com.twitter.sdk.android.core.DefaultLogger
 
 
-
 /**
  * Created by sdussoutrevel on 14/02/2018.
  */
@@ -33,7 +32,6 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
     lateinit var recyclerView: ListView
     var app: MyApplication? = null
     var fragmentView: View? = null
-    var emptyMessage: View? = null
 
     override fun onClick(p0: DialogInterface?, p1: Int) {}
 
@@ -44,31 +42,36 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
         recycler = fragmentView!!.findViewById(R.id.recyclerHome)
         recyclerView = fragmentView!!.findViewById(R.id.recyclerHomeActu)
 
-        val key = this.activity.resources.getString(R.string.twitter_consumer_key)
-        val secret = this.activity.resources.getString(R.string.twitter_consumer_secret)
-        val authConfig = TwitterAuthConfig(key, secret);
+        object : Thread() {
+            override fun run() {
+                val key = this@HomeFragment.activity.resources.getString(R.string.twitter_consumer_key)
+                val secret = this@HomeFragment.activity.resources.getString(R.string.twitter_consumer_secret)
+                val authConfig = TwitterAuthConfig(key, secret)
+
+                val config = TwitterConfig.Builder(this@HomeFragment.context)
+                        .logger(DefaultLogger(Log.DEBUG))
+                        .twitterAuthConfig(authConfig)
+                        .debug(true)
+                        .build()
+                Twitter.initialize(config)
 
 
+                val userTimeline = UserTimeline.Builder().screenName("fnfa_afca")
+                        .maxItemsPerRequest(5)
+                        .includeRetweets(false)
+                        .build()
 
-        val config = TwitterConfig.Builder(this.context)
-                .logger(DefaultLogger(Log.DEBUG))
-                .twitterAuthConfig(authConfig)
-                .debug(true)
-                .build()
-        Twitter.initialize(config)
+                val adapterActu = TweetTimelineListAdapter.Builder(this@HomeFragment.context)
+                        .setTimeline(userTimeline)
+                        .build()
 
 
-        val userTimeline = UserTimeline.Builder().screenName("fnfa_afca")
-                .maxItemsPerRequest(5)
-                .includeRetweets(false)
-                .build()
+                this@HomeFragment.activity.runOnUiThread(Runnable {
+                    recyclerView.adapter = adapterActu
+                })
 
-        val adapterActu = TweetTimelineListAdapter.Builder(this.context)
-                .setTimeline(userTimeline)
-                .build()
-
-        recyclerView.adapter = adapterActu
-
+            }
+        }.start()
 
         return fragmentView
     }
@@ -86,10 +89,6 @@ class HomeFragment : Fragment(), DialogInterface.OnClickListener  {
 
         // Setup EventAdapter and on click listener
         recycler.adapter = EventAdapter(favoriteEvents, activity, { cell, isFav, event -> })
-
-        // Manage empty message
-        val adapter = recycler.adapter as EventAdapter
-
     }
 
 

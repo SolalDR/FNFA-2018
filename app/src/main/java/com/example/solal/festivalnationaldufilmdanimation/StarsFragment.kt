@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
+import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -64,9 +65,12 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         events.sort()
 
         // Each event
+        var date: Date?
+        var found: Boolean
+
         for(event in events) {
-            val date = event.getDateFormat()
-            var found = false
+            date = event.getDateFormat()
+            found = false
 
             // Each day list
             for(listDayTmp in list){
