@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
+import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -22,16 +23,13 @@ class ListEventAdapter (
 
         var eventLists: ArrayList<ArrayList<Event>>,
         var activity: Activity,
-        val listEventCallback: (EventListViewHolder, ArrayList<Event>) -> Unit
+        private val listEventCallback: (EventListViewHolder, ArrayList<Event>) -> Unit
 
 ) : RecyclerView.Adapter<ListEventAdapter.EventListViewHolder>()  {
 
+    private var formater = SimpleDateFormat("EEEE d MMMM", Locale.FRANCE)
     val app: MyApplication = activity.application as MyApplication
-    //lateinit var recycler: RecyclerView
     lateinit var title: TextView
-    var formater = SimpleDateFormat("E", Locale.FRANCE)
-
-    override fun getItemCount(): Int = eventLists.size //size similar to count, size specific from list
 
 
     /*
@@ -54,10 +52,10 @@ class ListEventAdapter (
     * Recycling of a view
     */
     override fun onBindViewHolder(holder: EventListViewHolder, position: Int) {
-        var events = eventLists[position] // Get events
+        val events = eventLists[position] // Get events
 
-        title.text = formater.format(events[0].getDateFormat())
-        var recycler = holder.view.findViewById<RecyclerView>(R.id.recyclerEvent)
+        title.text = StringHelper.ucfirst(formater.format(events[0].getDateFormat()))
+        val recycler = holder.view.findViewById<RecyclerView>(R.id.recyclerEvent)
         recycler.layoutManager = LinearLayoutManager(holder.view.context)
 
         // Setup EventAdapter and on click listener
@@ -78,6 +76,7 @@ class ListEventAdapter (
 
     }
 
+    override fun getItemCount(): Int = eventLists.size //size similar to count, size specific from list
 
     class EventListViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 }

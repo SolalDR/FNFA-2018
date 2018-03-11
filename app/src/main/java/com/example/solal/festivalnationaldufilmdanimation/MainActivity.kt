@@ -1,16 +1,22 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.content.Context
+import android.graphics.Point
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
-import com.example.solal.festivalnationaldufilmdanimation.views.SlidingTabLayout
+import android.view.View
+import android.view.WindowManager
+import android.widget.ImageButton
+import android.widget.ImageView
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var view_pager: ViewPager
     lateinit var adapter: ViewPagerAdapter
-    lateinit var tabs: SlidingTabLayout
+    lateinit var tabs: TabLayout
 
     var Titles = arrayOf<CharSequence>("Accueil", "Program", "Infos", "Favoris")
     var Numboftabs = 4
@@ -33,17 +39,26 @@ class MainActivity : AppCompatActivity() {
         adapter = ViewPagerAdapter(supportFragmentManager, Titles, Numboftabs, titles)
         view_pager = findViewById(R.id.view_pager)
         view_pager.adapter = adapter
+        view_pager.setOffscreenPageLimit(4);
 
         // Assiging the Sliding Tab Layout View
         tabs = findViewById(R.id.tabs)
-        tabs.setDistributeEvenly(true) // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
-
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
-        tabs.setCustomTabColorizer { resources.getColor(R.color.white) }
 
         // Setting the ViewPager For the SlidingTabsLayout
-        tabs.setViewPager(view_pager)
+        tabs.setupWithViewPager(view_pager)
+        tabs.setSelectedTabIndicatorColor(this.resources.getColor(R.color.white))
+
+
+        var t: TabLayout.Tab
+
+        for (i in 0 until 4) {
+            val view1 = layoutInflater.inflate(R.layout.item_tab, null)
+            view1.findViewById<ImageView>(R.id.icon).setImageDrawable(titles[i])
+            t = tabs.getTabAt(i)!!
+            t.customView = view1
+        }
 
     }
 }
