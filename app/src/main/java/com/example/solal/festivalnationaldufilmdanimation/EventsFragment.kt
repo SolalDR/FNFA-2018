@@ -12,12 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewPropertyAnimator
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
-import android.view.animation.Animation.AnimationListener
 import kotlinx.android.synthetic.main.tab_event.*
 
 

@@ -31,6 +31,7 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         app = this.activity.application as MyApplication
+
         fragmentView = inflater!!.inflate(R.layout.tab_stars, container, false)
         recycler = fragmentView!!.findViewById(R.id.recyclerStars)
 

@@ -15,9 +15,6 @@ class MyApplication : Application() {
     lateinit var manager: DataRepository
     lateinit var favoriteManager: FavoriteRepository
 
-    val instance: MyApplication?
-        get() = application
-
     override fun onCreate() {
 
         this.manager = DataRepository(this.applicationContext)

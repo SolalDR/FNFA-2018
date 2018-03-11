@@ -66,57 +66,45 @@ class InfoFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val app = this.activity.application as MyApplication
+        val places = app.manager.findAllPlaces()
+        val markers = ArrayList<Marker>()
+        val iconFactory = IconGenerator(this@InfoFragment.context)
+        var marker: Marker? = null
+        for (i in places.indices) {
+            marker = mMap!!.addMarker(
+                    MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(places[i].name)))
+                            .position(LatLng(places[i].lat, places[i].lon))
+            )
+            markers.add(marker)
+        }
 
-        object : Thread() {
-            override fun run() {
-                val places = app.manager.findAllPlaces()
-                val markers = ArrayList<Marker>()
-                val iconFactory = IconGenerator(this@InfoFragment.context)
-                var marker: Marker? = null
-                for (i in places.indices) {
-                    marker = mMap!!.addMarker(
-                            MarkerOptions()
-                                    .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(places[i].name)))
-                                    .position(LatLng(places[i].lat, places[i].lon))
-                    )
-                    markers.add(marker)
+        displayPlace(places[0])
+
+        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(LatLng(places[0].lat, places[0].lon)))
+        mMap!!.setMaxZoomPreference(30.0f)
+        mMap!!.setMinZoomPreference(8.5f)
+        val mUiSettings = mMap!!.uiSettings
+        mUiSettings.isScrollGesturesEnabled
+
+        mMap!!.setOnMarkerClickListener { marker ->
+            for (i in markers.indices) {
+                if (markers[i].id == marker.id) {
+                    displayPlace(places[i])
+                    break
                 }
-
-                displayPlace(places[0])
-
-                mMap!!.moveCamera(CameraUpdateFactory.newLatLng(LatLng(places[0].lat, places[0].lon)))
-                mMap!!.setMaxZoomPreference(30.0f)
-                mMap!!.setMinZoomPreference(8.5f)
-                val mUiSettings = mMap!!.uiSettings
-                mUiSettings.isScrollGesturesEnabled
-
-                mMap!!.setOnMarkerClickListener { marker ->
-                    for (i in markers.indices) {
-                        if (markers[i].id == marker.id) {
-                            displayPlace(places[i])
-                            break
-                        }
-                    }
-                    false
-                }
-
-                val style = MapStyleOptions.loadRawResourceStyle(this@InfoFragment.context, R.raw.map_style)
-                googleMap.setMapStyle(style)
             }
-        }.start()
+            false
+        }
 
+        val style = MapStyleOptions.loadRawResourceStyle(this@InfoFragment.context, R.raw.map_style)
+        googleMap.setMapStyle(style)
     }
 
     fun displayPlace(place: Place) {
         placeNameView!!.text = place.name
         addressView!!.text = place.address
     }
-
-
-    fun onMarkerClick(theMarker: Marker) {
-        theMarker.hideInfoWindow()
-    }
-
 }
 
 
