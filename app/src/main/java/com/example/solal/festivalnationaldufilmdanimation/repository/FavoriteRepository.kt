@@ -1,9 +1,11 @@
 package com.example.solal.festivalnationaldufilmdanimation.repository
 
+import com.example.solal.festivalnationaldufilmdanimation.adapter.ListEventAdapter
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.entity.Category
 import org.json.JSONObject
 import com.example.solal.festivalnationaldufilmdanimation.helpers.FileHelper
+import java.util.*
 
 
 /**
@@ -15,6 +17,8 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
     var manager: DataRepository
     var events = ArrayList<Event>()
     var eventTypes = ArrayList<Category>()
+    var eventsSort = ArrayList<ArrayList<Event>>()
+    lateinit var favoriteAdapter: ListEventAdapter
 
     init {
         manager = manager_ref
@@ -42,6 +46,36 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
     fun removeEvent(event: Event){
         this.events.remove(event)
         setStoredFavorites()
+    }
+
+    fun sortPerDay(events: ArrayList<Event>) {
+        val list = ArrayList<ArrayList<Event>>()
+        events.sort()
+
+        // Each event
+        var date: Date?
+        var found: Boolean
+
+        for(event in events) {
+            date = event.getDateFormat()
+            found = false
+
+            // Each day list
+            for(listDayTmp in list){
+                // If event match with current day list
+                if( listDayTmp[0].getDateFormat() == date ){
+                    listDayTmp.add(event)
+                    found = true
+                }
+            }
+            // Else create new eventsList
+            if(!found) {
+                list.add(ArrayList())
+                list[list.size - 1].add(event)
+            }
+        }
+
+        eventsSort = list
     }
 
     /*
@@ -88,8 +122,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         val string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
         FileHelper.writeFile(FILENAME, string, this.manager.context)
 
-        System.out.println("-------------------------Content write in favorite file : "+string)
-
+        sortPerDay(events)
     }
 
     /*

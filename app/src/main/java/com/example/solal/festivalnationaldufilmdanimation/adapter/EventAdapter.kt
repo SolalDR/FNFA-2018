@@ -1,4 +1,4 @@
-package com.example.solal.festivalnationaldufilmdanimation
+package com.example.solal.festivalnationaldufilmdanimation.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.TextView
+import com.example.solal.festivalnationaldufilmdanimation.MyApplication
+import com.example.solal.festivalnationaldufilmdanimation.PopEventActivity
+import com.example.solal.festivalnationaldufilmdanimation.R
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import java.text.SimpleDateFormat
 import java.util.*
@@ -72,7 +75,7 @@ class EventAdapter(
 
 
         holder.view.setOnClickListener({
-            var intent = Intent(activity, PopEvent::class.java)
+            var intent = Intent(activity, PopEventActivity::class.java)
             intent.putExtra("event_id", event.id)
             activity.startActivity(intent)
             activity.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left);

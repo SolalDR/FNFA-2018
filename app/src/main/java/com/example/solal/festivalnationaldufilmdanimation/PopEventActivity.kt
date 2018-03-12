@@ -22,7 +22,7 @@ import java.util.*
  * A simple popin appearing on event's click
  */
 
-class PopEvent : Activity() {
+class PopEventActivity : Activity() {
 
     lateinit var manager: DataRepository
     lateinit var event: Event
@@ -101,7 +101,7 @@ class PopEvent : Activity() {
 
                 } else if( action == MotionEvent.ACTION_UP){
                     if( mCurrentX > width*0.5 ){
-                        this@PopEvent.finish()
+                        this@PopEventActivity.finish()
                     } else {
                         parent.alpha = 1.toFloat()
                     }

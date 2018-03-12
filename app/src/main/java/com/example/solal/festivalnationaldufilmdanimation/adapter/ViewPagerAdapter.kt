@@ -27,7 +27,7 @@ import android.view.ViewGroup
  *
  * @author Sebastian Kaspari <sebastian></sebastian>@androidzeitgeist.com>
  */
-abstract class ViewPagerAdapter2 : PagerAdapter() {
+abstract class ViewPagerAdapter : PagerAdapter() {
     /**
      * Get a View that displays the data at the specified position in the data set.
      *

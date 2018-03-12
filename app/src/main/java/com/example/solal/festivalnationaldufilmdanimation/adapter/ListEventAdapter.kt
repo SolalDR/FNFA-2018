@@ -1,5 +1,5 @@
 
-package com.example.solal.festivalnationaldufilmdanimation
+package com.example.solal.festivalnationaldufilmdanimation.adapter
 
 import android.app.Activity
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.solal.festivalnationaldufilmdanimation.MyApplication
+import com.example.solal.festivalnationaldufilmdanimation.R
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.helpers.StringHelper
 import java.text.SimpleDateFormat
@@ -41,7 +43,7 @@ class ListEventAdapter (
         val layoutInflater = LayoutInflater.from(context)
         val view: View = layoutInflater.inflate(R.layout.item_list_event, parent, false)
 
-        title = view.findViewById(R.id.titleListEvent)
+
         //recycler = view.findViewById(R.id.recyclerEvent)
 
 
@@ -54,15 +56,16 @@ class ListEventAdapter (
     override fun onBindViewHolder(holder: EventListViewHolder, position: Int) {
         val events = eventLists[position] // Get events
 
+        title = holder.view.findViewById(R.id.titleListEvent)
         title.text = StringHelper.ucfirst(formater.format(events[0].getDateFormat()))
         val recycler = holder.view.findViewById<RecyclerView>(R.id.recyclerEvent)
         recycler.layoutManager = LinearLayoutManager(holder.view.context)
 
         // Setup EventAdapter and on click listener
         recycler.adapter = EventAdapter(events, activity, { cell, isFav, event ->
-            if(!isFav){
+            if (!isFav) {
                 val adapter = recycler.adapter as EventAdapter
-                if( events.size == 1 ){
+                if (events.size == 1) {
                     this.listEventCallback(holder, events)
                 }
 

@@ -1,47 +1,42 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.ImageButton
+import android.content.Intent
 import android.widget.TextView
-
 import com.example.solal.festivalnationaldufilmdanimation.entity.Place
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.google.maps.android.ui.IconGenerator
-
 import java.util.ArrayList
 
 
-class InfoFragment : Fragment(), OnMapReadyCallback {
+class InfoActivity : OnMapReadyCallback, AppCompatActivity() {
+
+
     private var mMap: GoogleMap? = null
     private var mapView: MapView? = null
     private var placeNameView: TextView? = null
     private var addressView: TextView? = null
 
 
-    //    private GoogleMap googleMap;
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_info)
+        manageNav()
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
 
-        val v = inflater!!.inflate(R.layout.tab_info, container, false)
+        placeNameView = findViewById(R.id.name_place)
+        addressView = findViewById(R.id.address_place)
 
-
-        placeNameView = v.findViewById(R.id.name_place)
-        addressView = v.findViewById(R.id.address_place)
-
-        mapView = v.findViewById(R.id.map)
+        mapView = findViewById(R.id.map)
         mapView!!.onCreate(savedInstanceState)
         mapView!!.onResume()
         mapView!!.getMapAsync(this)
@@ -49,26 +44,14 @@ class InfoFragment : Fragment(), OnMapReadyCallback {
         val widthMap = mapView!!.width
         mapView!!.minimumHeight = widthMap
 
-
-        return v
     }
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val app = this.activity.application as MyApplication
+        val app = application as MyApplication
         val places = app.manager.findAllPlaces()
         val markers = ArrayList<Marker>()
-        val iconFactory = IconGenerator(this@InfoFragment.context)
+        val iconFactory = IconGenerator(this)
         var marker: Marker? = null
         for (i in places.indices) {
             marker = mMap!!.addMarker(
@@ -97,7 +80,7 @@ class InfoFragment : Fragment(), OnMapReadyCallback {
             false
         }
 
-        val style = MapStyleOptions.loadRawResourceStyle(this@InfoFragment.context, R.raw.map_style)
+        val style = MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style)
         googleMap.setMapStyle(style)
     }
 
@@ -105,7 +88,27 @@ class InfoFragment : Fragment(), OnMapReadyCallback {
         placeNameView!!.text = place.name
         addressView!!.text = place.address
     }
+
+    private fun manageNav(){
+        var home = findViewById<ImageButton>(R.id.homeBtn)
+        var info = findViewById<ImageButton>(R.id.infoBtn)
+        var program = findViewById<ImageButton>(R.id.programBtn)
+        var star = findViewById<ImageButton>(R.id.starBtn)
+
+        home.setOnClickListener(View.OnClickListener{
+            startActivity(Intent(this, HomeActivity::class.java))
+        })
+
+        info.setOnClickListener(View.OnClickListener{
+            startActivity(Intent(this, InfoActivity::class.java))
+        })
+
+        program.setOnClickListener(View.OnClickListener{
+            startActivity(Intent(this, ProgramActivity::class.java))
+        })
+
+        star.setOnClickListener(View.OnClickListener{
+            startActivity(Intent(this, FavoriteActivity::class.java))
+        })
+    }
 }
-
-
-

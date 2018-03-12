@@ -11,9 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewPropertyAnimator
+import com.example.solal.festivalnationaldufilmdanimation.adapter.EventAdapter
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -51,7 +50,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         events?.apply {
             recyclerV = fragmentView!!.findViewById(R.id.eventsRecycler)
             recyclerV.layoutManager = LinearLayoutManager(this@EventsFragment.context)
-            recyclerV.adapter = EventAdapter(this,  activity, { c, i, e -> })
+            recyclerV.adapter = EventAdapter(this, activity, { c, i, e -> })
         }
     }
 

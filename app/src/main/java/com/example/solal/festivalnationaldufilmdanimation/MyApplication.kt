@@ -27,15 +27,6 @@ class MyApplication : Application() {
         super.onCreate()
         application = this
 
-
-
-
-        val context = applicationContext
-        val text = "Hello toast!"
-        val duration = Toast.LENGTH_SHORT
-
-        val toast = Toast.makeText(context, text, duration)
-        toast.show()
     }
 
     companion object {

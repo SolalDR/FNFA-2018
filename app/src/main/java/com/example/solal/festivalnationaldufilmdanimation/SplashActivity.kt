@@ -15,7 +15,7 @@ class SplashActivity:AppCompatActivity(){
     override
     fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+        startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
         // close splash activity
         finish()
     }
