@@ -10,12 +10,6 @@
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp">
 
-    <!-- Les CardView possèdent des attributs supplémentaires dont
-         - cardBackgroundColor
-         - cardElevation pour l'élévation (donc aussi l'ombre)
-         - cardCornerRadius pour arrondir les angles
-     -->
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,11 +17,6 @@
         android:background="@drawable/line"
         android:orientation="horizontal"
         android:padding="10dp">
-
-
-        <!-- Les CardView agissent comme des FrameLayout,
-         pour avoir une organisation verticale nous devons
-         donc rajouter un LinearLayout -->
 
         <RelativeLayout
             android:layout_width="wrap_content"

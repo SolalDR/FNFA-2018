@@ -14,6 +14,7 @@
     <string name="second_cinema_address">29 Rue d\'Antrain, 35700 Rennes</string>
     <string name="twitter_consumer_key">uZduq1S7d8Hka7P9QYfqGa2ng</string>
     <string name="twitter_consumer_secret">	9JAOZLdLfTT4NAAcnxnyH2exqAXZrkEXsKdMnv0dZqtrdYktTE</string>
+    <string name="title_activity_main">MainActivity</string>
 
 
 </resources>

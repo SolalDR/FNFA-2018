@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Used for EventsFragment header -->
+<!-- Used OldEventsFragmentment header -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
