@@ -11,7 +11,6 @@ import android.support.v7.widget.AppCompatTextView
  * Created by sdussoutrevel on 13/02/2018.
  */
 
-
 class BoldTextView : AppCompatTextView {
 
 

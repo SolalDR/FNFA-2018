@@ -3,6 +3,9 @@ package com.example.solal.festivalnationaldufilmdanimation
 import android.app.Application
 import com.example.solal.festivalnationaldufilmdanimation.repository.DataRepository
 import com.example.solal.festivalnationaldufilmdanimation.repository.FavoriteRepository
+import android.widget.Toast
+
+
 
 /**
  * Created by sdussoutrevel on 12/12/2017.
@@ -15,18 +18,15 @@ class MyApplication : Application() {
     lateinit var manager: DataRepository
     lateinit var favoriteManager: FavoriteRepository
 
-    val instance: MyApplication?
-        get() = application
-
     override fun onCreate() {
 
         this.manager = DataRepository(this.applicationContext)
+        this.manager.launchData()
         this.favoriteManager = FavoriteRepository(this.manager)
 
         super.onCreate()
         application = this
 
-        this.manager.launchData()
     }
 
     companion object {

@@ -19,13 +19,6 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
     var place_id: Int                               // Foreign Key for (Scene has_many Event) relation
     var name: String
 
-    //var duration: Int? = null //Seconds
-    //late init var author: Author
-    //lateinit var scene: Scene
-    //age_min: Int? = null                        // Ex: 6 => 6 years old or more
-    //var background: String? = null                  // Background (not used yet)
-    //var description_short: String? = null           // Excerpt
-
     init {
         id = jsonObject.getString("id").toInt()
         name = jsonObject.getString("nom")
@@ -34,19 +27,16 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
         if (jsonObject.has("description")) {
             description = jsonObject.getString("description")
         }
-
         val sdfmt1 = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
 
         date_start = sdfmt1.parse(stringifyDate(jsonObject, "debut"))
         date_end = sdfmt1.parse(stringifyDate(jsonObject, "fin"))
 
         category = eventType
-
-        //if(jsonObject.has("age_min")){ age_min = jsonObject.getString("age_min").toIntOrNull() }
-        //if(jsonObject.has("background")){ background = jsonObject.getString("background") }
     }
 
-    fun stringifyDate(obj: JSONObject, suffixe: String): String {
+
+    private fun stringifyDate(obj: JSONObject, suffixe: String): String {
         return obj.getString("annee_"+ suffixe) + "-" +
                 String.format("%02d", obj.getInt("mois_" + suffixe) )+ "-" +
                 String.format("%02d", obj.getInt("jour_" + suffixe) ) + " " +
@@ -54,8 +44,16 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
                 String.format("%02d", obj.getInt("minute_" + suffixe) )
     }
 
+    fun getDateFormat() : Date {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+
+        return dateFormat.parse(dateFormat.format(this.date_start))
+    }
+
+
+
     // Debug method to control the value of the attributes
-    fun inspect(indent: String? = "") {
+    private fun inspect(indent: String? = "") {
         System.out.println(indent + "-----------EVENT-----------" + "\n"
                 + indent + "Event\n"
                 + indent + "id : " + id + "\n"
@@ -69,7 +67,7 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
         )
     }
 
-    override fun compareTo(event: Event): Int {
-        return date_start.compareTo(event.date_start);
+    override fun compareTo(other: Event): Int {
+        return date_start.compareTo(other.date_start);
     }
 }

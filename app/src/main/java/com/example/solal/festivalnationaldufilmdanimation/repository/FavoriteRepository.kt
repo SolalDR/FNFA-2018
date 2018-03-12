@@ -4,26 +4,25 @@ import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.entity.Category
 import org.json.JSONObject
 import com.example.solal.festivalnationaldufilmdanimation.helpers.FileHelper
+import java.util.*
 
 
 /**
  * Created by sdussoutrevel on 15/12/2017.
  * Allow to access to favorite which are stored in local file
  */
-class FavoriteRepository constructor(manager_ref: DataRepository) {
+class FavoriteRepository constructor(private val manager: DataRepository) {
 
-    var manager: DataRepository
     var events = ArrayList<Event>()
     var eventTypes = ArrayList<Category>()
+    var eventsSort = ArrayList<ArrayList<Event>>()
 
     init {
-        manager = manager_ref
         getStoredFavorite()
     }
 
 
     fun exist(event: Event): Boolean {
-        var int = 0;
         for( test in events) {
             if( test.id == event.id ){
                 return true
@@ -34,7 +33,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
     fun addEvent(event: Event){
         if( !exist(event) ){
-            this.events.add(event);
+            this.events.add(event)
         }
         setStoredFavorites()
     }
@@ -44,6 +43,35 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         setStoredFavorites()
     }
 
+    private fun sortPerDay(events: ArrayList<Event>) {
+        val list = ArrayList<ArrayList<Event>>()
+        events.sort()
+
+        // Each event
+        var date: Date?
+        var found: Boolean
+
+        for(event in events) {
+            date = event.getDateFormat()
+            found = false
+
+            // Each day list
+            for(listDayTmp in list){
+                // If event match with current day list
+                if( listDayTmp[0].getDateFormat() == date ){
+                    listDayTmp.add(event)
+                    found = true
+                }
+            }
+            // Else create new eventsList
+            if(!found) {
+                list.add(ArrayList())
+                list[list.size - 1].add(event)
+            }
+        }
+
+        eventsSort = list
+    }
 
     /*
      * find methods
@@ -69,11 +97,9 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
      * Get the ID of each EventsType for storage
      */
     private fun getEventTypesId(): ArrayList<Int> {
-        var list = ArrayList<Int>()
+        val list = ArrayList<Int>()
         for(event in eventTypes){
-            event.id?.apply {
-                list.add(this)
-            }
+            list.add(event.id)
         }
         return list
     }
@@ -82,37 +108,32 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
      * Open file and update its content from stringify favorites
      */
     private fun setStoredFavorites(){
-        val FILENAME = "fnfa_favorite"
-
         val eventsId: ArrayList<Int> = this.getEventsId()
         val eventTypesId: ArrayList<Int> = this.getEventTypesId()
         val string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
-        FileHelper.writeFile(FILENAME, string, this.manager.context)
 
+        FileHelper.writeFile(FavoriteRepository.FILENAME, string, this.manager.context)
+
+        sortPerDay(events)
     }
 
     /*
      * Open fil and get the content
      */
     private fun getStoredFavorite() {
-        val FILENAME = "fnfa_favorite"
-        val content = FileHelper.readFile(FILENAME, this.manager.context)
 
+        val content = FileHelper.readFile(FavoriteRepository.FILENAME, this.manager.context)
 
         if( content != "" ){
-
             val json = JSONObject(content)
-            val eventsId = json.getJSONArray("events");
-            val eventTypesId = json.getJSONArray("eventTypes");
-
+            val eventsId = json.getJSONArray("events")
+            val eventTypesId = json.getJSONArray("eventTypes")
             for (i in 0 until eventsId.length()) {
                 val event: Event? = this.manager.findEventById( eventsId.get(i).toString().toInt() )
                 event?.let {
-                    System.out.println("----------------------Loop IN"+event.id)
                     this.addEvent(event)
                 }
             }
-
             for (i in 0 until eventTypesId.length()) {
                 val eventType: Category? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
                 eventType?.let {
@@ -120,5 +141,9 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
                 }
             }
         }
+    }
+
+    companion object {
+        const val FILENAME = "fnfa_favorite"
     }
 }
