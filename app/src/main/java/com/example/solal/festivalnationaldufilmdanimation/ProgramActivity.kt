@@ -37,17 +37,17 @@ class ProgramActivity: MainActivity() {
         datesList.add("")
         eventsLists = app.manager.findAllDatesOrder()
 
-        eventsHeadPager = findViewById(R.id.eventsHeadPager)
-        eventsBodyPager = findViewById(R.id.eventsBodyPager)
+        initHeadPager()
+        initBodyPager()
+        setDefaultDate()
+    }
 
+
+    private fun initHeadPager(){
+        eventsHeadPager = findViewById(R.id.eventsHeadPager)
         eventsHeadPager.adapter = TextPagerAdapter()
         eventsHeadPager.offscreenPageLimit = 0
         eventsHeadPager.pageMargin = 0
-
-        eventsBodyPager.adapter = EventPagerAdapter(eventsLists, this.supportFragmentManager)
-        eventsBodyPager.clipToPadding = false
-        eventsBodyPager.pageMargin = 0
-
         eventsHeadPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             private var mScrollState = ViewPager.SCROLL_STATE_IDLE
             override fun onPageSelected(position: Int) {}
@@ -69,6 +69,13 @@ class ProgramActivity: MainActivity() {
                 }
             }
         })
+    }
+
+    private fun initBodyPager(){
+        eventsBodyPager = findViewById(R.id.eventsBodyPager)
+        eventsBodyPager.adapter = EventPagerAdapter(eventsLists, this.supportFragmentManager)
+        eventsBodyPager.clipToPadding = false
+        eventsBodyPager.pageMargin = 0
 
         eventsBodyPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             private var mScrollState = ViewPager.SCROLL_STATE_IDLE
@@ -90,10 +97,6 @@ class ProgramActivity: MainActivity() {
                 }
             }
         })
-
-
-
-        setDefaultDate()
     }
 
 
