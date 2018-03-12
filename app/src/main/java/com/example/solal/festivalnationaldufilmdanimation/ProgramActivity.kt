@@ -23,6 +23,7 @@ class ProgramActivity: MainActivity() {
     private var displayFormater = SimpleDateFormat("E dd", Locale.FRANCE)
     private var selectedDate: Int = 0
 
+    private var currentView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +43,19 @@ class ProgramActivity: MainActivity() {
         setDefaultDate()
     }
 
+    fun setActiveItem(state: Int){
+        if( state != selectedDate ){
+            currentView?.apply {
+                this.animate().scaleX(1.toFloat()).scaleY(1.toFloat()).duration = 200
+            }
+            currentView = eventsHeadPager.getChildAt(state)
+
+            currentView!!.animate().scaleX(1.2.toFloat()).scaleY(1.2.toFloat()).duration = 200
+
+            selectedDate = state
+        }
+
+    }
 
     private fun initHeadPager(){
         eventsHeadPager = findViewById(R.id.eventsHeadPager)
@@ -50,7 +64,9 @@ class ProgramActivity: MainActivity() {
         eventsHeadPager.pageMargin = 0
         eventsHeadPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             private var mScrollState = ViewPager.SCROLL_STATE_IDLE
-            override fun onPageSelected(position: Int) {}
+            override fun onPageSelected(position: Int) {
+                this@ProgramActivity.setActiveItem(position + 1)
+            }
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 val correctPos = eventsHeadPager.scrollX * 3
                 if (mScrollState == ViewPager.SCROLL_STATE_IDLE) {
