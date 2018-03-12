@@ -99,11 +99,9 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
 
 
         if( content != "" ){
-
             val json = JSONObject(content)
             val eventsId = json.getJSONArray("events");
             val eventTypesId = json.getJSONArray("eventTypes");
-
             for (i in 0 until eventsId.length()) {
                 val event: Event? = this.manager.findEventById( eventsId.get(i).toString().toInt() )
                 event?.let {
@@ -111,7 +109,6 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
                     this.addEvent(event)
                 }
             }
-
             for (i in 0 until eventTypesId.length()) {
                 val eventType: Category? = this.manager.findEventTypeById( eventTypesId.get(i).toString().toInt() )
                 eventType?.let {

@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 HomeFragment tab1 = new HomeFragment();
                 return tab1;
             case 1:
-                EventsFragment tab2 = new EventsFragment();
+                ProgramFragment tab2 = new ProgramFragment();
                 return tab2;
             case 2:
                 InfoFragment tab3 = new InfoFragment();

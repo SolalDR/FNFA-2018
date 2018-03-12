@@ -45,6 +45,11 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         displayEvents()
     }
 
+    override fun onResume() {
+        super.onResume()
+        displayEvents()
+    }
+
     private fun displayEmpty(){
         emptyMessage?.apply {
             this.alpha = 0.toFloat()
@@ -94,7 +99,9 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
     private fun displayEvents(){
         val myApp = this.activity.application as MyApplication
         val favoriteEvents = myApp.favoriteManager.findAllEvents()
+        System.out.println("---------------------------HELLO"+favoriteEvents)
         val listSort = this.sortPerDay(favoriteEvents)
+
 
         recycler.adapter = ListEventAdapter(listSort, activity, { cell, list ->
             val adapter = recycler.adapter as ListEventAdapter

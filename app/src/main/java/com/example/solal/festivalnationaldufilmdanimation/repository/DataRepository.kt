@@ -50,6 +50,26 @@ class DataRepository constructor(contextArg: Context ){
     fun findAllEvents(): ArrayList<Event> { return this.events }
     fun findAllDates(): ArrayList<Date>{ return this.dates }
 
+
+    fun findAllDatesOrder(): ArrayList<ArrayList<Event>> {
+        val dates = this.findAllDates()
+
+        val result = ArrayList<ArrayList<Event>>()
+        for( date in dates ){  result.add(ArrayList()) }
+
+
+        System.out.println(result)
+
+        for(event in events) {
+            for(i in 0..(dates.size - 1)) {
+                if( event.getDateFormat() == dates[i]) {
+                    result[i].add(event)
+                }
+            }
+        }
+
+        return result
+    }
     /*
      * Find single
      */

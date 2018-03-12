@@ -1,14 +1,9 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
-import android.content.Context
-import android.graphics.Point
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
-import android.view.View
-import android.view.WindowManager
-import android.widget.ImageButton
 import android.widget.ImageView
 
 
