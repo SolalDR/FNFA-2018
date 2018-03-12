@@ -16,7 +16,6 @@ import kotlin.collections.ArrayList
  * This class is used to manage entity
  * It allow to access Events, Places and provide methods.
  */
-
 class DataRepository constructor(contextArg: Context ){
 
     var context: Context
@@ -85,16 +84,16 @@ class DataRepository constructor(contextArg: Context ){
     fun findEventById(id: Int): Event? {
         for(event in events){
             if( event.id == id ){
-                return event;
+                return event
             }
         }
-        return null;
+        return null
     }
+
 
     /*
      * Find parts
      */
-
     fun findEventsByPlace(id:Int): ArrayList<Event>{
         val result = ArrayList<Event>()
         for(event in events){
@@ -111,31 +110,38 @@ class DataRepository constructor(contextArg: Context ){
      */
     fun findEventsByDay(dateStr: String): ArrayList<Event> {
 
-        var eventsList = ArrayList<Event>()
         formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+        val eventsList = ArrayList<Event>()
         val date = formater.parse(dateStr)
+        var dateEvent: Date
+
         for(event in events) {
-            var dateEvent: Date = formater.parse(formater.format(event.date_start))
+            dateEvent = formater.parse(formater.format(event.date_start))
             if( dateEvent.time == date.time ){
                 eventsList.add(event)
             }
         }
+
         eventsList.sort()
         return eventsList
     }
+
 
     /*
      * Get all the events activate for a specific date
      */
     fun findEventsAtTime(date: Date) : ArrayList<Event> {
-        var eventsList = ArrayList<Event>()
+        val eventsList = ArrayList<Event>()
         formater = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
         for(event in events) {
-            var dateEvent: Date = formater.parse(formater.format(event.date_start))
+            val dateEvent: Date = formater.parse(formater.format(event.date_start))
             if( dateEvent.time == date.time ){
                 eventsList.add(event)
             }
         }
+
         eventsList.sort()
         return eventsList
     }
@@ -144,12 +150,13 @@ class DataRepository constructor(contextArg: Context ){
     /*
      * Get all the events activate or being activate with limit
      */
-    fun findNextEvents(limit: Int): ArrayList<Event> {
-        var eventsList = ArrayList<Event>()
-        var limit = limit;
-        var currentDate = Calendar.getInstance().time
+    fun findNextEvents(limitTmp: Int): ArrayList<Event> {
+        var limit = limitTmp
+        val eventsList = ArrayList<Event>()
+        val currentDate = Calendar.getInstance().time
+        var dateEvent: Date
         for(event in events) {
-            var dateEvent: Date = formater.parse(formater.format(event.date_start))
+            dateEvent = formater.parse(formater.format(event.date_start))
             if( dateEvent.time >= currentDate.time ){
                 eventsList.add(event)
             }
@@ -171,26 +178,26 @@ class DataRepository constructor(contextArg: Context ){
     }
 
     /*
-     *
+     * Add a new date if not register yet
      */
     private fun addDateIfExist(date: Date){
-        var found = false;
-        val dateFormat = formater.parse(formater.format(date));
+        var found = false
+        val dateFormat = formater.parse(formater.format(date))
 
         for(dateItem in dates){
             if( dateFormat == dateItem){
-                found = true;
+                found = true
             }
         }
-        if( found == false ){
+        if( !found ){
             dates.add(dateFormat)
         }
     }
 
+
     /*
      * Loader methods
      */
-
     private fun loadEventsType() {
         val eventsTypeRaw = JsonParser.getStringFromJson(R.raw.events_type, context)
         val c = JSONArray(eventsTypeRaw)
@@ -212,7 +219,7 @@ class DataRepository constructor(contextArg: Context ){
             }
             typeRank?.apply {
                 val eventType = this@DataRepository.findEventTypeById(this)
-                val event = Event(obj, eventType);
+                val event = Event(obj, eventType)
                 events.add(event)
                 this@DataRepository.addDateIfExist(event.date_start)
             }
