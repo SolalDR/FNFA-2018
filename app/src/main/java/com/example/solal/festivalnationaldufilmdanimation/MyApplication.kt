@@ -3,6 +3,9 @@ package com.example.solal.festivalnationaldufilmdanimation
 import android.app.Application
 import com.example.solal.festivalnationaldufilmdanimation.repository.DataRepository
 import com.example.solal.festivalnationaldufilmdanimation.repository.FavoriteRepository
+import android.widget.Toast
+
+
 
 /**
  * Created by sdussoutrevel on 12/12/2017.
@@ -18,12 +21,21 @@ class MyApplication : Application() {
     override fun onCreate() {
 
         this.manager = DataRepository(this.applicationContext)
+        this.manager.launchData()
         this.favoriteManager = FavoriteRepository(this.manager)
 
         super.onCreate()
         application = this
 
-        this.manager.launchData()
+
+
+
+        val context = applicationContext
+        val text = "Hello toast!"
+        val duration = Toast.LENGTH_SHORT
+
+        val toast = Toast.makeText(context, text, duration)
+        toast.show()
     }
 
     companion object {

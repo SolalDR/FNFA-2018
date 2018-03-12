@@ -1,5 +1,6 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         tabs.setSelectedTabIndicatorColor(this.resources.getColor(R.color.white))
 
 
+
         var t: TabLayout.Tab
 
         for (i in 0 until 4) {
@@ -54,6 +56,17 @@ class MainActivity : AppCompatActivity() {
             t = tabs.getTabAt(i)!!
             t.customView = view1
         }
+
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) { }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageSelected(position: Int) {
+                /*if( position == 3 ){
+                    System.out.println("------------"+position)
+                    (adapter.getItem(position) as StarsFragment).displayEvents()
+                }*/
+            }
+        })
 
     }
 }

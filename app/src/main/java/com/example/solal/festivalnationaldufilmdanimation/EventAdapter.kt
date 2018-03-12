@@ -71,18 +71,6 @@ class EventAdapter(
         placeView.text = scene.name
 
 
-
-
-      /*  if( position >= this.lastShowPosition ){
-            this.lastShowPosition = position;
-            holder.view.animation = AnimationUtils.loadAnimation(this.activity, R.anim.abc_fade_in)
-            holder.view.animation.duration = 1000
-            holder.itemView.animation.start();
-        }*/
-
-
-        System.out.println("--------------"+holder.view)
-
         holder.view.setOnClickListener({
             var intent = Intent(activity, PopEvent::class.java)
             intent.putExtra("event_id", event.id)
@@ -90,8 +78,6 @@ class EventAdapter(
             activity.overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left);
 
         })
-
-        //this.setAnimation(holder.itemView, position)
 
         manageFav(holder, event)
     }

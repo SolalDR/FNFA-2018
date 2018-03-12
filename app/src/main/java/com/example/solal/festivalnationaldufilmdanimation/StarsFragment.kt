@@ -23,6 +23,7 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
     private var emptyMessage: View? = null
     private lateinit var recycler: RecyclerView
     private var fragmentView: View? = null
+    lateinit var myApp: MyApplication
 
     var app: MyApplication? = null
 
@@ -36,6 +37,7 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         recycler = fragmentView!!.findViewById(R.id.recyclerStars)
 
         emptyMessage = fragmentView!!.findViewById(R.id.message_empty)
+        myApp = this.activity.application as MyApplication
         return fragmentView
     }
 
@@ -96,25 +98,26 @@ class StarsFragment : Fragment() , DialogInterface.OnClickListener {
         return list
     }
 
-    private fun displayEvents(){
-        val myApp = this.activity.application as MyApplication
-        val favoriteEvents = myApp.favoriteManager.findAllEvents()
-        System.out.println("---------------------------HELLO"+favoriteEvents)
-        val listSort = this.sortPerDay(favoriteEvents)
+    fun displayEvents(){
 
+
+        val favoriteEvents = myApp.favoriteManager.findAllEvents()
+        val listSort = this@StarsFragment.sortPerDay(favoriteEvents)
+        System.out.println("-----------------mYAPP : "+myApp)
 
         recycler.adapter = ListEventAdapter(listSort, activity, { cell, list ->
             val adapter = recycler.adapter as ListEventAdapter
             adapter.notifyItemRemoved(cell.adapterPosition)
             listSort.remove(list)
             if(listSort.size == 0){
-                this.displayEmpty()
+                this@StarsFragment.displayEmpty()
             }
         })
 
         val adapter = recycler.adapter as ListEventAdapter
         if(adapter.eventLists.size > 0) {
-            this.hideEmpty()
+            this@StarsFragment.hideEmpty()
         }
+
     }
 }

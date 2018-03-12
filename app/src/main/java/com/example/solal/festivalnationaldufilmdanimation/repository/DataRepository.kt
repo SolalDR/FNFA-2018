@@ -38,7 +38,6 @@ class DataRepository constructor(contextArg: Context ){
     fun launchData(){
         loadEventsType()
         loadEvents()
-        System.out.println("------NB dates---------"+dates.size)
         loadPlaces()
     }
 

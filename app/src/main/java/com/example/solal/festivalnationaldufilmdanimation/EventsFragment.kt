@@ -63,6 +63,7 @@ class EventsFragment : Fragment (), DialogInterface.OnClickListener {
         // Method for creating new instances of the fragment
         fun newInstance(list: ArrayList<Event>): EventsFragment {
             val fragment = EventsFragment()
+            list.sort()
             fragment.setEventsList(list)
             return fragment
         }

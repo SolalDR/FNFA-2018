@@ -88,6 +88,8 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         val string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
         FileHelper.writeFile(FILENAME, string, this.manager.context)
 
+        System.out.println("-------------------------Content write in favorite file : "+string)
+
     }
 
     /*
@@ -97,6 +99,7 @@ class FavoriteRepository constructor(manager_ref: DataRepository) {
         val FILENAME = "fnfa_favorite"
         val content = FileHelper.readFile(FILENAME, this.manager.context)
 
+        System.out.println("-------------------------Content found in favorite file : "+content)
 
         if( content != "" ){
             val json = JSONObject(content)

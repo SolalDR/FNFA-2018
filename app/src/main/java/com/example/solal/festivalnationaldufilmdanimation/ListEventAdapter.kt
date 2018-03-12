@@ -65,9 +65,6 @@ class ListEventAdapter (
                 if( events.size == 1 ){
                     this.listEventCallback(holder, events)
                 }
-                System.out.println(events)
-                System.out.println(cell.adapterPosition)
-                System.out.println("---------"+event.name)
 
                 events.remove(event)
                 adapter.notifyItemRemoved(cell.adapterPosition)
