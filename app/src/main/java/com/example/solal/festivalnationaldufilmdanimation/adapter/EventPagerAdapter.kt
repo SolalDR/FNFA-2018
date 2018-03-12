@@ -7,11 +7,13 @@ import com.example.solal.festivalnationaldufilmdanimation.EventsFragment
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import kotlin.collections.ArrayList
 
-
-class EventPagerAdapter(eventsLists: ArrayList<ArrayList<Event>>, fragmentManager: FragmentManager) :
+/**
+ * author: Solal Dussout-Revel
+ * Main adapter containing events's list per day
+ * Appear in ProgramActivity
+ */
+class EventPagerAdapter(val eventsLists: ArrayList<ArrayList<Event>>, fragmentManager: FragmentManager) :
         FragmentStatePagerAdapter(fragmentManager) {
-
-    val eventsLists: ArrayList<ArrayList<Event>> = eventsLists
 
     override fun getItem(position: Int): Fragment {
         val fragment = EventsFragment.newInstance(eventsLists[position])

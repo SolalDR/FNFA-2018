@@ -111,6 +111,7 @@ class FavoriteRepository constructor(private val manager: DataRepository) {
         val eventsId: ArrayList<Int> = this.getEventsId()
         val eventTypesId: ArrayList<Int> = this.getEventTypesId()
         val string: String = "{ \"events\": "+eventsId.toString()+", \"eventTypes\": "+eventTypesId.toString()+"}"
+
         FileHelper.writeFile(FavoriteRepository.FILENAME, string, this.manager.context)
 
         sortPerDay(events)

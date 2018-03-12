@@ -116,7 +116,7 @@ class ProgramActivity: MainActivity() {
     private inner class TextPagerAdapter : ViewPagerAdapter() {
 
         override fun getView(position: Int, pager: ViewPager): View {
-            val parent = layoutInflater.inflate(R.layout.item_head_pager, null) as ViewGroup
+            val parent = layoutInflater.inflate(R.layout.event_pager_adapter_header_item, null) as ViewGroup
             val dateView = parent.findViewById<TextView>(R.id.date)
 
             dateView.text = datesList[position]

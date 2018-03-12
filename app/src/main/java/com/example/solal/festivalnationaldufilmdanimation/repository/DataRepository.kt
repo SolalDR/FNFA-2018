@@ -55,9 +55,6 @@ class DataRepository constructor(contextArg: Context ){
         val result = ArrayList<ArrayList<Event>>()
         for( date in dates ){  result.add(ArrayList()) }
 
-
-        System.out.println(result)
-
         for(event in events) {
             for(i in 0..(dates.size - 1)) {
                 if( event.getDateFormat() == dates[i]) {

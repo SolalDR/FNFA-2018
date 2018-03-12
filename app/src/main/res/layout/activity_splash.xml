@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:id="@+id/main"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2"
+    android:background="@drawable/bg"
     android:theme="@style/AppTheme.NoActionBar"
     tools:context=".MainActivity">
 
