@@ -8,10 +8,8 @@
     <item>
 
         <bitmap
-            android:gravity="center"
 
-            android:src="@drawable/bg">
-
+            android:src="@drawable/ecran_accueil">
 
         </bitmap>
     </item>

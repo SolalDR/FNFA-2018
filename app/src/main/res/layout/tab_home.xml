@@ -18,6 +18,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send notification"
+                android:id="@+id/button"
+                android:onClick="sendNotification" />
+
 
             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                 android:id="@+id/tv_Home"

@@ -89,8 +89,9 @@
             android:layout_gravity="center_vertical"
             android:background="@color/white"
             android:contentDescription="@string/title_activity_stars"
-            android:onClick="changeText"
-            app:srcCompat="@drawable/nofav" />
+            android:onClick="sendNotification"
+            app:srcCompat="@drawable/nofav"
+            />
 
 
     </RelativeLayout>
