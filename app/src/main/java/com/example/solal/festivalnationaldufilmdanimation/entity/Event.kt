@@ -18,11 +18,13 @@ class Event constructor( jsonObject: JSONObject,  eventType: Category? ) : Compa
     var date_end: Date                              // The event end at
     var place_id: Int                               // Foreign Key for (Scene has_many Event) relation
     var name: String
+    var image: String
 
     init {
         id = jsonObject.getString("id").toInt()
         name = jsonObject.getString("nom")
         place_id = jsonObject.getInt("lieu")
+        image = jsonObject.getString("image")
 
         if (jsonObject.has("description")) {
             description = jsonObject.getString("description")

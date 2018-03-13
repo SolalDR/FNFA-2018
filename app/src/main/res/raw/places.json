@@ -34,5 +34,13 @@
     "address": "Espl. Charles de Gaulle 35000 Rennes",
     "lat": 48.106697,
     "lon": -1.676723
+  },
+
+  {
+    "id": 6,
+    "name": "France 3 Bretagne",
+    "address": "",
+    "lat": 0,
+    "lon": 0
   }
 ]
