@@ -27,6 +27,11 @@ class PopEventActivity : Activity() {
     lateinit var manager: DataRepository
     lateinit var event: Event
 
+    fun dpToPx(dp: Int): Int {
+        val displayMetrics = this.getResources().getDisplayMetrics()
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,8 +47,8 @@ class PopEventActivity : Activity() {
         val height = dm.heightPixels
 
         // Set popup size
-        window.setLayout((width * 0.85).toInt(), (height*0.7).toInt())
 
+        window.setLayout((width * 0.85).toInt(), (width*0.85).toInt())
 
         // Get current event
         manager = (application as MyApplication).manager
