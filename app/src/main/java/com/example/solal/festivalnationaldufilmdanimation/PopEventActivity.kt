@@ -35,7 +35,7 @@ class PopEventActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_left)
+        overridePendingTransition(R.anim.appear_from_bottom, R.anim.abc_fade_in)
 
         setContentView(R.layout.pop_event)
 
@@ -48,7 +48,7 @@ class PopEventActivity : Activity() {
 
         // Set popup size
 
-        window.setLayout((width * 0.85).toInt(), (width*0.85).toInt())
+        window.setLayout((width * 0.85).toInt(), (dpToPx(400)).toInt())
 
         // Get current event
         manager = (application as MyApplication).manager
@@ -62,7 +62,10 @@ class PopEventActivity : Activity() {
         val dateView = findViewById<TextView>(R.id.pop_date)
         val placeView = findViewById<TextView>(R.id.pop_place)
         val durationView = findViewById<TextView>(R.id.pop_duration)
+        val contentView = findViewById<TextView>(R.id.popin_content)
 
+
+        contentView
         // Set event values on views
 
         val timeFormat = StringHelper.ucfirst(SimpleDateFormat("EEEE dd/MM - HH'h'mm", Locale.FRENCH).format(event.date_start))
@@ -75,6 +78,11 @@ class PopEventActivity : Activity() {
         titleView.text = event.name
         event.category?.apply {  subtitleView.text = this.name }
         manager.findPlaceById(event.place_id)?.apply { placeView.text = this.name  }
+
+        if( event.description != "" ){
+            contentView.text = event.description
+            window.setLayout((width * 0.85).toInt(), (dpToPx(450)).toInt())
+        }
 
         Picasso.with(this.applicationContext).load("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg").into(imageView)
 

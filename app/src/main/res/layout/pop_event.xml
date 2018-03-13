@@ -54,15 +54,15 @@
         <RelativeLayout
             android:id="@+id/pop_info"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                 android:id="@+id/pop_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Samedi 4 avril - 9h30" />
+                android:text="Samedi 4 avril - 9h30"
+                android:textColor="@color/black" />
 
             <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                 android:id="@+id/pop_place"
@@ -80,9 +80,23 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:text="70min" />
+
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/pop_main"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
+            <TextView
+                android:id="@+id/popin_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
 
     </LinearLayout>
@@ -112,5 +126,6 @@
             android:text="Voir plus" />
 
     </LinearLayout>
+
     </RelativeLayout>
 </RelativeLayout>

@@ -19,6 +19,8 @@
         android:alpha="1"
         android:scaleX="1"
         android:scaleY="1"
+        android:onClick="selectItem"
+        android:clickable="true"
         android:textSize="17sp" />
 
 </RelativeLayout>

@@ -62,6 +62,7 @@ class ProgramActivity: MainActivity() {
         eventsHeadPager.adapter = TextPagerAdapter()
         eventsHeadPager.offscreenPageLimit = 0
         eventsHeadPager.pageMargin = 0
+
         eventsHeadPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             private var mScrollState = ViewPager.SCROLL_STATE_IDLE
             override fun onPageSelected(position: Int) {
@@ -136,7 +137,13 @@ class ProgramActivity: MainActivity() {
             val dateView = parent.findViewById<TextView>(R.id.date)
 
             dateView.text = datesList[position]
+            dateView.setOnClickListener(View.OnClickListener{
+                eventsHeadPager.setCurrentItem(position - 1 )
+                if( position > 0 && position < eventsHeadPager.adapter.count){
+                    eventsBodyPager.setCurrentItem(position -1 )
+                }
 
+            })
             return parent
         }
 
