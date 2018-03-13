@@ -13,6 +13,8 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.support.v4.app.ActivityOptionsCompat
+import android.widget.RelativeLayout
 
 
 abstract class MainActivity : AppCompatActivity() {
@@ -31,7 +33,6 @@ abstract class MainActivity : AppCompatActivity() {
     private fun getOption(): Bundle? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             return ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
-            overridePendingTransition(0,0)
         }
         return null
     }
@@ -55,19 +56,26 @@ abstract class MainActivity : AppCompatActivity() {
         star = findViewById<ImageButton>(R.id.starBtn)
 
         home.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java), getOption())
+            startActivity(Intent(this, HomeActivity::class.java))
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.no_anim)
+
         })
 
         program.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, ProgramActivity::class.java), getOption())
+            startActivity(Intent(this, ProgramActivity::class.java))
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.no_anim)
+
         })
 
         info.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, InfoActivity::class.java), getOption())
+            startActivity(Intent(this, InfoActivity::class.java))
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.no_anim)
+
         })
 
         star.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, FavoriteActivity::class.java), getOption())
+            startActivity(Intent(this, FavoriteActivity::class.java))
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.no_anim)
         })
 
         manageCurrentNavItem()

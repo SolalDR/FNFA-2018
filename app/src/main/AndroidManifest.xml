@@ -21,20 +21,8 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".InfoActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".FavoriteActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".PopEventActivity"
-            android:theme="@style/AppTheme.PopEvent"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".HomeActivity"
-            android:theme="@style/SplashTheme"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +30,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProgramActivity"
+
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".FavoriteActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PopEventActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.PopEvent"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ProgramActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
     </application>
 
