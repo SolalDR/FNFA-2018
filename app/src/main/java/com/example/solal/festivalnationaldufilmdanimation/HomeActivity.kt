@@ -19,11 +19,15 @@ import com.twitter.sdk.android.tweetui.UserTimeline
 import com.example.solal.festivalnationaldufilmdanimation.adapter.EventAdapter
 import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.test.MoreAsserts.assertEquals
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.collections.ArrayList
 
 
@@ -34,6 +38,7 @@ class HomeActivity : MainActivity() {
 
     lateinit var recycler: RecyclerView
     lateinit var recyclerView: ListView
+    var notification = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,11 +99,18 @@ class HomeActivity : MainActivity() {
         }.start()
     }
 
+    class NotificationID {
+        private val c = AtomicInteger(0)
+        val id: Int
+         get() = c.incrementAndGet()
+
+    }
+
+
     fun sendNotification( Str : ArrayList<String>, string : String, name : String) {
 
-
-        val intent = Intent(this, InfoActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+       val intent = Intent(this, InfoActivity::class.java)
+       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
 
         //Get an instance of NotificationManager//
@@ -107,25 +119,27 @@ class HomeActivity : MainActivity() {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(name)
                 .setContentText(string)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setDefaults(NotificationCompat.DEFAULT_VIBRATE)
                 // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .setVisibility(10)
+                .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+                .setLights(Color.BLUE, 3000, 3000)
 
         // Gets an instance of the NotificationManager service//
         val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notification ++
 
-        mNotificationManager.notify(1, mBuilder.build())
+        mNotificationManager.notify(notification, mBuilder.build())
 
     }
 
     fun displayNotificationMoment(){
 
 
-
         var favName = ArrayList<String>()
-//        val now = Calendar.getInstance().time
-//        val timeFormat = SimpleDateFormat("HH'h'mm", Locale.FRENCH).format(now).toString()
 
         val favorites = app.favoriteManager.findAllEvents()
         for (item in favorites) {
@@ -135,15 +149,9 @@ class HomeActivity : MainActivity() {
             val name = item.name
 
             //curent Time
-
             val now = Calendar.getInstance().time
-
-
-
             val timeFormat = SimpleDateFormat("HH'h'mm", Locale.FRENCH).format(now)
-
-            //Favorite Start Date
-
+            val anHour = 3.6e+6
 
 
             val start =SimpleDateFormat("HH'h'mm", Locale.FRENCH).format(item.date_start)
@@ -153,31 +161,17 @@ class HomeActivity : MainActivity() {
             if(item.date_start > now){
                 var difference = item.date_start.time - now.time
 
-                val timeFormat = SimpleDateFormat("DD d HH'h'mm", Locale.FRENCH).format(difference).toString()
-//                var differenceToString =  timeFormat.toString()
-
-
-
-                sendNotification(favName, timeFormat, name)
+                if(difference<anHour){
+                    val timeFormat = SimpleDateFormat("DD 'd' HH'h'mm", Locale.FRENCH).format(difference).toString()
+                    sendNotification(favName, timeFormat, name)
+                }
             }
-//            val current = LocalDateTime.now()
-// val eventTime = events[position].date_start
-//            val timeFormat = SimpleDateFormat("HH'h'mm", Locale.FRENCH).format(eventTime)
-//            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
-//            val formatted = current.format(formatter)
-
         }
-
-//        var str = favorites[0].name as String
-
-
 
 //
         // 1) get favorites
         // 2) get current time
         // 3) compare, send notification
-
-//
 
 //        return
     }
