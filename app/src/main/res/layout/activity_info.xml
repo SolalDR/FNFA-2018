@@ -124,7 +124,20 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp">
 
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                android:letterSpacing="0.2"
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="15dp"
+                                android:text="Tout Public"
+                                android:textAllCaps="true"
+                                android:background="@drawable/border_left"
+                                android:textColor="@color/black" />
+
                             <RelativeLayout style="@style/Tarif">
+
+                                <View style="@style/TarifLine" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"
@@ -137,16 +150,7 @@
 
                             <RelativeLayout style="@style/Tarif">
 
-                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
-                                    style="@style/TarifTitle"
-                                    android:text="Professionnel" />
-
-                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
-                                    style="@style/TarifPrice"
-                                    android:text="10€" />
-                            </RelativeLayout>
-
-                            <RelativeLayout style="@style/Tarif">
+                                <View style="@style/TarifLine" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"
@@ -158,6 +162,21 @@
                             </RelativeLayout>
 
                             <RelativeLayout style="@style/Tarif">
+
+                                <View style="@style/TarifLine" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="Professionnel" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    style="@style/TarifPrice"
+                                    android:text="10€" />
+                            </RelativeLayout>
+
+                            <RelativeLayout style="@style/Tarif">
+
+                                <View style="@style/TarifLine" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"

@@ -79,12 +79,12 @@ class PopEventActivity : Activity() {
         event.category?.apply {  subtitleView.text = this.name }
         manager.findPlaceById(event.place_id)?.apply { placeView.text = this.name  }
 
-        if( event.description != "" ){
+        if( event.description != "" && event.description != null && event.description != "null" ){
             contentView.text = event.description
             window.setLayout((width * 0.85).toInt(), (dpToPx(450)).toInt())
         }
 
-        Picasso.with(this.applicationContext).load("http://www.festival-film-animation.fr/media/k2/items/cache/4246b121d2dc949b8f082c5f57840a3b_XL.jpg").into(imageView)
+        Picasso.with(this.applicationContext).load(event.image).into(imageView)
 
 
         val parent = findViewById<RelativeLayout>(R.id.pop_parent)
