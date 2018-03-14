@@ -112,7 +112,7 @@
                         <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                             android:id="@+id/tarifs_title"
                             style="@style/Title"
-                            android:paddingBottom="20dp"
+                            android:paddingBottom="10dp"
                             android:paddingTop="25dp"
                             android:text="Tarifs" />
 
@@ -125,22 +125,20 @@
                             android:paddingRight="15dp">
 
                             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
-                                android:letterSpacing="0.2"
-                                android:id="@+id/textView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingLeft="15dp"
-                                android:text="Tout Public"
-                                android:textAllCaps="true"
-                                android:background="@drawable/border_left"
-                                android:textColor="@color/black" />
+                                style="@style/TarifSubTitle"
+                                android:text="Tout Public" />
 
-                            <RelativeLayout style="@style/Tarif">
+                            <RelativeLayout
+                                style="@style/Tarif"
+                                android:layout_marginEnd="5dp">
 
                                 <View style="@style/TarifLine" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
                                     android:text="Professionnel" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
@@ -154,11 +152,11 @@
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"
-                                    android:text="Professionnel" />
+                                    android:text="Tarif Unique" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                                     style="@style/TarifPrice"
-                                    android:text="10€" />
+                                    android:text="6€" />
                             </RelativeLayout>
 
                             <RelativeLayout style="@style/Tarif">
@@ -167,11 +165,11 @@
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"
-                                    android:text="Professionnel" />
+                                    android:text="Ciné Concert" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                                     style="@style/TarifPrice"
-                                    android:text="10€" />
+                                    android:text="9€" />
                             </RelativeLayout>
 
                             <RelativeLayout style="@style/Tarif">
@@ -180,11 +178,87 @@
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
                                     style="@style/TarifTitle"
-                                    android:text="Professionnel" />
+                                    android:text="Carte Sortir et Groupe" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="A partir de 10 personnes" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                                     style="@style/TarifPrice"
-                                    android:text="10€" />
+                                    android:text="3€" />
+                            </RelativeLayout>
+
+                            <RelativeLayout style="@style/Tarif">
+
+                                <View style="@style/TarifLine" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="Carnet fidélité" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="5 places" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    style="@style/TarifPrice"
+                                    android:text="25€" />
+                            </RelativeLayout>
+
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                style="@style/TarifSubTitle"
+                                android:text="Scolaire et Structures" />
+
+                            <RelativeLayout style="@style/Tarif">
+
+                                <View style="@style/TarifLine" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="Projection" />
+
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    style="@style/TarifPrice"
+                                    android:text="3€" />
+                            </RelativeLayout>
+
+                            <RelativeLayout style="@style/Tarif">
+
+                                <View style="@style/TarifLine" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="Atelier" />
+
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    style="@style/TarifPrice"
+                                    android:text="4€" />
+                            </RelativeLayout>
+
+
+
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                style="@style/TarifSubTitle"
+                                android:text="Billeterie" />
+
+
+                            <RelativeLayout style="@style/Tarif">
+
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    style="@style/TarifTitle"
+                                    android:text="Ouverture de la billetterie 30 minutes avant le début de chaque séance pour toutes les
+salles.
+Pour les séances du TNB uniquement, réservation à partir du 4 avril sur toute la durée du
+Festival
+Carte abonnée des salles partenaires (TNB, Arvor et Le Grand Logis) acceptée." />
+
+
+
+
                             </RelativeLayout>
                         </LinearLayout>
                     </RelativeLayout>
