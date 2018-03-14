@@ -1,5 +1,6 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.app.AlarmManager
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -109,30 +110,6 @@ class HomeActivity : MainActivity() {
 
     fun sendNotification( Str : ArrayList<String>, string : String, name : String) {
 
-       val intent = Intent(this, InfoActivity::class.java)
-       intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-
-        //Get an instance of NotificationManager//
-        val mBuilder = NotificationCompat.Builder(this)
-                .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(name)
-                .setContentText(string)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setDefaults(NotificationCompat.DEFAULT_VIBRATE)
-                // Set the intent that will fire when the user taps the notification
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .setVisibility(10)
-                .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
-                .setLights(Color.BLUE, 3000, 3000)
-
-        // Gets an instance of the NotificationManager service//
-        val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notification ++
-
-        mNotificationManager.notify(notification, mBuilder.build())
 
     }
 
@@ -161,12 +138,48 @@ class HomeActivity : MainActivity() {
             if(item.date_start > now){
                 var difference = item.date_start.time - now.time
 
-                if(difference<anHour){
+//                if(difference<anHour){
                     val timeFormat = SimpleDateFormat("DD 'd' HH'h'mm", Locale.FRENCH).format(difference).toString()
-                    sendNotification(favName, timeFormat, name)
-                }
+//                    sendNotification(favName, timeFormat, name)
+
+                val intent = Intent(this, InfoActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+                //Get an instance of NotificationManager//
+                val mBuilder = NotificationCompat.Builder(this)
+                        .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle(name)
+                        .setContentText(timeFormat)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setDefaults(NotificationCompat.DEFAULT_VIBRATE)
+                        // Set the intent that will fire when the user taps the notification
+                        .setContentIntent(pendingIntent)
+                        .setAutoCancel(true)
+                        .setVisibility(10)
+                        .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
+                        .setLights(Color.BLUE, 3000, 3000)
+
+                // Gets an instance of the NotificationManager service//
+                val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                notification ++
+
+                mNotificationManager.notify(notification, mBuilder.build())
+
+//                val alarmManager =getSystemService(Context.ALARM_SERVICE) as AlarmManager;
+//                alarmManager.nextAlarmClock()
+//                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+//                        10000, pendingIntent);
+
+//                }
             }
+
+
         }
+
+
+
 
 //
         // 1) get favorites
