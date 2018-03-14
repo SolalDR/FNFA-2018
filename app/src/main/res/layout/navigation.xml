@@ -1,52 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-android:orientation="horizontal"
-android:layout_width="match_parent"
-android:layout_height="64dp"
-    android:paddingTop="5dp"
-xmlns:android="http://schemas.android.com/apk/res/android">
 
-<ImageButton
-    android:id="@+id/homeBtn"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_weight="1"
-    android:background="@android:color/transparent"
-    android:padding="10dp"
-    android:scaleType="fitCenter"
-    android:alpha="0.7"
-    android:src="@drawable/ico_home" />
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-<ImageButton
-    android:id="@+id/programBtn"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_weight="1"
-    android:padding="10dp"
-    android:background="@android:color/transparent"
-    android:scaleType="fitCenter"
-    android:alpha="0.7"
-    android:src="@drawable/ico_date"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:id="@+id/linearLayout">
 
-<ImageButton
-    android:id="@+id/infoBtn"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_weight="1"
-    android:padding="10dp"
-    android:background="@android:color/transparent"
-    android:scaleType="fitCenter"
-    android:alpha="0.7"
-    android:src="@drawable/ico_info"/>
+        <ImageButton
+            android:id="@+id/homeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ico_home" />
 
-<ImageButton
-    android:id="@+id/starBtn"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_weight="1"
-    android:padding="10dp"
-    android:background="@android:color/transparent"
-    android:scaleType="fitCenter"
-    android:alpha="0.7"
-    android:src="@drawable/ico_star"/>
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/programBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ico_date" />
+
+        <ImageButton
+            android:id="@+id/infoBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ico_info" />
+
+        <ImageButton
+            android:id="@+id/starBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:alpha="0.7"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ico_star" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>

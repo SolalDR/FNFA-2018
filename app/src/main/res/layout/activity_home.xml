@@ -30,7 +30,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                     android:id="@+id/tv_Home"
                     style="@style/Title"
@@ -44,7 +43,6 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:padding="8dp">
-
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerHome"
@@ -92,6 +90,8 @@
 
 
     </RelativeLayout>
+
+    <include layout="@layout/leaf_background"></include>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -348,5 +348,6 @@ Carte abonnée des salles partenaires (TNB, Arvor et Le Grand Logis) acceptée."
 
     </RelativeLayout>
 
+    <include layout="@layout/leaf_background"></include>
 
 </android.support.constraint.ConstraintLayout>

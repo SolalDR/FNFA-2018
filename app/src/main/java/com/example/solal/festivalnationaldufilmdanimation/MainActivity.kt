@@ -1,5 +1,6 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.animation.ObjectAnimator
 import android.app.ActivityOptions
 import android.content.Intent
 import android.app.NotificationManager
@@ -14,6 +15,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.support.v4.app.ActivityOptionsCompat
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
+import android.view.animation.TranslateAnimation
 import android.widget.RelativeLayout
 
 
@@ -24,6 +28,7 @@ abstract class MainActivity : AppCompatActivity() {
     lateinit var info: ImageButton
     lateinit var program: ImageButton
     lateinit var star: ImageButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         app = application as MyApplication
@@ -54,6 +59,16 @@ abstract class MainActivity : AppCompatActivity() {
         info = findViewById<ImageButton>(R.id.infoBtn)
         program = findViewById<ImageButton>(R.id.programBtn)
         star = findViewById<ImageButton>(R.id.starBtn)
+
+        var leaf = findViewById<ImageView>(R.id.leafTL1)
+        /**leaf.animation = RotateAnimation(20f, 30f).apply {
+            this.duration = 1000
+            this.repeatCount = Animation.INFINITE
+        }*/
+
+        //leaf.animation.start()
+
+
 
         home.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))

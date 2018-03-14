@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<ImageView
+    android:id="@+id/leafTL1"
+    android:layout_width="96dp"
+    android:layout_height="164dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="62dp"
+    android:rotation="30"
+    android:scaleType="fitEnd"
+    android:translationX="-70sp"
+    android:translationY="0sp"
+    app:srcCompat="@drawable/leaf_2" />
+
+
+<ImageView
+    android:id="@+id/leafTR1"
+    android:layout_width="36dp"
+    android:layout_height="124dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:translationX="20sp"
+    android:translationY="30sp"
+    android:rotation="-40"
+    android:scaleType="fitEnd"
+    app:srcCompat="@drawable/leaf" />
+
+<ImageView
+    android:id="@+id/leafTR2"
+    android:layout_width="76dp"
+    android:layout_height="154dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:translationX="30sp"
+    android:translationY="70sp"
+    android:rotation="-40"
+    android:scaleType="fitEnd"
+    app:srcCompat="@drawable/leaf" />
+
+
+<ImageView
+    android:id="@+id/leafTR3"
+    android:layout_width="36dp"
+    android:layout_height="124dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="40dp"
+    android:translationX="20sp"
+    android:rotation="-40"
+    android:scaleType="fitEnd"
+    app:srcCompat="@drawable/leaf" />
+
+<ImageView
+    android:id="@+id/leafTR4"
+    android:layout_width="76dp"
+    android:layout_height="154dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:translationX="30sp"
+    android:translationY="90sp"
+    android:rotation="-40"
+    android:scaleType="fitEnd"
+    app:srcCompat="@drawable/leaf" />
+
+
+</RelativeLayout>
