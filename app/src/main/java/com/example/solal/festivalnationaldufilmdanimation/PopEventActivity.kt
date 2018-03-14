@@ -87,7 +87,7 @@ class PopEventActivity : Activity() {
         Picasso.with(this.applicationContext)
                 .load(event.image)
                 .placeholder(R.color.black)
-                .error(R.drawable.bg)
+                .error(R.drawable.bg_pop)
                 .into(imageView)
 
 
