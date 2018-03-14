@@ -84,7 +84,10 @@ class PopEventActivity : Activity() {
             window.setLayout((width * 0.85).toInt(), (dpToPx(450)).toInt())
         }
 
-        Picasso.with(this.applicationContext).load(event.image).into(imageView)
+        Picasso.with(this.applicationContext)
+                .load(event.image)
+                .placeholder(R.color.black)
+                .into(imageView)
 
 
         val parent = findViewById<RelativeLayout>(R.id.pop_parent)

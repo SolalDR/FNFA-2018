@@ -172,7 +172,8 @@
                                     android:text="9€" />
                             </RelativeLayout>
 
-                            <RelativeLayout style="@style/Tarif">
+                            <RelativeLayout style="@style/Tarif"
+                                android:layout_height="45dp">
 
                                 <View style="@style/TarifLine" />
 
@@ -181,7 +182,7 @@
                                     android:text="Carte Sortir et Groupe" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
-                                    style="@style/TarifTitle"
+                                    style="@style/TarifComment"
                                     android:text="A partir de 10 personnes" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
@@ -198,7 +199,7 @@
                                     android:text="Carnet fidélité" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
-                                    style="@style/TarifTitle"
+                                    style="@style/TarifComment"
                                     android:text="5 places" />
 
                                 <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
@@ -260,7 +261,82 @@ Carte abonnée des salles partenaires (TNB, Arvor et Le Grand Logis) acceptée."
 
 
                             </RelativeLayout>
+
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                style="@style/Title"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:paddingBottom="25dp"
+                                android:paddingLeft="5dp"
+                                android:text="Nos Partenaires" />
+
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                style="@style/SubTitle"
+                                android:textAlignment="center"
+                                android:textSize="16sp"
+                                android:paddingLeft="0dp"
+                                android:text="Organisé par"/>
+
+                            <ImageButton
+                                android:id="@+id/imageButton2"
+                                android:layout_width="125dp"
+                                android:layout_gravity="center"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_below="@+id/tarifs_title"
+                                android:background="@color/white"
+                                android:scaleType="fitCenter"
+
+                                app:srcCompat="@drawable/orga_logo" />
+
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                style="@style/SubTitle"
+                                android:textAlignment="center"
+                                android:textSize="16sp"
+                                android:paddingLeft="0dp"
+                                android:text="En partenariat avec"/>
+
+                            <ImageButton
+                                android:id="@+id/imageButton3"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_alignLeft="@+id/imageButton2"
+                                android:layout_alignStart="@+id/imageButton2"
+                                android:layout_below="@+id/imageButton2"
+                                android:background="@color/white"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/orga_logo_2" />
+
+                            <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                style="@style/SubTitle"
+                                android:textAlignment="center"
+                                android:textSize="16sp"
+                                android:paddingLeft="0dp"
+                                android:text="Avec le soutien de "/>
+
+                            <ImageButton
+                                android:id="@+id/imageButton4"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:layout_alignLeft="@+id/imageButton3"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignStart="@+id/imageButton3"
+                                android:background="@color/white"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/orga_logo_3" />
+
                         </LinearLayout>
+
                     </RelativeLayout>
 
 
