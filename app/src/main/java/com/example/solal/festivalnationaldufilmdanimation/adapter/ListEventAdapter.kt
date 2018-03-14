@@ -70,7 +70,7 @@ class ListEventAdapter (
                 }
 
                 events.remove(event)
-                adapter.notifyItemRemoved(cell.adapterPosition)
+                adapter.notifyDataSetChanged()
             }
         })
 

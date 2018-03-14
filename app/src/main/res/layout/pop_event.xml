@@ -106,39 +106,6 @@
 
 
     </LinearLayout>
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:id="@+id/pop_actions"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent">
-
-
-        <!--<Button
-            android:id="@+id/pop_action_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="Share"
-            android:translationY="40dp" />-->
-
-
-        <Button
-            android:id="@+id/pop_action_web"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_margin="20dp"
-            android:background="@color/blue"
-            android:letterSpacing="0.2"
-            android:padding="5dp"
-            android:elevation="0dp"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
-            android:text="En savoir plus"
-            android:textColor="@color/white" />
-
-    </RelativeLayout>
 
     </RelativeLayout>
 </RelativeLayout>

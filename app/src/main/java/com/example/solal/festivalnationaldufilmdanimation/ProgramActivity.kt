@@ -1,9 +1,11 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.example.admin.myapplication.adapters.EventPagerAdapter
 import com.example.admin.myapplication.adapters.ViewPagerAdapter
@@ -13,7 +15,6 @@ import java.util.*
 
 class ProgramActivity: MainActivity() {
 
-
     lateinit var eventsBodyPager: ViewPager
     lateinit var eventsHeadPager: ViewPager
     lateinit var datesList: ArrayList<String>
@@ -22,13 +23,14 @@ class ProgramActivity: MainActivity() {
     private lateinit var currentDate: Date
     private var displayFormater = SimpleDateFormat("E dd", Locale.FRANCE)
     private var selectedDate: Int = 0
-
     private var currentView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_program)
         manageNav()
+
+
 
         datesList = ArrayList()
 
@@ -43,8 +45,9 @@ class ProgramActivity: MainActivity() {
         setDefaultDate()
     }
 
+
     fun setActiveItem(state: Int){
-        if( state != selectedDate ){
+        if ( state != selectedDate ) {
             currentView?.apply {
                 this.animate().scaleX(1.toFloat()).scaleY(1.toFloat()).duration = 200
             }
@@ -54,7 +57,6 @@ class ProgramActivity: MainActivity() {
 
             selectedDate = state
         }
-
     }
 
     private fun initHeadPager(){

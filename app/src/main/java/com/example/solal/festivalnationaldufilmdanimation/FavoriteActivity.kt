@@ -1,10 +1,12 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import com.example.solal.festivalnationaldufilmdanimation.adapter.ListEventAdapter
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import java.util.*
@@ -43,6 +45,12 @@ class FavoriteActivity : MainActivity() {
         if(adapter.eventLists.size > 0) {
             this@FavoriteActivity.hideEmpty()
         }
+
+        val buttonBack = findViewById<Button>(R.id.buttonBack)
+        buttonBack.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(this, ProgramActivity::class.java))
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.no_anim)
+        })
     }
 
     private fun displayEmpty(){

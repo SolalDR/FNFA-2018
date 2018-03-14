@@ -48,7 +48,7 @@ class PopEventActivity : Activity() {
 
         // Set popup size
 
-        window.setLayout((width * 0.85).toInt(), (dpToPx(400)).toInt())
+        window.setLayout((width * 0.85).toInt(), (dpToPx(350)).toInt())
 
         // Get current event
         manager = (application as MyApplication).manager
@@ -81,12 +81,13 @@ class PopEventActivity : Activity() {
 
         if( event.description != "" && event.description != null && event.description != "null" ){
             contentView.text = event.description
-            window.setLayout((width * 0.85).toInt(), (dpToPx(450)).toInt())
+            window.setLayout((width * 0.85).toInt(), (dpToPx(400)).toInt())
         }
 
         Picasso.with(this.applicationContext)
                 .load(event.image)
                 .placeholder(R.color.black)
+                .error(R.drawable.bg)
                 .into(imageView)
 
 
