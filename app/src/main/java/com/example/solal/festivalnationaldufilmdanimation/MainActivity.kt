@@ -60,7 +60,7 @@ abstract class MainActivity : AppCompatActivity() {
         program = findViewById<ImageButton>(R.id.programBtn)
         star = findViewById<ImageButton>(R.id.starBtn)
 
-        var leaf = findViewById<ImageView>(R.id.leafTL1)
+        //var leaf = findViewById<ImageView>(R.id.leafTL1)
         /**leaf.animation = RotateAnimation(20f, 30f).apply {
             this.duration = 1000
             this.repeatCount = Animation.INFINITE
