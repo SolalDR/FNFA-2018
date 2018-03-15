@@ -77,13 +77,90 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
 
         val places = app.manager.findAllPlaces()
         val markers = getMarkers(places)
+        var LatLongPlaces : ArrayList<LatLng> = arrayListOf()
+
+
+
+        val listenerTNB = object : View.OnClickListener {
+            override
+            fun onClick(v: View) {
+                val location1 = CameraUpdateFactory.newLatLngZoom(
+                        cinemaTNB, 15f)
+                mMap!!.animateCamera(location1)
+            }
+        }
+
+        val listenerArvor = object : View.OnClickListener {
+            override
+            fun onClick(v: View) {
+                val location2 = CameraUpdateFactory.newLatLngZoom(
+                        cinemaArvor, 15f)
+                mMap!!.animateCamera(location2)
+            }
+        }
+
+        val listenerESRA = object : View.OnClickListener {
+            override
+            fun onClick(v: View) {
+                val location1 = CameraUpdateFactory.newLatLngZoom(
+                        ESRA, 15f)
+                mMap!!.animateCamera(location1)
+            }
+        }
+
+        val listenerGL = object : View.OnClickListener {
+            override
+            fun onClick(v: View) {
+                val location2 = CameraUpdateFactory.newLatLngZoom(
+                        GL, 15f)
+                mMap!!.animateCamera(location2)
+            }
+        }
+
+        val listenerECDG = object : View.OnClickListener {
+            override
+            fun onClick(v: View) {
+                val location1 = CameraUpdateFactory.newLatLngZoom(
+                        ECDG, 15f)
+                mMap!!.animateCamera(location1)
+            }
+        }
+
+        val listenerF3B = object : View.OnClickListener {
+            override
+            fun onClick(v: View) {
+                val location2 = CameraUpdateFactory.newLatLngZoom(
+                        F3B, 15f)
+                mMap!!.animateCamera(location2)
+            }
+        }
+
+
+        val layout1cinema = findViewById<View>(R.id.place_detail_cinemaTNB)
+        layout1cinema.setOnClickListener(listenerTNB)
+
+        val layout2cinema = findViewById<View>(R.id.place_detail_Arvor)
+        layout2cinema.setOnClickListener(listenerArvor)
+
+        val layout3cinema = findViewById<View>(R.id.place_detail_ESRA)
+        layout3cinema.setOnClickListener(listenerESRA)
+
+        val layout4cinema = findViewById<View>(R.id.place_detail_GL)
+        layout4cinema.setOnClickListener(listenerGL)
+
+        val layout5cinema = findViewById<View>(R.id.place_detail_ECDG)
+        layout5cinema.setOnClickListener(listenerECDG)
+
+        val layout6cinema = findViewById<View>(R.id.place_detail_F3B)
+        layout6cinema.setOnClickListener(listenerF3B)
+
 
         displayPlace(places[0])
 
         mMap?.apply {
             this.moveCamera(CameraUpdateFactory.newLatLng(LatLng(places[0].lat, places[0].lon)))
             this.setMaxZoomPreference(30.0f)
-            this.setMinZoomPreference(8.5f)
+            this.setMinZoomPreference(9.5f)
             val mUiSettings = this.uiSettings
             mUiSettings.isScrollGesturesEnabled
 
