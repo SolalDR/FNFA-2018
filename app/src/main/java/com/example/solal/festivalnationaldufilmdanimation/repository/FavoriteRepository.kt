@@ -1,10 +1,29 @@
 package com.example.solal.festivalnationaldufilmdanimation.repository
 
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.Intent
+import com.example.solal.festivalnationaldufilmdanimation.R
 import com.example.solal.festivalnationaldufilmdanimation.entity.Event
 import com.example.solal.festivalnationaldufilmdanimation.entity.Category
 import org.json.JSONObject
 import com.example.solal.festivalnationaldufilmdanimation.helpers.FileHelper
 import java.util.*
+import android.content.Context.NOTIFICATION_SERVICE
+import android.app.NotificationManager
+import android.app.AlarmManager
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import com.example.solal.festivalnationaldufilmdanimation.helpers.NotificationPublisher
+import android.os.SystemClock
+import android.support.v4.app.NotificationCompat
+import com.example.solal.festivalnationaldufilmdanimation.helpers.JsonParser
+import android.support.v4.app.NotificationManagerCompat
+import com.example.solal.festivalnationaldufilmdanimation.InfoActivity
+import android.R.attr.description
+import android.app.NotificationChannel
+import android.content.Context.BIND_IMPORTANT
 
 
 /**
@@ -30,6 +49,8 @@ class FavoriteRepository constructor(private val manager: DataRepository) {
         }
         return false
     }
+
+
 
     fun addEvent(event: Event){
         if( !exist(event) ){

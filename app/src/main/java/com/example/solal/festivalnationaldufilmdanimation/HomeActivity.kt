@@ -52,9 +52,8 @@ class HomeActivity : MainActivity() {
         recycler.layoutManager = LinearLayoutManager(this)
         loadTwitterApi()
         displayEvents()
-        displayNotificationMoment()
+        //displayNotificationMoment()
     }
-
 
 
     private fun displayEvents(){
@@ -100,18 +99,6 @@ class HomeActivity : MainActivity() {
         }.start()
     }
 
-    class NotificationID {
-        private val c = AtomicInteger(0)
-        val id: Int
-         get() = c.incrementAndGet()
-
-    }
-
-
-    fun sendNotification( Str : ArrayList<String>, string : String, name : String) {
-
-
-    }
 
     fun displayNotificationMoment(){
 
@@ -165,14 +152,10 @@ class HomeActivity : MainActivity() {
                 val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 notification ++
 
-                mNotificationManager.notify(notification, mBuilder.build())
+                val notif = mBuilder.build()
 
-//                val alarmManager =getSystemService(Context.ALARM_SERVICE) as AlarmManager;
-//                alarmManager.nextAlarmClock()
-//                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
-//                        10000, pendingIntent);
+                mNotificationManager.notify(notification, notif )
 
-//                }
             }
 
 
