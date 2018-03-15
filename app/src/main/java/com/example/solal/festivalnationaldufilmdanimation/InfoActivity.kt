@@ -31,8 +31,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 class InfoActivity : OnMapReadyCallback, MainActivity() {
 
     lateinit var mapView: MapView
-    lateinit var placeNameView: TextView
-    lateinit var addressView: TextView
+//    lateinit var placeNameView: TextView
+//    lateinit var addressView: TextView
     private var mMap: GoogleMap? = null
 
     private var cinemaArvor: LatLng? = LatLng(48.116137, -1.679034)
@@ -56,8 +56,8 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
         setContentView(R.layout.activity_info)
         manageNav()
 
-        placeNameView = findViewById(R.id.name_place0)
-        addressView = findViewById(R.id.address_place0)
+//        placeNameView = findViewById(R.id.name_place0)
+//        addressView = findViewById(R.id.address_place0)
 
         mapView = findViewById(R.id.map)
         mapView.onCreate(savedInstanceState)
@@ -155,11 +155,11 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
         layout6cinema.setOnClickListener(listenerF3B)
 
 
-        displayPlace(places[0])
+//        displayPlace(places[0])
 
         mMap?.apply {
             this.moveCamera(CameraUpdateFactory.newLatLng(LatLng(places[0].lat, places[0].lon)))
-            this.setMaxZoomPreference(30.0f)
+            this.setMaxZoomPreference(35.0f)
             this.setMinZoomPreference(9.5f)
             val mUiSettings = this.uiSettings
             mUiSettings.isScrollGesturesEnabled
@@ -167,7 +167,7 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
             this.setOnMarkerClickListener { marker ->
                 for (i in markers.indices) {
                     if (markers[i].id == marker.id) {
-                        displayPlace(places[i])
+//                        displayPlace(places[i])
                         break
                     }
                 }
@@ -187,7 +187,8 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
         for (i in places.indices) {
             marker = mMap!!.addMarker(
                     MarkerOptions()
-                            .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(places[i].name)))
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+//                            .icon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(places[i].name)))
                             .position(LatLng(places[i].lat, places[i].lon))
             )
             markers.add(marker)
@@ -197,8 +198,8 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
 
 
 
-    fun displayPlace(place: Place) {
-        placeNameView.text = place.name
-        addressView.text = place.address
-    }
+//    fun displayPlace(place: Place) {
+//        placeNameView.text = place.name
+//        addressView.text = place.address
+//    }
 }
