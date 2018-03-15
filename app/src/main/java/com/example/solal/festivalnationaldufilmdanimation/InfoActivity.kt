@@ -1,6 +1,8 @@
 package com.example.solal.festivalnationaldufilmdanimation
 
+import android.app.Activity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import com.example.solal.festivalnationaldufilmdanimation.entity.Place
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -10,6 +12,20 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
 import com.google.maps.android.ui.IconGenerator
 import java.util.ArrayList
+import com.google.android.gms.maps.CameraUpdate
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.LatLng
+import android.widget.RelativeLayout
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.MarkerOptions
+
+
+
+
+
+
+
+
 
 
 class InfoActivity : OnMapReadyCallback, MainActivity() {
@@ -19,6 +35,20 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
     lateinit var addressView: TextView
     private var mMap: GoogleMap? = null
 
+    private var cinemaArvor: LatLng? = LatLng(48.116137, -1.679034)
+    private val cinemaTNB: LatLng? = LatLng(48.107960,  -1.672563)
+
+    private val ESRA: LatLng? = LatLng(48.129036, -1.642040)
+    private val GL: LatLng? = LatLng(48.235920, -1.622803)
+
+    private val ECDG: LatLng? = LatLng(48.106697,  -1.676723)
+    private val F3B: LatLng? = LatLng(48.108728, -1.673121)
+
+    private val markerTNB: Marker? = null
+    private var markerArvor: Marker? = null
+
+//    private var layout1cinema: RelativeLayout?=null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +56,8 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
         setContentView(R.layout.activity_info)
         manageNav()
 
-        placeNameView = findViewById(R.id.name_place)
-        addressView = findViewById(R.id.address_place)
+        placeNameView = findViewById(R.id.name_place0)
+        addressView = findViewById(R.id.address_place0)
 
         mapView = findViewById(R.id.map)
         mapView.onCreate(savedInstanceState)
@@ -36,6 +66,8 @@ class InfoActivity : OnMapReadyCallback, MainActivity() {
 
         val widthMap = mapView.width
         mapView.minimumHeight = widthMap
+
+
 
     }
 

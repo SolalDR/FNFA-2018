@@ -10,11 +10,11 @@
     <include layout="@layout/navigation"></include>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/FragmentContainer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
-        android:transitionName="mainBody"
-        style="@style/FragmentContainer">
+        android:transitionName="mainBody">
 
         <RelativeLayout
             style="@style/FragmentBody"
@@ -24,6 +24,9 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="@drawable/rounded_top_white">
 
                 <LinearLayout
@@ -70,30 +73,263 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/place_detail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_below="@+id/map_container"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="4dp">
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp">
 
-                        <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
-                            android:id="@+id/name_place"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/first_cinema_name"
-                            android:textColor="@color/colorPrimary" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
 
-                        <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
-                            android:id="@+id/address_place"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_below="@+id/name_place"
-                            android:text="@string/first_cinema_address"
-                            android:textColor="@color/colorPrimary" />
+                            <RelativeLayout
+                                android:id="@+id/place_detail_cinemaTNB"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/rounded_border_blue"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    android:id="@+id/address_place0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_weight="1"
+                                    android:text="@string/TNB_cinema_address"
+                                    android:textColor="@color/colorPrimary" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    android:id="@+id/name_place0"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/TNB_cinema_name"
+                                    android:textColor="@color/colorPrimary" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/place_detail_Arvor"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:background="@drawable/rounded_border_blue"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="10dp"
+
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    android:id="@+id/address_place1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_below="@+id/name_place1"
+                                    android:layout_weight="1"
+                                    android:text="@string/Arvor_cinema_address"
+                                    android:textColor="@color/colorPrimary" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    android:id="@+id/name_place1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/Arvor_cinema_name"
+                                    android:textColor="@color/colorPrimary" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/place_detail_ESRA"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/rounded_border_blue"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    android:id="@+id/address_place2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/name_place2"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_weight="1"
+                                    android:text="@string/ESRA_cinema_address"
+                                    android:textColor="@color/colorPrimary" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    android:id="@+id/name_place2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/ESRA_cinema_name"
+                                    android:textColor="@color/colorPrimary" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/place_detail_GL"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:background="@drawable/rounded_border_blue"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    android:id="@+id/name_place3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/GL_cinema_name"
+                                    android:textColor="@color/colorPrimary" />
+
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    android:id="@+id/address_place3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_below="@+id/name_place3"
+                                    android:layout_weight="1"
+                                    android:text="@string/GL_cinema_address"
+                                    android:textColor="@color/colorPrimary" />
+
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/place_detail_ECDG"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/rounded_border_blue"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    android:id="@+id/name_place4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+
+                                    android:text="@string/ECDG_cinema_name"
+                                    android:textColor="@color/colorPrimary" />
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    android:id="@+id/address_place4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/name_place4"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_weight="1"
+                                    android:text="@string/ECDG_cinema_address"
+                                    android:textColor="@color/colorPrimary"
+                                    tools:layout_editor_absoluteX="28dp"
+                                    tools:layout_editor_absoluteY="338dp" />
+
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/place_detail_F3B"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:background="@drawable/rounded_border_blue"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingBottom="4dp">
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                    android:id="@+id/name_place5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+
+                                    android:text="@string/F3B_cinema_name"
+                                    android:textColor="@color/colorPrimary" />
+
+
+                                <com.example.solal.festivalnationaldufilmdanimation.views.RegularTextView
+                                    android:id="@+id/address_place5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_weight="1"
+                                    android:layout_below="@+id/name_place5"
+                                    android:text="@string/F3B_cinema_address"
+                                    android:textColor="@color/colorPrimary" />
+
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
 
                     </RelativeLayout>
 
@@ -105,7 +341,7 @@
                         android:id="@+id/tarif_container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/place_detail"
+
                         android:paddingBottom="20dp"
                         android:paddingTop="10dp">
 
@@ -130,7 +366,7 @@
 
                             <RelativeLayout
                                 style="@style/Tarif"
-                                android:layout_marginEnd="5dp">
+                                >
 
                                 <View style="@style/TarifLine" />
 
@@ -172,7 +408,8 @@
                                     android:text="9€" />
                             </RelativeLayout>
 
-                            <RelativeLayout style="@style/Tarif"
+                            <RelativeLayout
+                                style="@style/Tarif"
                                 android:layout_height="45dp">
 
                                 <View style="@style/TarifLine" />
@@ -240,7 +477,6 @@
                             </RelativeLayout>
 
 
-
                             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
                                 style="@style/TarifSubTitle"
                                 android:text="Billeterie" />
@@ -273,56 +509,56 @@ Carte abonnée des salles partenaires (TNB, Arvor et Le Grand Logis) acceptée."
                                 android:text="Nos Partenaires" />
 
                             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                style="@style/SubTitle"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@style/SubTitle"
-                                android:textAlignment="center"
-                                android:textSize="16sp"
                                 android:paddingLeft="0dp"
-                                android:text="Organisé par"/>
+                                android:text="Organisé par"
+                                android:textAlignment="center"
+                                android:textSize="16sp" />
 
                             <ImageButton
                                 android:id="@+id/imageButton2"
                                 android:layout_width="125dp"
-                                android:layout_gravity="center"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_below="@+id/tarifs_title"
+                                android:layout_gravity="center"
                                 android:background="@color/white"
                                 android:scaleType="fitCenter"
 
                                 app:srcCompat="@drawable/orga_logo" />
 
                             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                style="@style/SubTitle"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@style/SubTitle"
-                                android:textAlignment="center"
-                                android:textSize="16sp"
                                 android:paddingLeft="0dp"
-                                android:text="En partenariat avec"/>
+                                android:text="En partenariat avec"
+                                android:textAlignment="center"
+                                android:textSize="16sp" />
 
                             <ImageButton
                                 android:id="@+id/imageButton3"
                                 android:layout_width="250dp"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
                                 android:layout_alignLeft="@+id/imageButton2"
                                 android:layout_alignStart="@+id/imageButton2"
                                 android:layout_below="@+id/imageButton2"
+                                android:layout_gravity="center"
                                 android:background="@color/white"
                                 android:scaleType="fitCenter"
                                 app:srcCompat="@drawable/orga_logo_2" />
 
                             <com.example.solal.festivalnationaldufilmdanimation.views.BoldTextView
+                                style="@style/SubTitle"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@style/SubTitle"
-                                android:textAlignment="center"
-                                android:textSize="16sp"
                                 android:paddingLeft="0dp"
-                                android:text="Avec le soutien de "/>
+                                android:text="Avec le soutien de "
+                                android:textAlignment="center"
+                                android:textSize="16sp" />
 
                             <ImageButton
                                 android:id="@+id/imageButton4"
